@@ -1,0 +1,1 @@
+export enum ShaderType { FragmentShader, VertexShader, GeometryShader, TessellationControlShader, TessellationEvaluationShader }
