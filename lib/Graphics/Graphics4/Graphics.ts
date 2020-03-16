@@ -145,52 +145,52 @@ export class Graphics implements IGraphics {
     clear(color?: Color, depth?: number, stencil?: number): void {
         const GL = GameView.context
         var clearMask: number = 0;
-		if (color != null) {
-			clearMask |= GL.COLOR_BUFFER_BIT;
-			GL.colorMask(true, true, true, true);
-			GL.clearColor(color.R, color.G, color.B, color.A);
-		}
-		if (depth != null) {
-			clearMask |= GL.DEPTH_BUFFER_BIT;
-			GL.enable(GL.DEPTH_TEST);
-			GL.depthMask(true);
-			GL.clearDepth(depth);
-		}
-		if (stencil != null) {
-			clearMask |= GL.STENCIL_BUFFER_BIT;
-			GL.enable(GL.STENCIL_TEST);
-			GL.stencilMask(0xff);
-			GL.clearStencil(stencil);
-		}
-		GL.clear(clearMask);
-		GL.colorMask(this.colorMaskRed, this.colorMaskGreen, this.colorMaskBlue, this.colorMaskAlpha);
-		if (this.depthTest) {
-			GL.enable(GL.DEPTH_TEST);
-		}
-		else {
-			GL.disable(GL.DEPTH_TEST);
-		}
-		GL.depthMask(this.depthMask);
+        if (color != null) {
+            clearMask |= GL.COLOR_BUFFER_BIT;
+            GL.colorMask(true, true, true, true);
+            GL.clearColor(color.R, color.G, color.B, color.A);
+        }
+        if (depth != null) {
+            clearMask |= GL.DEPTH_BUFFER_BIT;
+            GL.enable(GL.DEPTH_TEST);
+            GL.depthMask(true);
+            GL.clearDepth(depth);
+        }
+        if (stencil != null) {
+            clearMask |= GL.STENCIL_BUFFER_BIT;
+            GL.enable(GL.STENCIL_TEST);
+            GL.stencilMask(0xff);
+            GL.clearStencil(stencil);
+        }
+        GL.clear(clearMask);
+        GL.colorMask(this.colorMaskRed, this.colorMaskGreen, this.colorMaskBlue, this.colorMaskAlpha);
+        if (this.depthTest) {
+            GL.enable(GL.DEPTH_TEST);
+        }
+        else {
+            GL.disable(GL.DEPTH_TEST);
+        }
+        GL.depthMask(this.depthMask);
     }
     async viewport(x: number, y: number, width: number, height: number) {
         const screen = (await Screen())
         const GL = GameView.context
         if (this.renderTarget == null) {
-			GL.viewport(x, screen.height - y - height, width, height);
-		}
-		else {
-			GL.viewport(x, y, width, height);
-		}
+            GL.viewport(x, screen.height - y - height, width, height);
+        }
+        else {
+            GL.viewport(x, y, width, height);
+        }
     }
     scissor(x: number, y: number, width: number, height: number): void {
         const GL = GameView.context
         GL.enable(GL.SCISSOR_TEST);
-		if (this.renderTarget == null) {
-			GL.scissor(x, screen.height - y - height, width, height);
-		}
-		else {
-			GL.scissor(x, y, width, height);
-		}
+        if (this.renderTarget == null) {
+            GL.scissor(x, screen.height - y - height, width, height);
+        }
+        else {
+            GL.scissor(x, y, width, height);
+        }
     }
     disableScissor(): void {
         const GL = GameView.context
@@ -201,27 +201,27 @@ export class Graphics implements IGraphics {
     }
     setVertexBuffers(vertexBuffers: VertexBuffer[]): void {
         var offset: number = 0;
-		for (let vertexBuffer of vertexBuffers) {
-			offset += vertexBuffer.set(offset);
-		}
-		this.useVertexAttributes=offset;
+        for (let vertexBuffer of vertexBuffers) {
+            offset += vertexBuffer.set(offset);
+        }
+        this.useVertexAttributes = offset;
     }
-    createIndexBuffer(indexCount: number, usage: Usage){
+    createIndexBuffer(indexCount: number, usage: Usage) {
         return new IndexBuffer(indexCount, usage);
     }
     setIndexBuffer(indexBuffer: IndexBuffer): void {
         this.indicesCount = indexBuffer.count();
-		indexBuffer.set();
+        indexBuffer.set();
     }
     setTexture(stage: TextureUnit, texture: Image): void {
         const GL = GameView.context
         if (texture == null) {
-			GL.activeTexture(GL.TEXTURE0 + stage.value);
-			GL.bindTexture(GL.TEXTURE_2D, null);
-		}
-		else {
-			texture.set(stage.value);
-		}
+            GL.activeTexture(GL.TEXTURE0 + stage.value);
+            GL.bindTexture(GL.TEXTURE_2D, null);
+        }
+        else {
+            texture.set(stage.value);
+        }
     }
     setTextureDepth(stage: TextureUnit, texture: Image): void {
         texture.setDepth(stage.value);
@@ -237,70 +237,70 @@ export class Graphics implements IGraphics {
         const GL = GameView.context
         GL.activeTexture(GL.TEXTURE0 + texunit.value);
 
-		switch (uAddressing) {
-		case TextureAddressing.Clamp:
-            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE);
-            break;
-		case TextureAddressing.Repeat:
-            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.REPEAT);
-            break;
-		case TextureAddressing.Mirror:
-            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.MIRRORED_REPEAT);
-            break;
-		}
+        switch (uAddressing) {
+            case TextureAddressing.Clamp:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE);
+                break;
+            case TextureAddressing.Repeat:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.REPEAT);
+                break;
+            case TextureAddressing.Mirror:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.MIRRORED_REPEAT);
+                break;
+        }
 
-		switch (vAddressing) {
-		case TextureAddressing.Clamp:
-            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE);
-            break;
-		case TextureAddressing.Repeat:
-            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.REPEAT);
-            break;
-		case TextureAddressing.Mirror:
-            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.MIRRORED_REPEAT);
-            break;
-		}
+        switch (vAddressing) {
+            case TextureAddressing.Clamp:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE);
+                break;
+            case TextureAddressing.Repeat:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.REPEAT);
+                break;
+            case TextureAddressing.Mirror:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.MIRRORED_REPEAT);
+                break;
+        }
 
-		switch (minificationFilter) {
-		case TextureFilter.PointFilter:
-			switch (mipmapFilter) {
-			case MipMapFilter.NoMipFilter:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
-                break;
-			case MipMapFilter.PointMipFilter:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_NEAREST);
-                break;
-			case MipMapFilter.LinearMipFilter:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_LINEAR);
-                break;
-			}
-		case TextureFilter.LinearFilter:
-        case TextureFilter.AnisotropicFilter:
-			switch (mipmapFilter) {
-			case MipMapFilter.NoMipFilter:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR);
-                break;
-			case MipMapFilter.PointMipFilter:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_NEAREST);
-                break;
-			case MipMapFilter.LinearMipFilter:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_LINEAR);
-                break;
-			}
-			if (minificationFilter == TextureFilter.AnisotropicFilter) {
-				GL.texParameteri(GL.TEXTURE_2D, GameView.anisotropic.TEXTURE_MAX_ANISOTROPY_EXT, 4);
-            }
-		}
+        switch (minificationFilter) {
+            case TextureFilter.PointFilter:
+                switch (mipmapFilter) {
+                    case MipMapFilter.NoMipFilter:
+                        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
+                        break;
+                    case MipMapFilter.PointMipFilter:
+                        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_NEAREST);
+                        break;
+                    case MipMapFilter.LinearMipFilter:
+                        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_LINEAR);
+                        break;
+                }
+            case TextureFilter.LinearFilter:
+            case TextureFilter.AnisotropicFilter:
+                switch (mipmapFilter) {
+                    case MipMapFilter.NoMipFilter:
+                        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR);
+                        break;
+                    case MipMapFilter.PointMipFilter:
+                        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_NEAREST);
+                        break;
+                    case MipMapFilter.LinearMipFilter:
+                        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_LINEAR);
+                        break;
+                }
+                if (minificationFilter == TextureFilter.AnisotropicFilter) {
+                    GL.texParameteri(GL.TEXTURE_2D, GameView.anisotropic.TEXTURE_MAX_ANISOTROPY_EXT, 4);
+                }
+        }
 
-		switch (magnificationFilter) {
-			case TextureFilter.PointFilter:
+        switch (magnificationFilter) {
+            case TextureFilter.PointFilter:
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
                 break;
-			case TextureFilter.LinearFilter:
+            case TextureFilter.LinearFilter:
             case TextureFilter.AnisotropicFilter:
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR);
                 break;
-		}
+        }
     }
     setTexture3DParameters(texunit: TextureUnit, uAddressing: TextureAddressing, vAddressing: TextureAddressing, wAddressing: TextureAddressing, minificationFilter: TextureFilter, magnificationFilter: TextureFilter, mipmapFilter: MipMapFilter): void {
         throw new Error("Method not implemented.");
@@ -308,32 +308,32 @@ export class Graphics implements IGraphics {
     setTextureCompareMode(texunit: TextureUnit, enabled: boolean): void {
         const GL = GameView.context
         if (enabled) {
-			GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_COMPARE_MODE, GL.COMPARE_REF_TO_TEXTURE);
-			GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_COMPARE_FUNC, GL.LEQUAL);
-		}
-		else {
-			GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_COMPARE_MODE, GL.NONE);
-		}
+            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_COMPARE_MODE, GL.COMPARE_REF_TO_TEXTURE);
+            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_COMPARE_FUNC, GL.LEQUAL);
+        }
+        else {
+            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_COMPARE_MODE, GL.NONE);
+        }
     }
     setCubeMapCompareMode(texunit: TextureUnit, enabled: boolean): void {
         const GL = GameView.context
         if (enabled) {
-			GL.texParameteri(GL.TEXTURE_CUBE_MAP, GL.TEXTURE_COMPARE_MODE, GL.COMPARE_REF_TO_TEXTURE);
-			GL.texParameteri(GL.TEXTURE_CUBE_MAP, GL.TEXTURE_COMPARE_FUNC, GL.LEQUAL);
-		}
-		else {
-			GL.texParameteri(GL.TEXTURE_CUBE_MAP, GL.TEXTURE_COMPARE_MODE, GL.NONE);
-		}
+            GL.texParameteri(GL.TEXTURE_CUBE_MAP, GL.TEXTURE_COMPARE_MODE, GL.COMPARE_REF_TO_TEXTURE);
+            GL.texParameteri(GL.TEXTURE_CUBE_MAP, GL.TEXTURE_COMPARE_FUNC, GL.LEQUAL);
+        }
+        else {
+            GL.texParameteri(GL.TEXTURE_CUBE_MAP, GL.TEXTURE_COMPARE_MODE, GL.NONE);
+        }
     }
     setCubeMap(stage: TextureUnit, cubeMap: CubeMap): void {
         const GL = GameView.context
         if (cubeMap == null) {
-			GL.activeTexture(GL.TEXTURE0 +stage.value);
-			GL.bindTexture(GL.TEXTURE_CUBE_MAP, null);
-		}
-		else {
-			cubeMap.set(stage.value);
-		}
+            GL.activeTexture(GL.TEXTURE0 + stage.value);
+            GL.bindTexture(GL.TEXTURE_CUBE_MAP, null);
+        }
+        else {
+            cubeMap.set(stage.value);
+        }
     }
     setCubeMapDepth(stage: TextureUnit, cubeMap: CubeMap): void {
         cubeMap.setDepth(stage.value);
