@@ -13,12 +13,6 @@ export class GameView extends Component {
     private static pauseListeners: Array<() => void> = [];
     private static backgroundListeners: Array<() => void> = [];
     private static shutdownListeners: Array<() => void> = [];
-    private static dropFilesListeners: Array<() => void> = [];
-    private static cutListener: () => String = null;
-    private static copyListener: () => String = null;
-    private static pasteListener: (name: string) => void = null;
-    private static loginListener: () => void = null;
-    private static logoutListener: () => void = null;
     private static theTitle: String;
 
     static context: ExpoWebGLRenderingContext;
