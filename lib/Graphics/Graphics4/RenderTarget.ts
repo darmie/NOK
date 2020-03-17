@@ -2,7 +2,7 @@ import { GameView } from "../../GameView";
 import { TextureUnit } from "../TextureUnit";
 
 
-export class RenderTarget {
+export class RenderTarget  {
     isCubeMap: boolean;
     isDepthAttachment: boolean;
     texWidth: number;
@@ -192,7 +192,7 @@ export class RenderTarget {
 
         renderTarget.GL.bindFramebuffer(renderTarget.GL.FRAMEBUFFER, 0);
         renderTarget.GL.bindTexture(renderTarget.GL.TEXTURE_CUBE_MAP, 0);
-        
+
         return renderTarget;
     }
 

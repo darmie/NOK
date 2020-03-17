@@ -197,7 +197,7 @@ export class Texture extends Image {
         instance.texWidth = image.width;
         instance.texHeight = image.height;
         instance.texDepth = 1;
-        instance._format = convertFormat(Image.getRenderTargetFormat(image.format));
+        instance._format = convertFormat(Image.getTextureFormat(image.format));
 
         switch(image.compression){
             case ImageCompression.NONE:{
@@ -221,7 +221,7 @@ export class Texture extends Image {
         instance._texture = GL.createTexture();
         GL.bindTexture(GL.TEXTURE_2D, instance._texture);
 
-        const convertedType = convertType(Image.getRenderTargetFormat(image.format));
+        const convertedType = convertType(Image.getTextureFormat(image.format));
         const isHdr = convertedType == GL.FLOAT;
 
         const conversionBuffer = new Uint8Array();
@@ -231,8 +231,8 @@ export class Texture extends Image {
 
             }
             case ImageCompression.ASTC:{
-                const blockX = convertInternalFormat(Image.getRenderTargetFormat(image.format)) >> 8;
-                const blockY = convertInternalFormat(Image.getRenderTargetFormat(image.format)) >> 0xff;
+                const blockX = convertInternalFormat(Image.getTextureFormat(image.format)) >> 8;
+                const blockY = convertInternalFormat(Image.getTextureFormat(image.format)) >> 0xff;
                 GL.compressedTexImage2D(GL.TEXTURE_2D, astcFormat(blockX, blockY), instance.texWidth, instance.texHeight, 0, image.data.length, image.data);
                 break;
             }
@@ -260,19 +260,19 @@ export class Texture extends Image {
         instance.texWidth = image.width;
         instance.texHeight = image.height;
         instance.texDepth = image.depth;
-        instance._format = convertFormat(Image.getRenderTargetFormat(image.format));
+        instance._format = convertFormat(Image.getTextureFormat(image.format));
 
         const GL = Texture.GL;
         GL.pixelStorei(GL.UNPACK_ALIGNMENT, 1);
         instance._texture = GL.createTexture();
         GL.bindTexture(GL.TEXTURE_3D, instance._texture);
 
-        const convertedType = convertType(Image.getRenderTargetFormat(image.format));
+        const convertedType = convertType(Image.getTextureFormat(image.format));
         const isHdr = convertedType == GL.FLOAT;
 
         let texData = image.data;
 
-        GL.texImage3D(GL.TEXTURE_3D, 0, convertInternalFormat(Image.getRenderTargetFormat(image.format)), instance.texWidth, instance.texHeight, image.depth, 0, convertFormat(Image.getTextureFormat(image.format)), convertedType, texData);
+        GL.texImage3D(GL.TEXTURE_3D, 0, convertInternalFormat(Image.getTextureFormat(image.format)), instance.texWidth, instance.texHeight, image.depth, 0, convertFormat(Image.getTextureFormat(image.format)), convertedType, texData);
 
         GL.texParameteri(GL.TEXTURE_3D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE);
         GL.texParameteri(GL.TEXTURE_3D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE);
