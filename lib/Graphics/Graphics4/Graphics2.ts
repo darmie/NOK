@@ -1,5 +1,6 @@
-import { Image, ICanvas } from "../Image";
+import { Image } from "../Image";
+import {Canvas} from "../Canvas"
 
 export class Graphics2{
-    constructor(public c:ICanvas){}
+    constructor(public target:Canvas){}
 }

@@ -1,4 +1,4 @@
-import { Image, ICanvas } from "../Image";
+import { Image } from "../Image";
 import { ConstantLocation } from "../ConstantLocation";
 import { Vector2 } from "../../Math/Vector2";
 import { Vector3 } from "../../Math/Vector3";
@@ -24,18 +24,8 @@ import { StencilValue } from "../StencilValue";
 import { BlendingFactor } from "../BlendingFactor";
 import { BlendingOperation } from "../BlendingOperation";
 import { Usage } from "../Usage";
-
-const Screen = async () => {
-    const native = await (import("react-native"))
-    if (native) return native.Dimensions.get("screen")
-
-    return {
-        width: window.innerWidth,
-        height: window.innerHeight
-    }
-}
-
-
+import { Screen } from "../../Screen";
+import { RenderTarget } from "./RenderTarget";
 
 
 
@@ -48,7 +38,7 @@ export class Graphics implements IGraphics {
     private colorMaskBlue: boolean = true;
     private colorMaskAlpha: boolean = true;
     private indicesCount: number;
-    private renderTarget: Canvas;
+    private renderTarget:RenderTarget;
     private renderTargetFrameBuffer: any;
     private renderTargetMSAA: any;
     private renderTargetTexture: any;
@@ -58,17 +48,31 @@ export class Graphics implements IGraphics {
     private blendMinMaxExtension: any;
     private useVertexAttributes: number = 0;
 
-    constructor(public target: ICanvas) { }
+    constructor(public target: Canvas = null) {
+        this.init()
+    }
+
+    private init(){
+        if (this.target == null) return;
+        if(this.target  instanceof CubeMap){
+            const cubemap:CubeMap = <CubeMap>this.target
+            this.renderTarget = cubemap.renderTarget
+        } else {
+            const image:Image = <Image>this.target
+            this.renderTarget = image.renderTarget
+        }  
+    }
+
+
 
     async begin(additionalRenderTargets?: Canvas[]) {
-        const screen = (await Screen())
         const GL = GameView.context
         GL.enable(GL.BLEND);
         GL.blendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
         if (this.renderTarget == null) {
             GL.bindFramebuffer(GL.FRAMEBUFFER, null);
-            GL.viewport(0, 0, screen.width, screen.height);
+            GL.viewport(0, 0, Screen.Width, Screen.Height);
         } else {
             GL.bindFramebuffer(GL.FRAMEBUFFER, this.renderTargetFrameBuffer);
             GL.viewport(0, 0, this.renderTarget.width, this.renderTarget.height);
@@ -95,14 +99,14 @@ export class Graphics implements IGraphics {
     }
     async beginEye(eye: number) {
         const GL = GameView.context
-        const screen = (await Screen())
+        
         GL.enable(GL.BLEND);
         GL.blendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
         GL.bindFramebuffer(GL.FRAMEBUFFER, null);
         if (eye == 0) {
-            GL.viewport(0, 0, screen.width * 0.5, screen.height);
+            GL.viewport(0, 0, Screen.Width * 0.5, Screen.Height);
         } else {
-            GL.viewport(screen.width * 0.5, 0, screen.width * 0.5, screen.height);
+            GL.viewport(Screen.Width * 0.5, 0, Screen.Width * 0.5, Screen.Height);
         }
     }
     end(): void {
@@ -173,10 +177,10 @@ export class Graphics implements IGraphics {
         GL.depthMask(this.depthMask);
     }
     async viewport(x: number, y: number, width: number, height: number) {
-        const screen = (await Screen())
+        
         const GL = GameView.context
         if (this.renderTarget == null) {
-            GL.viewport(x, screen.height - y - height, width, height);
+            GL.viewport(x, Screen.Height - y - height, width, height);
         }
         else {
             GL.viewport(x, y, width, height);
@@ -186,7 +190,7 @@ export class Graphics implements IGraphics {
         const GL = GameView.context
         GL.enable(GL.SCISSOR_TEST);
         if (this.renderTarget == null) {
-            GL.scissor(x, screen.height - y - height, width, height);
+            GL.scissor(x, Screen.Height - y - height, width, height);
         }
         else {
             GL.scissor(x, y, width, height);

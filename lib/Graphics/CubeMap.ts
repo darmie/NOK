@@ -1,4 +1,4 @@
-import { ICanvas } from "./Image"
+import { Canvas } from "./Canvas"
 import { graphics4 } from "./Graphics4";
 import { DepthStencilFormat } from "./DepthStencilFormat";
 import { TextureFormat } from "./TextureFormat";
@@ -7,7 +7,7 @@ import { GameView } from "../GameView"
 import { RenderTarget } from "./Graphics4/RenderTarget";
 import { Texture } from "./Graphics4/Texture";
 
-export class CubeMap implements ICanvas {
+export class CubeMap implements Canvas {
     format: TextureFormat;
     isRenderTarget: boolean;
     depthStencilFormat: DepthStencilFormat;

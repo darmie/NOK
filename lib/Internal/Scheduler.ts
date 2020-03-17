@@ -1,3 +1,4 @@
+import { GameView } from "../GameView";
 
 
 export class TimeTask {
@@ -330,8 +331,7 @@ export class Scheduler {
 	 * The amount of time (in fractional seconds) that elapsed since the game started.
 	*/
     public static realTime(): number {
-        var performance = window.performance ? window.performance : window.Date
-        return performance.now() / 1000;
+        return GameView.time
     }
 
 

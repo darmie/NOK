@@ -18,9 +18,9 @@ export enum ImageCompression {
     PVRTC
 }
 
-export interface ICanvas extends Canvas, Resource { }
+// export interface ICanvas extends Canvas, Resource { }
 
-export class Image implements ICanvas {
+export class Image implements Canvas {
 
     format: TextureFormat;
     data: Uint8Array;
