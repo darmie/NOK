@@ -681,7 +681,7 @@ export class Graphics implements IGraphics {
         this.matrix3Cache[3] = matrix._10; this.matrix3Cache[4] = matrix._11; this.matrix3Cache[5] = matrix._12;
         this.matrix3Cache[6] = matrix._20; this.matrix3Cache[7] = matrix._21; this.matrix3Cache[8] = matrix._22;
 
-        GL.uniformMatrix4fv(location.value, false, this.matrixCache);
+        GL.uniformMatrix4fv(location.value, false, this.matrix3Cache);
     }
 
     drawIndexedVertices(start: number, count: number): void {
@@ -693,11 +693,19 @@ export class Graphics implements IGraphics {
             GL.disableVertexAttribArray(i);
         }
     }
+
     drawIndexedVerticesInstanced(instanceCount: number, start: number, count: number): void {
-        throw new Error("Method not implemented.");
+        const GL = GameView.context
+        if (this.instancedRenderingAvailable()) {
+            var type = GameView.elementIndexUint == null ? GL.UNSIGNED_SHORT : GL.UNSIGNED_INT;
+            var typeSize = GameView.elementIndexUint == null ? 2 : 4;
+
+            GL.drawElementsInstanced(GL.TRIANGLES, count == -1 ? this.indicesCount : count, type, start * typeSize, instanceCount);
+        }
     }
+
     flush(): void {
-        throw new Error("Method not implemented.");
+        
     }
 
 }

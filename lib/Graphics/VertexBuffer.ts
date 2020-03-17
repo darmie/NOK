@@ -99,8 +99,8 @@ export class VertexBuffer {
     }
 
     /**
- * Delete buffer
- */
+     * Delete buffer
+    */
     public delete() {
         this._data = null;
         GameView.context.deleteBuffer(this.buffer);
@@ -127,44 +127,44 @@ export class VertexBuffer {
         GameView.context.bufferData(GameView.context.ARRAY_BUFFER, this._data.subarray(this.lockStart * this.stride(), this.lockEnd * this.stride()), this.usage == Usage.Dynamic ? GameView.context.DYNAMIC_DRAW : GameView.context.STATIC_DRAW);
     }
 
-    public set(offset:number):number {
+    public set(offset: number): number {
         let ext = GameView.context.getExtension("ANGLE_instanced_arrays");
         GameView.context.bindBuffer(GameView.context.ARRAY_BUFFER, this.buffer);
         let attributesOffset = 0;
-        for (let i=0; i < this.sizes.length; i++) {
+        for (let i = 0; i < this.sizes.length; i++) {
             if (this.sizes[i] > 4) {
-				var size = this.sizes[i];
-				var addonOffset = 0;
-				while (size > 0) {
-					GameView.context.enableVertexAttribArray(offset + attributesOffset);
-					GameView.context.vertexAttribPointer(offset + attributesOffset, 4, GameView.context.FLOAT, false, this.myStride, this.offsets[i] + addonOffset);
-					if (ext) {
-						// if (SystemImpl.gl2) {
-						// 	GameView.context.vertexAttribDivisor(offset + attributesOffset, instanceDataStepRate);
-						// }
-						// else {
-							ext.vertexAttribDivisorANGLE(offset + attributesOffset, this.instanceDataStepRate);
-						// }
-					}
-					size -= 4;
-					addonOffset += 4 * 4;
-					++attributesOffset;
-				}
+                var size = this.sizes[i];
+                var addonOffset = 0;
+                while (size > 0) {
+                    GameView.context.enableVertexAttribArray(offset + attributesOffset);
+                    GameView.context.vertexAttribPointer(offset + attributesOffset, 4, GameView.context.FLOAT, false, this.myStride, this.offsets[i] + addonOffset);
+                    if (ext) {
+                        // if (SystemImpl.gl2) {
+                        // 	GameView.context.vertexAttribDivisor(offset + attributesOffset, instanceDataStepRate);
+                        // }
+                        // else {
+                        ext.vertexAttribDivisorANGLE(offset + attributesOffset, this.instanceDataStepRate);
+                        // }
+                    }
+                    size -= 4;
+                    addonOffset += 4 * 4;
+                    ++attributesOffset;
+                }
             }
             else {
-				var normalized = this.types[i] == GameView.context.FLOAT ? false : true;
-				GameView.context.enableVertexAttribArray(offset + attributesOffset);
-				GameView.context.vertexAttribPointer(offset + attributesOffset, this.sizes[i], this.types[i], normalized, this.myStride, this.offsets[i]);
-				if (ext) {
-					// if (SystemImpl.gl2) {
-					// 	GameView.context.vertexAttribDivisor(offset + attributesOffset, this.instanceDataStepRate);
-					// }
-					// else {
-						ext.vertexAttribDivisorANGLE(offset + attributesOffset, this.instanceDataStepRate);
-					// }
-				}
-				++attributesOffset;
-			}
+                var normalized = this.types[i] == GameView.context.FLOAT ? false : true;
+                GameView.context.enableVertexAttribArray(offset + attributesOffset);
+                GameView.context.vertexAttribPointer(offset + attributesOffset, this.sizes[i], this.types[i], normalized, this.myStride, this.offsets[i]);
+                if (ext) {
+                    // if (SystemImpl.gl2) {
+                    // 	GameView.context.vertexAttribDivisor(offset + attributesOffset, this.instanceDataStepRate);
+                    // }
+                    // else {
+                    ext.vertexAttribDivisorANGLE(offset + attributesOffset, this.instanceDataStepRate);
+                    // }
+                }
+                ++attributesOffset;
+            }
         }
         return attributesOffset;
     }
