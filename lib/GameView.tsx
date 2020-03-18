@@ -3,9 +3,20 @@ import { GLView, ExpoWebGLRenderingContext } from 'expo-gl';
 import { Framebuffer } from "./Framebuffer"
 import { Screen } from "./Screen";
 import { Scheduler } from "./Internal/Scheduler";
-import { graphics4 } from "./Graphics/Graphics4";
-
+import {Graphics} from "./Graphics/Graphics4/Graphics";
+import {Graphics2} from "./Graphics/Graphics4/Graphics2";
+import { Color } from "./Graphics/Color";
+import { Image } from "./Graphics/Image";
+import { ImageFormat } from "./Graphics/ImageFormat";
+import {GL as OGL} from "./GL"
 export class GameView extends Component {
+    state = {
+        width:0,
+        height:0
+    }
+    constructor(props){
+        super(props)
+    }
 
     private static renderListeners: Array<((buffers: Array<Framebuffer>) => void)> = [];
     private static foregroundListeners: Array<() => void> = [];
@@ -15,12 +26,7 @@ export class GameView extends Component {
     private static shutdownListeners: Array<() => void> = [];
     private static theTitle: String;
 
-    static context: ExpoWebGLRenderingContext;
-
-    static elementIndexUint: any;
-
-    static drawBuffers: WEBGL_draw_buffers = null;
-    static anisotropic: EXT_texture_filter_anisotropic = null
+    public static context: ExpoWebGLRenderingContext = null;
 
 
     /**
@@ -79,11 +85,6 @@ export class GameView extends Component {
         if (backgroundListener != null) this.backgroundListeners.push(backgroundListener);
     }
 
-    static get time() {
-        var performance = window.performance ? window.performance : window.Date
-        return performance.now() / 1000;
-    }
-
     static get width() {
         return Screen.Width
     }
@@ -94,60 +95,89 @@ export class GameView extends Component {
 
     frame: Framebuffer
 
-    async componentDidMount() {
-        new Screen((this.props as any).width ? (this.props as any).width : null, (this.props as any).height ? (this.props as any).height : null)
+    componentDidMount() {
+        
+    }
+
+    async loaded(GL:ExpoWebGLRenderingContext){
+        OGL.context = GL;
+        
+        let screen:Screen = null;
+        if(this.props){
+            screen = new Screen(GL, (this.props as any).width ? (this.props as any).width : null, (this.props as any).height ? (this.props as any).height : null)
+        } else {
+            screen = new Screen(GL);
+        }
+        await screen.init()
+
+        this.setState({width:Screen.Width, height:Screen.Height})
 
         Scheduler.init();
 
-        if ((this.props as any).callback) {
+        if (this.props && (this.props as any).callback) {
             (this.props as any).callback();
         }
 
-
-        GameView.context = await GLView.createContextAsync();
-        const GL = GameView.context
+        this.draw()
+       
         GL.pixelStorei(GL.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1);
-        GameView.drawBuffers = GL.getExtension("WEBGL_draw_buffers")
+        OGL.drawBuffers = GL.getExtension("WEBGL_draw_buffers")
 
-        GameView.elementIndexUint = GL.getExtension("OES_element_index_uint");
+        OGL.elementIndexUint = GL.getExtension("OES_element_index_uint");
 
         GL.getExtension("EXT_color_buffer_float");
         GL.getExtension("OES_texture_float_linear");
         GL.getExtension("OES_texture_half_float_linear");
-        GameView.anisotropic = GL.getExtension("EXT_texture_filter_anisotropic");
-        if (GameView.anisotropic == null) GameView.anisotropic = GL.getExtension("WEBKIT_EXT_texture_filter_anisotropic");
-
-        const g4 = new graphics4.Graphics()
+        OGL.anisotropic = GL.getExtension("EXT_texture_filter_anisotropic");
+        if (OGL.anisotropic == null) OGL.anisotropic = GL.getExtension("WEBKIT_EXT_texture_filter_anisotropic");
+    
+        
+        const g4 = new Graphics()
+        
         this.frame = new Framebuffer(null, g4);
-        const g2 = new graphics4.Graphics2(this.frame);
+        const g2 = new Graphics2(this.frame);
         this.frame.init(g2, g4);
 
         Scheduler.start();
 
-        if (requestAnimationFrame == null) setTimeout(this.animate, 1000.0 / 60.0);
-        else requestAnimationFrame(this.animate);
+        if (requestAnimationFrame == null) setTimeout(this.animate.bind(this), 1000.0 / 60.0);
+        else requestAnimationFrame(this.animate.bind(this));
 
         GameView.foreground();
     }
 
     animate(timestamp:number) {
-        if (requestAnimationFrame == null) setTimeout(this.animate, 1000.0 / 60.0);
-        else requestAnimationFrame(this.animate);
+        if (requestAnimationFrame == null) setTimeout(this.animate.bind(this), 1000.0 / 60.0);
+        else requestAnimationFrame(this.animate.bind(this));
 
         Scheduler.executeFrame();
 
         GameView.render([this.frame]);
 
-        const GL = GameView.context
+        const GL = OGL.context
         GL.clearColor(1, 1, 1, 1);
         GL.colorMask(false, false, false, true);
         GL.clear(GL.COLOR_BUFFER_BIT);
         GL.colorMask(true, true, true, true);
     }
 
+
+    draw = ()=>{
+        GameView.notifyOnFrames((buffers:Framebuffer[])=>{
+            const buf = buffers[0];
+            if(this.props && this.props.hasOwnProperty("draw"))
+            (this.props as any).draw(buf);
+        })
+        Scheduler.addTimeTask(this.update, 0, 1/60);
+    }
+
+    update(){}
+
     render() {
         return (
-            <React.Fragment></React.Fragment>
+            <React.Fragment>
+                <GLView  style={{width: Screen.Width, height:Screen.Height}}  onContextCreate={this.loaded.bind(this)} />
+            </React.Fragment>
         )
     }
 }

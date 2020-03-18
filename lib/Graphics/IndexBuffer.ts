@@ -1,4 +1,4 @@
-import { GameView } from "../GameView"
+import { GL } from "../GL"
 import { Usage } from "./Usage"
 
 export class IndexBuffer {
@@ -9,7 +9,7 @@ export class IndexBuffer {
     private lockEnd: number = 0;
 
     constructor(indexCount: number, private usage: Usage, canRead: boolean = false) {
-        this.buffer = GameView.context.createBuffer();
+        this.buffer = GL.context.createBuffer();
         this._data = new Uint32Array(indexCount);
     }
 
@@ -18,7 +18,7 @@ export class IndexBuffer {
      */
     public delete() {
         this._data = null;
-        GameView.context.deleteBuffer(this.buffer);
+        GL.context.deleteBuffer(this.buffer);
     }
 
     /**
@@ -36,15 +36,15 @@ export class IndexBuffer {
     public unlock(count?: number) {
         if (count) this.lockEnd = this.lockStart + count;
 
-        GameView.context.bindBuffer(GameView.context.ELEMENT_ARRAY_BUFFER, this.buffer);
+        GL.context.bindBuffer(GL.context.ELEMENT_ARRAY_BUFFER, this.buffer);
         const data = this._data.subarray(this.lockStart, this.lockEnd);
-        const glData = GameView.context.getExtension("OES_element_index_uint") ? data.buffer : new Uint16Array(data.buffer);
-        GameView.context.bufferData(GameView.context.ELEMENT_ARRAY_BUFFER, glData, this.usage == Usage.Dynamic ? GameView.context.DYNAMIC_DRAW : GameView.context.STATIC_DRAW);
+        const glData = GL.context.getExtension("OES_element_index_uint") ? data.buffer : new Uint16Array(data.buffer);
+        GL.context.bufferData(GL.context.ELEMENT_ARRAY_BUFFER, glData, this.usage == Usage.Dynamic ? GL.context.DYNAMIC_DRAW : GL.context.STATIC_DRAW);
 
     }
 
     public set() {
-        GameView.context.bindBuffer(GameView.context.ELEMENT_ARRAY_BUFFER, this.buffer);
+        GL.context.bindBuffer(GL.context.ELEMENT_ARRAY_BUFFER, this.buffer);
     }
 
     public count(): number {

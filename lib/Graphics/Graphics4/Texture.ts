@@ -1,10 +1,9 @@
 import { ImageFormat } from "../ImageFormat"
-import { GameView } from "../../GameView";
+import { GL} from "../../GL";
 import { TextureUnit } from "../TextureUnit";
 import { Image, ImageCompression } from "../Image";
 import { Bytes } from "../../Internal/Bytes";
 import { Color } from "../Color";
-
 
 
 const GL_COMPRESSED_RGBA_ASTC_4x4_KHR =  0x93B0
@@ -96,48 +95,48 @@ function convertType(format: ImageFormat) {
         case ImageFormat.RGBA64:
         case ImageFormat.A32:
         case ImageFormat.A16:
-            return GameView.context.FLOAT;
+            return GL.context.FLOAT;
         case ImageFormat.RGBA32:
         default:
-            return GameView.context.UNSIGNED_BYTE;
+            return GL.context.UNSIGNED_BYTE;
     }
 }
 
 function convertFormat(format: ImageFormat) {
     switch (format) {
         case ImageFormat.BGRA32:
-            return GameView.context.RGBA;
+            return GL.context.RGBA;
         case ImageFormat.RGBA32:
         case ImageFormat.RGBA64:
         case ImageFormat.RGBA128:
         default:
-            return GameView.context.RGBA;
+            return GL.context.RGBA;
         case ImageFormat.RGB24:
-            return GameView.context.RGB;
+            return GL.context.RGB;
         case ImageFormat.A32:
         case ImageFormat.A16:
         case ImageFormat.GREY8:
-            return GameView.context.RED;
+            return GL.context.RED;
     }
 }
 
 function convertInternalFormat(format: ImageFormat) {
     switch (format) {
         case ImageFormat.RGBA128:
-            return GameView.context.RGBA32F;
+            return GL.context.RGBA32F;
         case ImageFormat.RGBA64:
-            return GameView.context.RGBA16F;
+            return GL.context.RGBA16F;
         case ImageFormat.RGBA32:
         default:
-            return GameView.context.RGBA8;
+            return GL.context.RGBA8;
         case ImageFormat.RGB24:
-            return GameView.context.RGB;
+            return GL.context.RGB;
         case ImageFormat.A32:
-            return GameView.context.R32F;
+            return GL.context.R32F;
         case ImageFormat.A16:
-            return GameView.context.R16F;
+            return GL.context.R16F;
         case ImageFormat.GREY8:
-            return GameView.context.R8;
+            return GL.context.R8;
     }
 }
 
@@ -151,7 +150,7 @@ export class Texture extends Image {
     _texture: WebGLTexture;
     
 
-    static GL = GameView.context
+    static GL = GL.context
 
     constructor() {
         super(false);
@@ -177,7 +176,7 @@ export class Texture extends Image {
         instance._texture = this.GL.createTexture();
         this.GL.bindTexture(this.GL.TEXTURE_2D, instance._texture);
         this.GL.texParameteri(this.GL.TEXTURE_2D, this.GL.TEXTURE_MIN_FILTER, this.GL.LINEAR);
-        this.GL.texParameteri(this.GL.TEXTURE_2D, this.GL.TEXTURE_MIN_FILTER, this.GL.LINEAR);
+        this.GL.texParameteri(this.GL.TEXTURE_2D, this.GL.TEXTURE_MAG_FILTER, this.GL.LINEAR);
 
         if (convertType(format) == this.GL.FLOAT) {
             this.GL.texImage2D(this.GL.TEXTURE_2D, 0, convertInternalFormat(format), instance.texWidth, instance.texHeight, 0, convertFormat(format), this.GL.FLOAT, null);
@@ -228,7 +227,7 @@ export class Texture extends Image {
 
         switch(image.compression){
             case ImageCompression.PVRTC:{
-
+                break;
             }
             case ImageCompression.ASTC:{
                 const blockX = convertInternalFormat(Image.getTextureFormat(image.format)) >> 8;

@@ -5,7 +5,6 @@ import { Vector3 } from "../../Math/Vector3";
 import { Vector4 } from "../../Math/Vector4";
 import { Matrix4 } from "../../Math/Matrix4";
 import { Matrix3 } from "../../Math/Matrix3";
-import { GameView } from "../../GameView";
 import { IGraphics } from "./IGraphics"
 import { PipelineState } from "../PipelineState"
 import { VertexBuffer } from "../VertexBuffer"
@@ -26,7 +25,7 @@ import { BlendingOperation } from "../BlendingOperation";
 import { Usage } from "../Usage";
 import { Screen } from "../../Screen";
 import { RenderTarget } from "./RenderTarget";
-
+import {GL} from "../../GL"
 
 
 export class Graphics implements IGraphics {
@@ -59,6 +58,7 @@ export class Graphics implements IGraphics {
             this.renderTarget = cubemap.renderTarget
         } else {
             const image:Image = <Image>this.target
+            // this.renderTargetMSAA= image.MSAAFrameBuffer;
             this.renderTarget = image.renderTarget
         }  
     }
@@ -66,75 +66,82 @@ export class Graphics implements IGraphics {
 
 
     async begin(additionalRenderTargets?: Canvas[]) {
-        const GL = GameView.context
-        GL.enable(GL.BLEND);
-        GL.blendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
-
+        let G = GL.context
+        G.enable(G.BLEND);
+        G.blendFunc(G.SRC_ALPHA, G.ONE_MINUS_SRC_ALPHA);
+  
         if (this.renderTarget == null) {
-            GL.bindFramebuffer(GL.FRAMEBUFFER, null);
-            GL.viewport(0, 0, Screen.Width, Screen.Height);
+            G.bindFramebuffer(G.FRAMEBUFFER, null);
+            G.viewport(0, 0, Screen.Width, Screen.Height);
         } else {
-            GL.bindFramebuffer(GL.FRAMEBUFFER, this.renderTargetFrameBuffer);
-            GL.viewport(0, 0, this.renderTarget.width, this.renderTarget.height);
+            G.bindFramebuffer(G.FRAMEBUFFER, this.renderTargetFrameBuffer);
+            G.viewport(0, 0, this.renderTarget.width, this.renderTarget.height);
             if (additionalRenderTargets != null) {
-                GL.framebufferTexture2D(GL.FRAMEBUFFER, GameView.drawBuffers.COLOR_ATTACHMENT0_WEBGL, GL.TEXTURE_2D, this.renderTargetTexture, 0)
+                G.framebufferTexture2D(G.FRAMEBUFFER, GL.drawBuffers.COLOR_ATTACHMENT0_WEBGL, G.TEXTURE_2D, this.renderTargetTexture, 0)
                 for (let i = 0; i < additionalRenderTargets.length; i++) {
-                    GL.framebufferTexture2D(GL.FRAMEBUFFER, GameView.drawBuffers.COLOR_ATTACHMENT0_WEBGL + i + 1, GL.TEXTURE_2D, (additionalRenderTargets[i] as Image).texture, 0);
+                    G.framebufferTexture2D(G.FRAMEBUFFER, GL.drawBuffers.COLOR_ATTACHMENT0_WEBGL + i + 1, G.TEXTURE_2D, (additionalRenderTargets[i] as Image).texture, 0);
                 }
-                const attachments = [GameView.drawBuffers.COLOR_ATTACHMENT0_WEBGL];
+                const attachments = [GL.drawBuffers.COLOR_ATTACHMENT0_WEBGL];
                 for (let i = 0; i < additionalRenderTargets.length; i++) {
-                    attachments.push(GameView.drawBuffers.COLOR_ATTACHMENT0_WEBGL + i + 1);
+                    attachments.push(GL.drawBuffers.COLOR_ATTACHMENT0_WEBGL + i + 1);
                 }
-                GL.drawBuffers(attachments);
+                G.drawBuffers(attachments);
             }
         }
     }
     beginFace(face: number): void {
-        const GL = GameView.context
-        GL.enable(GL.BLEND);
-        GL.blendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
-        GL.bindFramebuffer(GL.FRAMEBUFFER, this.renderTargetFrameBuffer);
-        GL.framebufferTexture2D(GL.FRAMEBUFFER, this.isDepthAttachment ? GL.DEPTH_ATTACHMENT : GL.COLOR_ATTACHMENT0, GL.TEXTURE_CUBE_MAP_POSITIVE_X + face, this.renderTargetTexture, 0);
-        GL.viewport(0, 0, this.renderTarget.width, this.renderTarget.height);
+        const G = GL.context
+        G.enable(G.BLEND);
+        G.blendFunc(G.SRC_ALPHA, G.ONE_MINUS_SRC_ALPHA);
+        G.bindFramebuffer(G.FRAMEBUFFER, this.renderTargetFrameBuffer);
+        G.framebufferTexture2D(G.FRAMEBUFFER, this.isDepthAttachment ? G.DEPTH_ATTACHMENT : G.COLOR_ATTACHMENT0, G.TEXTURE_CUBE_MAP_POSITIVE_X + face, this.renderTargetTexture, 0);
+        G.viewport(0, 0, this.renderTarget.width, this.renderTarget.height);
     }
     async beginEye(eye: number) {
-        const GL = GameView.context
+        const G = GL.context
         
-        GL.enable(GL.BLEND);
-        GL.blendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
-        GL.bindFramebuffer(GL.FRAMEBUFFER, null);
+        G.enable(G.BLEND);
+        G.blendFunc(G.SRC_ALPHA, G.ONE_MINUS_SRC_ALPHA);
+        G.bindFramebuffer(G.FRAMEBUFFER, null);
         if (eye == 0) {
-            GL.viewport(0, 0, Screen.Width * 0.5, Screen.Height);
+            G.viewport(0, 0, Screen.Width * 0.5, Screen.Height);
         } else {
-            GL.viewport(Screen.Width * 0.5, 0, Screen.Width * 0.5, Screen.Height);
+            G.viewport(Screen.Width * 0.5, 0, Screen.Width * 0.5, Screen.Height);
         }
     }
     end(): void {
-        const GL = GameView.context
+        const G = GL.context
         if (this.renderTargetMSAA != null) {
-            GL.bindFramebuffer(GL.READ_FRAMEBUFFER, this.renderTargetFrameBuffer);
-            GL.bindFramebuffer(GL.DRAW_FRAMEBUFFER, this.renderTargetMSAA);
-            GL.blitFramebuffer(0, 0, this.renderTarget.width, this.renderTarget.height,
+            G.bindFramebuffer(G.READ_FRAMEBUFFER, this.renderTargetFrameBuffer);
+            G.bindFramebuffer(G.DRAW_FRAMEBUFFER, this.renderTargetMSAA);
+            G.blitFramebuffer(0, 0, this.renderTarget.width, this.renderTarget.height,
                 0, 0, this.renderTarget.width, this.renderTarget.height,
-                GL.COLOR_BUFFER_BIT, GL.NEAREST);
+                G.COLOR_BUFFER_BIT, G.NEAREST);
         }
 
-        var error = GL.getError();
+        var error = G.getError();
+        
         switch (error) {
-            case GL.NO_ERROR:
-
-            case GL.INVALID_ENUM:
+            case G.NO_ERROR:
+                break;
+            case G.INVALID_ENUM:
                 console.error("GL error: Invalid enum");
-            case GL.INVALID_VALUE:
+                break;
+            case G.INVALID_VALUE:
                 console.error("GL error: Invalid value");
-            case GL.INVALID_OPERATION:
+                break;
+            case G.INVALID_OPERATION:
                 console.error("GL error: Invalid operation");
-            case GL.INVALID_FRAMEBUFFER_OPERATION:
+                break;
+            case G.INVALID_FRAMEBUFFER_OPERATION:
                 console.error("GL error: Invalid framebuffer operation");
-            case GL.OUT_OF_MEMORY:
+                break;
+            case G.OUT_OF_MEMORY:
                 console.error("GL error: Out of memory");
-            case GL.CONTEXT_LOST_WEBGL:
+                break;
+            case G.CONTEXT_LOST_WEBGL:
                 console.error("GL error: Context lost");
+                break;
             default:
                 console.error("Unknown GL error");
         }
@@ -147,58 +154,58 @@ export class Graphics implements IGraphics {
         return 60;
     }
     clear(color?: Color, depth?: number, stencil?: number): void {
-        const GL = GameView.context
+        const G = GL.context
         var clearMask: number = 0;
         if (color != null) {
-            clearMask |= GL.COLOR_BUFFER_BIT;
-            GL.colorMask(true, true, true, true);
-            GL.clearColor(color.R, color.G, color.B, color.A);
+            clearMask |= G.COLOR_BUFFER_BIT;
+            G.colorMask(true, true, true, true);
+            G.clearColor(color.R, color.G, color.B, color.A);
         }
         if (depth != null) {
-            clearMask |= GL.DEPTH_BUFFER_BIT;
-            GL.enable(GL.DEPTH_TEST);
-            GL.depthMask(true);
-            GL.clearDepth(depth);
+            clearMask |= G.DEPTH_BUFFER_BIT;
+            G.enable(G.DEPTH_TEST);
+            G.depthMask(true);
+            G.clearDepth(depth);
         }
         if (stencil != null) {
-            clearMask |= GL.STENCIL_BUFFER_BIT;
-            GL.enable(GL.STENCIL_TEST);
-            GL.stencilMask(0xff);
-            GL.clearStencil(stencil);
+            clearMask |= G.STENCIL_BUFFER_BIT;
+            G.enable(G.STENCIL_TEST);
+            G.stencilMask(0xff);
+            G.clearStencil(stencil);
         }
-        GL.clear(clearMask);
-        GL.colorMask(this.colorMaskRed, this.colorMaskGreen, this.colorMaskBlue, this.colorMaskAlpha);
+        G.clear(clearMask);
+        G.colorMask(this.colorMaskRed, this.colorMaskGreen, this.colorMaskBlue, this.colorMaskAlpha);
         if (this.depthTest) {
-            GL.enable(GL.DEPTH_TEST);
+            G.enable(G.DEPTH_TEST);
         }
         else {
-            GL.disable(GL.DEPTH_TEST);
+            G.disable(G.DEPTH_TEST);
         }
-        GL.depthMask(this.depthMask);
+        G.depthMask(this.depthMask);
     }
     async viewport(x: number, y: number, width: number, height: number) {
         
-        const GL = GameView.context
+        const G = GL.context
         if (this.renderTarget == null) {
-            GL.viewport(x, Screen.Height - y - height, width, height);
+            G.viewport(x, Screen.Height - y - height, width, height);
         }
         else {
-            GL.viewport(x, y, width, height);
+            G.viewport(x, y, width, height);
         }
     }
     scissor(x: number, y: number, width: number, height: number): void {
-        const GL = GameView.context
-        GL.enable(GL.SCISSOR_TEST);
+        const G = GL.context
+        G.enable(G.SCISSOR_TEST);
         if (this.renderTarget == null) {
-            GL.scissor(x, Screen.Height - y - height, width, height);
+            G.scissor(x, Screen.Height - y - height, width, height);
         }
         else {
-            GL.scissor(x, y, width, height);
+            G.scissor(x, y, width, height);
         }
     }
     disableScissor(): void {
-        const GL = GameView.context
-        GL.disable(GL.SCISSOR_TEST);
+        const G = GL.context
+        G.disable(G.SCISSOR_TEST);
     }
     setVertexBuffer(vertexBuffer: VertexBuffer): void {
         this.useVertexAttributes = vertexBuffer.set(0);
@@ -218,10 +225,10 @@ export class Graphics implements IGraphics {
         indexBuffer.set();
     }
     setTexture(stage: TextureUnit, texture: Image): void {
-        const GL = GameView.context
+        const G = GL.context
         if (texture == null) {
-            GL.activeTexture(GL.TEXTURE0 + stage.value);
-            GL.bindTexture(GL.TEXTURE_2D, null);
+            G.activeTexture(G.TEXTURE0 + stage.value);
+            G.bindTexture(G.TEXTURE_2D, null);
         }
         else {
             texture.set(stage.value);
@@ -238,30 +245,30 @@ export class Graphics implements IGraphics {
     }
 
     setTextureParameters(texunit: TextureUnit, uAddressing: TextureAddressing, vAddressing: TextureAddressing, minificationFilter: TextureFilter, magnificationFilter: TextureFilter, mipmapFilter: MipMapFilter): void {
-        const GL = GameView.context
-        GL.activeTexture(GL.TEXTURE0 + texunit.value);
+        const G = GL.context
+        G.activeTexture(G.TEXTURE0 + texunit.value);
 
         switch (uAddressing) {
             case TextureAddressing.Clamp:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE);
+                G.texParameteri(G.TEXTURE_2D, G.TEXTURE_WRAP_S, G.CLAMP_TO_EDGE);
                 break;
             case TextureAddressing.Repeat:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.REPEAT);
+                G.texParameteri(G.TEXTURE_2D, G.TEXTURE_WRAP_S, G.REPEAT);
                 break;
             case TextureAddressing.Mirror:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.MIRRORED_REPEAT);
+                G.texParameteri(G.TEXTURE_2D, G.TEXTURE_WRAP_S, G.MIRRORED_REPEAT);
                 break;
         }
 
         switch (vAddressing) {
             case TextureAddressing.Clamp:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE);
+                G.texParameteri(G.TEXTURE_2D, G.TEXTURE_WRAP_T, G.CLAMP_TO_EDGE);
                 break;
             case TextureAddressing.Repeat:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.REPEAT);
+                G.texParameteri(G.TEXTURE_2D, G.TEXTURE_WRAP_T, G.REPEAT);
                 break;
             case TextureAddressing.Mirror:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.MIRRORED_REPEAT);
+                G.texParameteri(G.TEXTURE_2D, G.TEXTURE_WRAP_T, G.MIRRORED_REPEAT);
                 break;
         }
 
@@ -269,40 +276,40 @@ export class Graphics implements IGraphics {
             case TextureFilter.PointFilter:
                 switch (mipmapFilter) {
                     case MipMapFilter.NoMipFilter:
-                        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
+                        G.texParameteri(G.TEXTURE_2D, G.TEXTURE_MIN_FILTER, G.NEAREST);
                         break;
                     case MipMapFilter.PointMipFilter:
-                        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_NEAREST);
+                        G.texParameteri(G.TEXTURE_2D, G.TEXTURE_MIN_FILTER, G.NEAREST_MIPMAP_NEAREST);
                         break;
                     case MipMapFilter.LinearMipFilter:
-                        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_LINEAR);
+                        G.texParameteri(G.TEXTURE_2D, G.TEXTURE_MIN_FILTER, G.NEAREST_MIPMAP_LINEAR);
                         break;
                 }
             case TextureFilter.LinearFilter:
             case TextureFilter.AnisotropicFilter:
                 switch (mipmapFilter) {
                     case MipMapFilter.NoMipFilter:
-                        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR);
+                        G.texParameteri(G.TEXTURE_2D, G.TEXTURE_MIN_FILTER, G.LINEAR);
                         break;
                     case MipMapFilter.PointMipFilter:
-                        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_NEAREST);
+                        G.texParameteri(G.TEXTURE_2D, G.TEXTURE_MIN_FILTER, G.LINEAR_MIPMAP_NEAREST);
                         break;
                     case MipMapFilter.LinearMipFilter:
-                        GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_LINEAR);
+                        G.texParameteri(G.TEXTURE_2D, G.TEXTURE_MIN_FILTER, G.LINEAR_MIPMAP_LINEAR);
                         break;
                 }
                 if (minificationFilter == TextureFilter.AnisotropicFilter) {
-                    GL.texParameteri(GL.TEXTURE_2D, GameView.anisotropic.TEXTURE_MAX_ANISOTROPY_EXT, 4);
+                    G.texParameteri(G.TEXTURE_2D, GL.anisotropic.TEXTURE_MAX_ANISOTROPY_EXT, 4);
                 }
         }
 
         switch (magnificationFilter) {
             case TextureFilter.PointFilter:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
+                G.texParameteri(G.TEXTURE_2D, G.TEXTURE_MAG_FILTER, G.NEAREST);
                 break;
             case TextureFilter.LinearFilter:
             case TextureFilter.AnisotropicFilter:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR);
+                G.texParameteri(G.TEXTURE_2D, G.TEXTURE_MAG_FILTER, G.LINEAR);
                 break;
         }
     }
@@ -310,30 +317,30 @@ export class Graphics implements IGraphics {
         throw new Error("Method not implemented.");
     }
     setTextureCompareMode(texunit: TextureUnit, enabled: boolean): void {
-        const GL = GameView.context
+        const G = GL.context
         if (enabled) {
-            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_COMPARE_MODE, GL.COMPARE_REF_TO_TEXTURE);
-            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_COMPARE_FUNC, GL.LEQUAL);
+            G.texParameteri(G.TEXTURE_2D, G.TEXTURE_COMPARE_MODE, G.COMPARE_REF_TO_TEXTURE);
+            G.texParameteri(G.TEXTURE_2D, G.TEXTURE_COMPARE_FUNC, G.LEQUAL);
         }
         else {
-            GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_COMPARE_MODE, GL.NONE);
+            G.texParameteri(G.TEXTURE_2D, G.TEXTURE_COMPARE_MODE, G.NONE);
         }
     }
     setCubeMapCompareMode(texunit: TextureUnit, enabled: boolean): void {
-        const GL = GameView.context
+        const G = GL.context
         if (enabled) {
-            GL.texParameteri(GL.TEXTURE_CUBE_MAP, GL.TEXTURE_COMPARE_MODE, GL.COMPARE_REF_TO_TEXTURE);
-            GL.texParameteri(GL.TEXTURE_CUBE_MAP, GL.TEXTURE_COMPARE_FUNC, GL.LEQUAL);
+            G.texParameteri(G.TEXTURE_CUBE_MAP, G.TEXTURE_COMPARE_MODE, G.COMPARE_REF_TO_TEXTURE);
+            G.texParameteri(G.TEXTURE_CUBE_MAP, G.TEXTURE_COMPARE_FUNC, G.LEQUAL);
         }
         else {
-            GL.texParameteri(GL.TEXTURE_CUBE_MAP, GL.TEXTURE_COMPARE_MODE, GL.NONE);
+            G.texParameteri(G.TEXTURE_CUBE_MAP, G.TEXTURE_COMPARE_MODE, G.NONE);
         }
     }
     setCubeMap(stage: TextureUnit, cubeMap: CubeMap): void {
-        const GL = GameView.context
+        const G = GL.context
         if (cubeMap == null) {
-            GL.activeTexture(GL.TEXTURE0 + stage.value);
-            GL.bindTexture(GL.TEXTURE_CUBE_MAP, null);
+            G.activeTexture(G.TEXTURE0 + stage.value);
+            G.bindTexture(G.TEXTURE_CUBE_MAP, null);
         }
         else {
             cubeMap.set(stage.value);
@@ -343,114 +350,114 @@ export class Graphics implements IGraphics {
         cubeMap.setDepth(stage.value);
     }
     setStencilReferenceValue(value: number): void {
-        const GL = GameView.context
-        GL.stencilFunc(this.convertCompareMode(this.currentPipeline.stencilMode), value, this.currentPipeline.stencilReadMask);
+        const G = GL.context
+        G.stencilFunc(this.convertCompareMode(this.currentPipeline.stencilMode), value, this.currentPipeline.stencilReadMask);
     }
     instancedRenderingAvailable(): boolean {
         return this.instancedExtension;
     }
 
     setDepthMode(write: boolean, mode: CompareMode): void {
-        const GL = GameView.context
+        const G = GL.context
         switch (mode) {
             case CompareMode.Always:
-                write ? GL.enable(GL.DEPTH_TEST) : GL.disable(GL.DEPTH_TEST);
+                write ? G.enable(G.DEPTH_TEST) : G.disable(G.DEPTH_TEST);
                 this.depthTest = write;
-                GL.depthFunc(GL.ALWAYS);
+                G.depthFunc(G.ALWAYS);
                 break;
             case CompareMode.Never:
-                GL.enable(GL.DEPTH_TEST);
+                G.enable(G.DEPTH_TEST);
                 this.depthTest = true;
-                GL.depthFunc(GL.NEVER);
+                G.depthFunc(G.NEVER);
                 break;
             case CompareMode.Equal:
-                GL.enable(GL.DEPTH_TEST);
+                G.enable(G.DEPTH_TEST);
                 this.depthTest = true;
-                GL.depthFunc(GL.EQUAL);
+                G.depthFunc(G.EQUAL);
                 break;
             case CompareMode.NotEqual:
-                GL.enable(GL.DEPTH_TEST);
+                G.enable(G.DEPTH_TEST);
                 this.depthTest = true;
-                GL.depthFunc(GL.NOTEQUAL);
+                G.depthFunc(G.NOTEQUAL);
                 break;
             case CompareMode.Less:
-                GL.enable(GL.DEPTH_TEST);
+                G.enable(G.DEPTH_TEST);
                 this.depthTest = true;
-                GL.depthFunc(GL.LESS);
+                G.depthFunc(G.LESS);
                 break;
             case CompareMode.LessEqual:
-                GL.enable(GL.DEPTH_TEST);
+                G.enable(G.DEPTH_TEST);
                 this.depthTest = true;
-                GL.depthFunc(GL.LEQUAL);
+                G.depthFunc(G.LEQUAL);
                 break;
             case CompareMode.Greater:
-                GL.enable(GL.DEPTH_TEST);
+                G.enable(G.DEPTH_TEST);
                 this.depthTest = true;
-                GL.depthFunc(GL.GREATER);
+                G.depthFunc(G.GREATER);
                 break;
             case CompareMode.GreaterEqual:
-                GL.enable(GL.DEPTH_TEST);
+                G.enable(G.DEPTH_TEST);
                 this.depthTest = true;
-                GL.depthFunc(GL.GEQUAL);
+                G.depthFunc(G.GEQUAL);
                 break;
         }
-        GL.depthMask(write);
+        G.depthMask(write);
         this.depthMask = write;
     }
 
     setCullMode(mode: CullMode): void {
-        const GL = GameView.context
+        const G = GL.context
         switch (mode) {
             case CullMode.None:
-                GL.disable(GL.CULL_FACE);
+                G.disable(G.CULL_FACE);
                 break;
             case CullMode.Clockwise:
-                GL.enable(GL.CULL_FACE);
-                GL.cullFace(GL.BACK);
+                G.enable(G.CULL_FACE);
+                G.cullFace(G.BACK);
                 break;
             case CullMode.CounterClockwise:
-                GL.enable(GL.CULL_FACE);
-                GL.cullFace(GL.FRONT);
+                G.enable(G.CULL_FACE);
+                G.cullFace(G.FRONT);
                 break;
         }
     }
 
     getBlendFunc(factor: BlendingFactor): number {
-        const GL = GameView.context
+        const G = GL.context
         switch (factor) {
             case BlendingFactor.BlendZero:
             case BlendingFactor.Undefined:
-                return GL.ZERO;
+                return G.ZERO;
             case BlendingFactor.BlendOne:
-                return GL.ONE;
+                return G.ONE;
             case BlendingFactor.SourceAlpha:
-                return GL.SRC_ALPHA;
+                return G.SRC_ALPHA;
             case BlendingFactor.DestinationAlpha:
-                return GL.DST_ALPHA;
+                return G.DST_ALPHA;
             case BlendingFactor.InverseSourceAlpha:
-                return GL.ONE_MINUS_SRC_ALPHA;
+                return G.ONE_MINUS_SRC_ALPHA;
             case BlendingFactor.InverseDestinationAlpha:
-                return GL.ONE_MINUS_DST_ALPHA;
+                return G.ONE_MINUS_DST_ALPHA;
             case BlendingFactor.SourceColor:
-                return GL.SRC_COLOR;
+                return G.SRC_COLOR;
             case BlendingFactor.DestinationColor:
-                return GL.DST_COLOR;
+                return G.DST_COLOR;
             case BlendingFactor.InverseSourceColor:
-                return GL.ONE_MINUS_SRC_COLOR;
+                return G.ONE_MINUS_SRC_COLOR;
             case BlendingFactor.InverseDestinationColor:
-                return GL.ONE_MINUS_DST_COLOR;
+                return G.ONE_MINUS_DST_COLOR;
         }
     }
 
     getBlendOp(op: BlendingOperation): number {
-        const GL = GameView.context
+        const G = GL.context
         switch (op) {
             case BlendingOperation.Add:
-                return GL.FUNC_ADD;
+                return G.FUNC_ADD;
             case BlendingOperation.Subtract:
-                return GL.FUNC_SUBTRACT;
+                return G.FUNC_SUBTRACT;
             case BlendingOperation.ReverseSubtract:
-                return GL.FUNC_REVERSE_SUBTRACT;
+                return G.FUNC_REVERSE_SUBTRACT;
             case BlendingOperation.Min:
                 return 0x8007;
             case BlendingOperation.Max:
@@ -460,78 +467,80 @@ export class Graphics implements IGraphics {
 
     setBlendingMode(source: BlendingFactor, destination: BlendingFactor, operation: BlendingOperation,
         alphaSource: BlendingFactor, alphaDestination: BlendingFactor, alphaOperation: BlendingOperation): void {
-        const GL = GameView.context
+        const G = GL.context
         if (source == BlendingFactor.BlendOne && destination == BlendingFactor.BlendZero) {
-            GL.disable(GL.BLEND);
+            G.disable(G.BLEND);
         }
         else {
-            GL.enable(GL.BLEND);
-            GL.blendFuncSeparate(this.getBlendFunc(source), this.getBlendFunc(destination), this.getBlendFunc(alphaSource), this.getBlendFunc(alphaDestination));
-            GL.blendEquationSeparate(this.getBlendOp(operation), this.getBlendOp(alphaOperation));
+            G.enable(G.BLEND);
+            G.blendFuncSeparate(this.getBlendFunc(source), this.getBlendFunc(destination), this.getBlendFunc(alphaSource), this.getBlendFunc(alphaDestination));
+            G.blendEquationSeparate(this.getBlendOp(operation), this.getBlendOp(alphaOperation));
         }
     }
 
     convertCompareMode(compareMode: CompareMode) {
-        const GL = GameView.context
+        const G = GL.context
         switch (compareMode) {
             case CompareMode.Always:
-                return GL.ALWAYS;
+                return G.ALWAYS;
             case CompareMode.Equal:
-                return GL.EQUAL;
+                return G.EQUAL;
             case CompareMode.Greater:
-                return GL.GREATER;
+                return G.GREATER;
             case CompareMode.GreaterEqual:
-                return GL.GEQUAL;
+                return G.GEQUAL;
             case CompareMode.Less:
-                return GL.LESS;
+                return G.LESS;
             case CompareMode.LessEqual:
-                return GL.LEQUAL;
+                return G.LEQUAL;
             case CompareMode.Never:
-                return GL.NEVER;
+                return G.NEVER;
             case CompareMode.NotEqual:
-                return GL.NOTEQUAL;
+                return G.NOTEQUAL;
         }
     }
 
     convertStencilAction(action: StencilAction) {
-        const GL = GameView.context
+        const G = GL.context
         switch (action) {
             case StencilAction.Decrement:
-                return GL.DECR;
+                return G.DECR;
             case StencilAction.DecrementWrap:
-                return GL.DECR_WRAP;
+                return G.DECR_WRAP;
             case StencilAction.Increment:
-                return GL.INCR;
+                return G.INCR;
             case StencilAction.IncrementWrap:
-                return GL.INCR_WRAP;
+                return G.INCR_WRAP;
             case StencilAction.Invert:
-                return GL.INVERT;
+                return G.INVERT;
             case StencilAction.Keep:
-                return GL.KEEP;
+                return G.KEEP;
             case StencilAction.Replace:
-                return GL.REPLACE;
+                return G.REPLACE;
             case StencilAction.Zero:
-                return GL.ZERO;
+                return G.ZERO;
         }
     }
 
 
     setStencilParameters(compareMode: CompareMode, bothPass: StencilAction, depthFail: StencilAction, stencilFail: StencilAction, referenceValue: StencilValue, readMask: number = 0xff, writeMask: number = 0xff): void {
-        const GL = GameView.context
+        const G = GL.context
         if (compareMode == CompareMode.Always && bothPass == StencilAction.Keep
             && depthFail == StencilAction.Keep && stencilFail == StencilAction.Keep) {
-            GL.disable(GL.STENCIL_TEST);
+            G.disable(G.STENCIL_TEST);
         }
         else {
-            GL.enable(GL.STENCIL_TEST);
+            G.enable(G.STENCIL_TEST);
             var stencilFunc = this.convertCompareMode(compareMode);
-            GL.stencilMask(writeMask);
-            GL.stencilOp(this.convertStencilAction(stencilFail), this.convertStencilAction(depthFail), this.convertStencilAction(bothPass));
+            G.stencilMask(writeMask);
+            G.stencilOp(this.convertStencilAction(stencilFail), this.convertStencilAction(depthFail), this.convertStencilAction(bothPass));
             switch (referenceValue) {
                 case StencilValue.Static(referenceValue.value):
-                    GL.stencilFunc(stencilFunc, referenceValue.value, readMask);
+                    G.stencilFunc(stencilFunc, referenceValue.value, readMask);
+                    break;
                 case StencilValue.Dynamic:
-                    GL.stencilFunc(stencilFunc, 0, readMask);
+                    G.stencilFunc(stencilFunc, 0, readMask);
+                    break;
             }
         }
     }
@@ -551,160 +560,160 @@ export class Graphics implements IGraphics {
 
 
     setBool(location: ConstantLocation, value: boolean): void {
-        const GL = GameView.context
+        const G = GL.context
 
-        GL.uniform1i(location.value, value ? 1 : 0);
+        G.uniform1i(location.value, value ? 1 : 0);
     }
     setInt(location: ConstantLocation, value: number): void {
-        const GL = GameView.context
+        const G = GL.context
 
-        GL.uniform1i(location.value, value);
+        G.uniform1i(location.value, value);
 
         // check errors
     }
     setInt2(location: ConstantLocation, value1: number, value2: number): void {
-        const GL = GameView.context
+        const G = GL.context
 
-        GL.uniform2i(location.value, value1, value2);
+        G.uniform2i(location.value, value1, value2);
 
         // check errors
     }
     setInt3(location: ConstantLocation, value1: number, value2: number, value3: number): void {
-        const GL = GameView.context
+        const G = GL.context
 
-        GL.uniform3i(location.value, value1, value2, value3);
+        G.uniform3i(location.value, value1, value2, value3);
 
         // check errors
     }
     setInt4(location: ConstantLocation, value1: number, value2: number, value3: number, value4: number): void {
-        const GL = GameView.context
+        const G = GL.context
 
-        GL.uniform4i(location.value, value1, value2, value3, value4);
+        G.uniform4i(location.value, value1, value2, value3, value4);
 
         // check errors
     }
     setInts(location: ConstantLocation, values: Float32Array): void {
-        const GL = GameView.context
+        const G = GL.context
         switch (location.type) {
-            case GL.FLOAT_VEC2:
-                GL.uniform2iv(location.value, values);
+            case G.FLOAT_VEC2:
+                G.uniform2iv(location.value, values);
                 break;
-            case GL.FLOAT_VEC3:
-                GL.uniform3iv(location.value, values);
+            case G.FLOAT_VEC3:
+                G.uniform3iv(location.value, values);
                 break;
-            case GL.FLOAT_VEC4:
-                GL.uniform4iv(location.value, values);
+            case G.FLOAT_VEC4:
+                G.uniform4iv(location.value, values);
                 break;
             default:
-                GL.uniform1iv(location.value, values);
+                G.uniform1iv(location.value, values);
                 break;
         }
         // check errors
     }
     setFloat(location: ConstantLocation, value: number): void {
-        const GL = GameView.context
+        const G = GL.context
 
-        GL.uniform1f(location.value, value);
+        G.uniform1f(location.value, value);
 
         // check errors
     }
     setFloat2(location: ConstantLocation, value1: number, value2: number): void {
-        const GL = GameView.context
+        const G = GL.context
 
-        GL.uniform2f(location.value, value1, value2);
+        G.uniform2f(location.value, value1, value2);
 
         // check errors
     }
     setFloat3(location: ConstantLocation, value1: number, value2: number, value3: number): void {
-        const GL = GameView.context
+        const G = GL.context
 
-        GL.uniform3f(location.value, value1, value2, value3);
+        G.uniform3f(location.value, value1, value2, value3);
 
         // check errors
     }
     setFloat4(location: ConstantLocation, value1: number, value2: number, value3: number, value4: number): void {
-        const GL = GameView.context
+        const G = GL.context
 
-        GL.uniform4f(location.value, value1, value2, value3, value4);
+        G.uniform4f(location.value, value1, value2, value3, value4);
 
         // check errors
     }
     setFloats(location: ConstantLocation, values: Float32Array): void {
-        const GL = GameView.context
+        const G = GL.context
         switch (location.type) {
-            case GL.FLOAT_VEC2:
-                GL.uniform2fv(location.value, values);
+            case G.FLOAT_VEC2:
+                G.uniform2fv(location.value, values);
                 break;
-            case GL.FLOAT_VEC3:
-                GL.uniform3fv(location.value, values);
+            case G.FLOAT_VEC3:
+                G.uniform3fv(location.value, values);
                 break;
-            case GL.FLOAT_VEC4:
-                GL.uniform4fv(location.value, values);
+            case G.FLOAT_VEC4:
+                G.uniform4fv(location.value, values);
                 break;
-            case GL.FLOAT_MAT4:
-                GL.uniformMatrix4fv(location.value, false, values);
+            case G.FLOAT_MAT4:
+                G.uniformMatrix4fv(location.value, false, values);
                 break;
             default:
-                GL.uniform1fv(location.value, values);
+                G.uniform1fv(location.value, values);
                 break;
         }
         // check errors
     }
     setVector2(location: ConstantLocation, value: Vector2): void {
-        const GL = GameView.context
-        GL.uniform2f(location.value, value.x, value.y);
+        const G = GL.context
+        G.uniform2f(location.value, value.x, value.y);
     }
     setVector3(location: ConstantLocation, value: Vector3): void {
-        const GL = GameView.context
-        GL.uniform3f(location.value, value.x, value.y, value.z);
+        const G = GL.context
+        G.uniform3f(location.value, value.x, value.y, value.z);
     }
     setVector4(location: ConstantLocation, value: Vector4): void {
-        const GL = GameView.context
-        GL.uniform4f(location.value, value.x, value.y, value.z, value.w);
+        const G = GL.context
+        G.uniform4f(location.value, value.x, value.y, value.z, value.w);
     }
 
 
     matrixCache = new Float32Array(16);
 
     setMatrix(location: ConstantLocation, matrix: Matrix4): void {
-        const GL = GameView.context
+        const G = GL.context
         this.matrixCache[0] = matrix._00; this.matrixCache[1] = matrix._01; this.matrixCache[2] = matrix._02; this.matrixCache[3] = matrix._03;
         this.matrixCache[4] = matrix._10; this.matrixCache[5] = matrix._11; this.matrixCache[6] = matrix._12; this.matrixCache[7] = matrix._13;
         this.matrixCache[8] = matrix._20; this.matrixCache[9] = matrix._21; this.matrixCache[10] = matrix._22; this.matrixCache[11] = matrix._23;
         this.matrixCache[12] = matrix._30; this.matrixCache[13] = matrix._31; this.matrixCache[14] = matrix._32; this.matrixCache[15] = matrix._33;
 
-        GL.uniformMatrix4fv(location.value, false, this.matrixCache);
+        G.uniformMatrix4fv(location.value, false, this.matrixCache);
     }
 
     matrix3Cache = new Float32Array(9);
 
     setMatrix3(location: ConstantLocation, matrix: Matrix3): void {
-        const GL = GameView.context
+        const G = GL.context
 
         this.matrix3Cache[0] = matrix._00; this.matrix3Cache[1] = matrix._01; this.matrix3Cache[2] = matrix._02;
         this.matrix3Cache[3] = matrix._10; this.matrix3Cache[4] = matrix._11; this.matrix3Cache[5] = matrix._12;
         this.matrix3Cache[6] = matrix._20; this.matrix3Cache[7] = matrix._21; this.matrix3Cache[8] = matrix._22;
 
-        GL.uniformMatrix4fv(location.value, false, this.matrix3Cache);
+        G.uniformMatrix4fv(location.value, false, this.matrix3Cache);
     }
 
     drawIndexedVertices(start: number, count: number): void {
-        const GL = GameView.context
-        const type = GameView.elementIndexUint == null ? GL.UNSIGNED_SHORT : GL.UNSIGNED_INT;
-        const size = type == GL.UNSIGNED_SHORT ? 2 : 4;
-        GL.drawElements(GL.TRIANGLES, count == -1 ? this.indicesCount : count, type, start * size);
+        const G = GL.context
+        const type = GL.elementIndexUint == null ? G.UNSIGNED_SHORT : G.UNSIGNED_INT;
+        const size = type == G.UNSIGNED_SHORT ? 2 : 4;
+        G.drawElements(G.TRIANGLES, count == -1 ? this.indicesCount : count, type, start * size);
         for (let i = 0; i < this.useVertexAttributes; i++) {
-            GL.disableVertexAttribArray(i);
+            G.disableVertexAttribArray(i);
         }
     }
 
     drawIndexedVerticesInstanced(instanceCount: number, start: number, count: number): void {
-        const GL = GameView.context
+        const G = GL.context
         if (this.instancedRenderingAvailable()) {
-            var type = GameView.elementIndexUint == null ? GL.UNSIGNED_SHORT : GL.UNSIGNED_INT;
-            var typeSize = GameView.elementIndexUint == null ? 2 : 4;
+            var type = GL.elementIndexUint == null ? G.UNSIGNED_SHORT : G.UNSIGNED_INT;
+            var typeSize = GL.elementIndexUint == null ? 2 : 4;
 
-            GL.drawElementsInstanced(GL.TRIANGLES, count == -1 ? this.indicesCount : count, type, start * typeSize, instanceCount);
+            G.drawElementsInstanced(G.TRIANGLES, count == -1 ? this.indicesCount : count, type, start * typeSize, instanceCount);
         }
     }
 

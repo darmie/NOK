@@ -1,12 +1,12 @@
-import { GameView } from "../GameView";
+import { GL } from "../GL";
 import {Blob} from "../Internal/Blob"
 import { Shader } from "./Shader";
 import { ShaderType } from "./ShaderType";
 
 export class GeometryShader {
     shader:any;
-    sources:Array<string>
-    constructor(sources:Array<Blob>, files?:Array<string>){
+    sources:Array<string> = []
+    constructor(sources:Array<Blob>, public files?:Array<string>){
         for(let source of sources){
             this.sources.push(source.toString())
         }
@@ -22,7 +22,7 @@ export class GeometryShader {
 	}
 	
 	public delete() {
-		GameView.context.deleteShader(this.shader);
+		GL.context.deleteShader(this.shader);
 		this.shader = null;
 		this.sources = null;
 	}

@@ -1,19 +1,19 @@
-import { GameView } from "../GameView";
+import { GL} from "../GL";
 import {Blob} from "../Internal/Blob"
 import { Shader } from "./Shader";
 import { ShaderType } from "./ShaderType";
 
 export class FragmentShader {
-    type:any;
-    shader:any;
-    sources:Array<string>
-    constructor(sources:Array<Blob>, files?:Array<string>){
+    type:any = "";
+    shader:any = null;
+    sources:Array<string> = []
+    constructor(sources:Array<Blob>, public files?:Array<string>){
         for(let source of sources){
             this.sources.push(source.toString())
         }
-        this.type = GameView.context.FRAGMENT_SHADER;
+        this.type = GL.context.FRAGMENT_SHADER;
     
-        this.shader = Shader.initFromSource(sources[0].toString(), ShaderType.FragmentShader);
+        this.shader = sources[0] ? Shader.initFromSource(sources[0].toString(), ShaderType.FragmentShader) : null;
     }
 
     public static fromSource(source: string): FragmentShader {
@@ -24,7 +24,7 @@ export class FragmentShader {
 	}
 	
 	public delete() {
-		GameView.context.deleteShader(this.shader);
+		GL.context.deleteShader(this.shader);
 		this.shader = null;
 		this.sources = null;
 	}

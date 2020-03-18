@@ -13,7 +13,7 @@ import { TessellationEvaluationShader } from "./TessellationEvaluationShader"
 
 export class PipelineStateBase {
 
-	public inputLayout: Array<VertexStructure>;
+	public inputLayout: Array<VertexStructure> = [];
 	public vertexShader: VertexShader;
 	public fragmentShader: FragmentShader;
 	public geometryShader: GeometryShader;
@@ -49,7 +49,7 @@ export class PipelineStateBase {
 	public conservativeRasterization: boolean;
 
 	constructor() {
-		this.inputLayout = null;
+		this.inputLayout = [];
 		this.vertexShader = null;
 		this.fragmentShader = null;
 		this.geometryShader = null;

@@ -1,5 +1,5 @@
 import { ShaderType } from "./ShaderType";
-import { GameView } from "../GameView";
+import { GL } from "../GL";
 
 export class Shader {
     fromSource:boolean;
@@ -11,7 +11,7 @@ export class Shader {
         this.fromSource = false;
         this.glid = 0;
         this.length = size;
-        if(data){
+        if(data != null){
             this.source = data.toString();
         }
         
@@ -22,12 +22,14 @@ export class Shader {
         shader.glid = 0;
         shader.fromSource = true;
         shader.source = source;
+        
+        return shader;
     }
 
     destroy(){
         this.source = null
         if(this.glid != 0){
-            GameView.context.deleteShader(this.glid);
+            GL.context.deleteShader(this.glid);
         }    
     }
 

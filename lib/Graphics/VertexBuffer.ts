@@ -2,7 +2,7 @@ import { Usage } from "./Usage"
 import { VertexStructure } from "./VertexStructure"
 import { VertexData } from "./VertexData"
 import { GLView } from "expo-gl";
-import { GameView } from "../GameView";
+import {GL} from "../GL"
 
 export class VertexBuffer {
     private buffer: any;
@@ -22,22 +22,29 @@ export class VertexBuffer {
             switch (element.data) {
                 case VertexData.Float1:
                     this.myStride += 4 * 1;
+                    break;
                 case VertexData.Float2:
                     this.myStride += 4 * 2;
+                    break;
                 case VertexData.Float3:
                     this.myStride += 4 * 3;
+                    break;
                 case VertexData.Float4:
                     this.myStride += 4 * 4;
+                    break;
                 case VertexData.Float4x4:
                     this.myStride += 4 * 4 * 4;
+                    break;
                 case VertexData.Short2Norm:
                     this.myStride += 2 * 2;
+                    break;
                 case VertexData.Short4Norm:
                     this.myStride += 2 * 4;
+                    break;
             }
         }
 
-        this.buffer = GameView.context.createBuffer();
+        this.buffer = GL.context.createBuffer();
         this._data = new Float32Array(vertexCount * this.myStride / 4);
         this.sizes = new Array<number>();
         this.offsets = new Array<number>();
@@ -55,25 +62,32 @@ export class VertexBuffer {
             switch (element.data) {
                 case VertexData.Float1:
                     size = 1;
-                    type = GameView.context.FLOAT;
+                    type = GL.context.FLOAT;
+                    break;
                 case VertexData.Float2:
                     size = 2;
-                    type = GameView.context.FLOAT;
+                    type = GL.context.FLOAT;
+                    break;
                 case VertexData.Float3:
                     size = 3;
-                    type = GameView.context.FLOAT;
+                    type = GL.context.FLOAT;
+                    break;
                 case VertexData.Float4:
                     size = 4;
-                    type = GameView.context.FLOAT;
+                    type = GL.context.FLOAT;
+                    break;
                 case VertexData.Float4x4:
                     size = 4 * 4;
-                    type = GameView.context.FLOAT;
+                    type = GL.context.FLOAT;
+                    break;
                 case VertexData.Short2Norm:
                     size = 2;
-                    type = GameView.context.SHORT;
+                    type = GL.context.SHORT;
+                    break;
                 case VertexData.Short4Norm:
                     size = 4;
-                    type = GameView.context.SHORT;
+                    type = GL.context.SHORT;
+                    break;
             }
             this.sizes[index] = size;
             this.offsets[index] = offset;
@@ -81,18 +95,25 @@ export class VertexBuffer {
             switch (element.data) {
                 case VertexData.Float1:
                     offset += 4 * 1;
+                    break;
                 case VertexData.Float2:
                     offset += 4 * 2;
+                    break;
                 case VertexData.Float3:
                     offset += 4 * 3;
+                    break;
                 case VertexData.Float4:
                     offset += 4 * 4;
+                    break;
                 case VertexData.Float4x4:
                     offset += 4 * 4 * 4;
+                    break;
                 case VertexData.Short2Norm:
                     offset += 2 * 2;
+                    break;
                 case VertexData.Short4Norm:
                     offset += 2 * 4;
+                    break;
             }
             ++index;
         }
@@ -103,7 +124,7 @@ export class VertexBuffer {
     */
     public delete() {
         this._data = null;
-        GameView.context.deleteBuffer(this.buffer);
+        GL.context.deleteBuffer(this.buffer);
     }
 
     /**
@@ -123,24 +144,24 @@ export class VertexBuffer {
 
     public unlock(count?: number) {
         if (count) this.lockEnd = this.lockStart + count;
-        GameView.context.bindBuffer(GameView.context.ARRAY_BUFFER, this.buffer);
-        GameView.context.bufferData(GameView.context.ARRAY_BUFFER, this._data.subarray(this.lockStart * this.stride(), this.lockEnd * this.stride()), this.usage == Usage.Dynamic ? GameView.context.DYNAMIC_DRAW : GameView.context.STATIC_DRAW);
+        GL.context.bindBuffer(GL.context.ARRAY_BUFFER, this.buffer);
+        GL.context.bufferData(GL.context.ARRAY_BUFFER, this._data.subarray(this.lockStart * this.stride(), this.lockEnd * this.stride()), this.usage == Usage.Dynamic ? GL.context.DYNAMIC_DRAW : GL.context.STATIC_DRAW);
     }
 
     public set(offset: number): number {
-        let ext = GameView.context.getExtension("ANGLE_instanced_arrays");
-        GameView.context.bindBuffer(GameView.context.ARRAY_BUFFER, this.buffer);
+        let ext = GL.context.getExtension("ANGLE_instanced_arrays");
+        GL.context.bindBuffer(GL.context.ARRAY_BUFFER, this.buffer);
         let attributesOffset = 0;
         for (let i = 0; i < this.sizes.length; i++) {
             if (this.sizes[i] > 4) {
                 var size = this.sizes[i];
                 var addonOffset = 0;
                 while (size > 0) {
-                    GameView.context.enableVertexAttribArray(offset + attributesOffset);
-                    GameView.context.vertexAttribPointer(offset + attributesOffset, 4, GameView.context.FLOAT, false, this.myStride, this.offsets[i] + addonOffset);
+                    GL.context.enableVertexAttribArray(offset + attributesOffset);
+                    GL.context.vertexAttribPointer(offset + attributesOffset, 4, GL.context.FLOAT, false, this.myStride, this.offsets[i] + addonOffset);
                     if (ext) {
                         // if (SystemImpl.gl2) {
-                        // 	GameView.context.vertexAttribDivisor(offset + attributesOffset, instanceDataStepRate);
+                        // 	GL.context.vertexAttribDivisor(offset + attributesOffset, instanceDataStepRate);
                         // }
                         // else {
                         ext.vertexAttribDivisorANGLE(offset + attributesOffset, this.instanceDataStepRate);
@@ -152,12 +173,12 @@ export class VertexBuffer {
                 }
             }
             else {
-                var normalized = this.types[i] == GameView.context.FLOAT ? false : true;
-                GameView.context.enableVertexAttribArray(offset + attributesOffset);
-                GameView.context.vertexAttribPointer(offset + attributesOffset, this.sizes[i], this.types[i], normalized, this.myStride, this.offsets[i]);
+                var normalized = this.types[i] == GL.context.FLOAT ? false : true;
+                GL.context.enableVertexAttribArray(offset + attributesOffset);
+                GL.context.vertexAttribPointer(offset + attributesOffset, this.sizes[i], this.types[i], normalized, this.myStride, this.offsets[i]);
                 if (ext) {
                     // if (SystemImpl.gl2) {
-                    // 	GameView.context.vertexAttribDivisor(offset + attributesOffset, this.instanceDataStepRate);
+                    // 	GL.context.vertexAttribDivisor(offset + attributesOffset, this.instanceDataStepRate);
                     // }
                     // else {
                     ext.vertexAttribDivisorANGLE(offset + attributesOffset, this.instanceDataStepRate);

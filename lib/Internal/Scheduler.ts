@@ -1,5 +1,5 @@
-import { GameView } from "../GameView";
 
+import {GL} from "../GL"
 
 export class TimeTask {
     public task: () => boolean;
@@ -331,7 +331,7 @@ export class Scheduler {
 	 * The amount of time (in fractional seconds) that elapsed since the game started.
 	*/
     public static realTime(): number {
-        return GameView.time
+        return GL.time
     }
 
 

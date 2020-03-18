@@ -1,5 +1,6 @@
 import { Canvas } from "./Graphics/Canvas";
-import { graphics4 } from "./Graphics/Graphics4";
+import {Graphics} from "./Graphics/Graphics4/Graphics";
+import {Graphics2} from "./Graphics/Graphics4/Graphics2";
 import { Screen } from "./Screen";
 
 /**
@@ -9,26 +10,14 @@ import { Screen } from "./Screen";
  */
 export class Framebuffer implements Canvas {
     
+    g2:Graphics2
+    g4:Graphics
 
-    constructor(private graphics2: graphics4.Graphics2, private graphics4:  graphics4.Graphics){}
+    constructor(private graphics2: Graphics2, private graphics4:  Graphics){}
 
-    init(g2: graphics4.Graphics2, g4:  graphics4.Graphics){
-        this.graphics2 = g2;
-		this.graphics4 = g4;
-    }
-
-    /**
-     * Returns a graphics4.Graphics2 interface for the framebuffer.
-     */
-    get g2(){
-        return this.graphics2
-    }
-
-    /**
-     * Returns a graphics4.Graphics interface for the framebuffer.
-     */
-    get g4(){
-        return this.g4
+    init(g2: Graphics2, g4:  Graphics){
+        this.graphics2 = this.g2 = g2;
+        this.graphics4 = this.g4 = g4;
     }
 
     get width(){

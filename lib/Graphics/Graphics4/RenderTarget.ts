@@ -1,4 +1,4 @@
-import { GameView } from "../../GameView";
+import { GL} from "../../GL";
 import { TextureUnit } from "../TextureUnit";
 
 
@@ -16,7 +16,7 @@ export class RenderTarget  {
     format: RenderTargetFormat
     contextId: number
 
-    GL = GameView.context
+    GL = GL.context
 
     constructor() { }
 
@@ -40,6 +40,7 @@ export class RenderTarget  {
         renderTarget.GL.texParameteri(renderTarget.GL.TEXTURE_2D, renderTarget.GL.TEXTURE_WRAP_S, renderTarget.GL.CLAMP_TO_EDGE);
         renderTarget.GL.texParameteri(renderTarget.GL.TEXTURE_2D, renderTarget.GL.TEXTURE_WRAP_T, renderTarget.GL.CLAMP_TO_EDGE);
 
+   
         switch (format) {
             case RenderTargetFormat.FORMAT_128BIT_FLOAT: {
                 renderTarget.GL.texImage2D(renderTarget.GL.TEXTURE_2D, 0, renderTarget.GL.RGBA32F, renderTarget.texWidth, renderTarget.texHeight, 0, renderTarget.GL.RGBA, renderTarget.GL.FLOAT, 0);
@@ -71,12 +72,13 @@ export class RenderTarget  {
                 break;
             }
         }
-
+        
         renderTarget._framebuffer = renderTarget.GL.createFramebuffer();
+        
         renderTarget.GL.bindFramebuffer(renderTarget.GL.FRAMEBUFFER, renderTarget._framebuffer);
 
         renderTarget.setupDepthStencil(renderTarget.GL.TEXTURE_2D, depthBufferBits, stencilBufferBits, renderTarget.texWidth, renderTarget.texHeight);
-
+       
         if (format == RenderTargetFormat.FORMAT_16BIT_DEPTH) {
             renderTarget.GL.framebufferTexture2D(renderTarget.GL.FRAMEBUFFER, renderTarget.GL.DEPTH_ATTACHMENT, renderTarget.GL.TEXTURE_2D, renderTarget._texture, 0);
             renderTarget.GL.drawBuffers([renderTarget.GL.NONE]);
@@ -84,10 +86,10 @@ export class RenderTarget  {
         } else {
             renderTarget.GL.framebufferTexture2D(renderTarget.GL.FRAMEBUFFER, renderTarget.GL.COLOR_ATTACHMENT0, renderTarget.GL.TEXTURE_2D, renderTarget._texture, 0);
         }
-
-        renderTarget.GL.bindFramebuffer(renderTarget.GL.FRAMEBUFFER, 0);
-        renderTarget.GL.bindTexture(renderTarget.GL.TEXTURE_2D, 0);
-
+        
+        renderTarget.GL.bindFramebuffer(renderTarget.GL.FRAMEBUFFER, null);
+        renderTarget.GL.bindTexture(renderTarget.GL.TEXTURE_2D, null);
+   
         return renderTarget;
     }
 
@@ -96,11 +98,13 @@ export class RenderTarget  {
         const renderTarget = this;
         renderTarget.width = width;
         renderTarget.height = height;
+       
         if (depthBufferBits > 0 && stencilBufferBits > 0) {
             renderTarget._hasDepth = true;
             let internalFormat = renderTarget.GL.DEPTH24_STENCIL8;
             renderTarget._depthTexture = renderTarget.GL.createTexture();
             renderTarget.GL.bindTexture(texType, renderTarget._depthTexture);
+            
             renderTarget.GL.texImage2D(texType, 0, internalFormat, width, height, 0, renderTarget.GL.DEPTH_COMPONENT, renderTarget.GL.UNSIGNED_INT, 0);
             renderTarget.GL.texParameteri(texType, renderTarget.GL.TEXTURE_MAG_FILTER, renderTarget.GL.NEAREST);
             renderTarget.GL.texParameteri(texType, renderTarget.GL.TEXTURE_MIN_FILTER, renderTarget.GL.NEAREST);
@@ -124,6 +128,7 @@ export class RenderTarget  {
             renderTarget._depthTexture = renderTarget.GL.createTexture();
             renderTarget.GL.bindTexture(texType, renderTarget._depthTexture);
             const format = depthBufferBits == 16 ? renderTarget.GL.DEPTH_COMPONENT16 : renderTarget.GL.DEPTH_COMPONENT;
+            
             renderTarget.GL.texImage2D(texType, 0, format, width, height, 0, renderTarget.GL.DEPTH_COMPONENT, renderTarget.GL.UNSIGNED_INT, 0);
             renderTarget.GL.texParameteri(texType, renderTarget.GL.TEXTURE_MAG_FILTER, renderTarget.GL.NEAREST);
             renderTarget.GL.texParameteri(texType, renderTarget.GL.TEXTURE_MIN_FILTER, renderTarget.GL.NEAREST);

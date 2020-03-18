@@ -1,17 +1,19 @@
 import { Canvas } from "./Canvas"
-import { graphics4 } from "./Graphics4";
+// import * as graphics4 from "./Graphics4";
 import { DepthStencilFormat } from "./DepthStencilFormat";
 import { TextureFormat } from "./TextureFormat";
 import { Bytes } from "../Internal/Bytes";
-import { GameView } from "../GameView"
+import { GL } from "../GL"
 import { RenderTarget } from "./Graphics4/RenderTarget";
 import { Texture } from "./Graphics4/Texture";
+import { Graphics } from "./Graphics4/Graphics";
+import { Graphics2 } from "./Graphics4/Graphics2";
 
 export class CubeMap implements Canvas {
     format: TextureFormat;
     isRenderTarget: boolean;
     depthStencilFormat: DepthStencilFormat;
-    graphics4: graphics4.Graphics;
+    graphics4: Graphics;
 
     public frameBuffer: WebGLFramebuffer = null;
     public texture: Texture = null;
@@ -102,14 +104,14 @@ export class CubeMap implements Canvas {
     }
 
 
-    public get g2(): graphics4.Graphics2 {
+    public get g2(): Graphics2 {
         return null;
     }
 
 
-    public get g4(): graphics4.Graphics {
-        if (graphics4 == null) {
-            this.graphics4 = new graphics4.Graphics(this);
+    public get g4(): Graphics {
+        if (this.graphics4 == null) {
+            this.graphics4 = new Graphics(this);
         }
         return this.graphics4;
     }
@@ -127,15 +129,15 @@ export class CubeMap implements Canvas {
     }
 
     public set(stage: number): void {
-        const GL = GameView.context
-		GL.activeTexture(GL.TEXTURE0 + stage);
-		GL.bindTexture(GL.TEXTURE_CUBE_MAP, this.texture._texture);
+        const G = GL.context
+		G.activeTexture(G.TEXTURE0 + stage);
+		G.bindTexture(G.TEXTURE_CUBE_MAP, this.texture._texture);
 	}
 
 	public setDepth(stage: number): void {
-        const GL = GameView.context
-		GL.activeTexture(GL.TEXTURE0 + stage);
-		GL.bindTexture(GL.TEXTURE_CUBE_MAP, this.renderTarget._depthTexture);
+        const G = GL.context
+		G.activeTexture(G.TEXTURE0 + stage);
+		G.bindTexture(G.TEXTURE_CUBE_MAP, this.renderTarget._depthTexture);
 	}
 
 }

@@ -1,15 +1,16 @@
 import { Canvas } from "./Canvas"
 import { Resource } from "../Internal/Resource"
 import { Usage } from "./Usage"
-import { GameView } from "../GameView"
+import { GL } from "../GL"
 import { TextureFormat } from "./TextureFormat"
 import { ImageFormat } from "./ImageFormat"
 import { DepthStencilFormat } from "./DepthStencilFormat"
-import { graphics4 } from "./Graphics4"
-import { graphics2 } from "./Graphics2"
-import { RenderTargetFormat } from "./Graphics4/RenderTarget"
+import { RenderTargetFormat, RenderTarget } from "./Graphics4/RenderTarget"
 import { Bytes } from "../Internal/Bytes"
 import { Color } from "./Color"
+import { Texture } from "./Graphics4/Texture"
+import { Graphics } from "./Graphics4/Graphics"
+import { Graphics2 } from "./Graphics4/Graphics2"
 
 export enum ImageCompression {
     NONE,
@@ -25,13 +26,13 @@ export class Image implements Canvas {
     format: TextureFormat;
     data: Uint8Array;
     readable: boolean;
-    renderTarget: graphics4.RenderTarget
-    texture: graphics4.Texture
+    renderTarget: RenderTarget
+    texture: Texture
 
     compression: ImageCompression;
 
-    private graphics4: graphics4.Graphics
-    private graphics2: graphics4.Graphics2
+    private graphics4: Graphics
+    private graphics2: Graphics2
 
     constructor(readable: boolean) {
         this.readable = readable;
@@ -141,15 +142,15 @@ export class Image implements Canvas {
     }
 
     init(width: number, height: number, format: ImageFormat) {
-        this.texture = graphics4.Texture.init(width, height, format);
+        this.texture = Texture.init(width, height, format);
     }
 
     init3D(width: number, height: number, depth: number, format: ImageFormat) {
-        this.texture = graphics4.Texture.init3D(width, height, depth, format);
+        this.texture = Texture.init3D(width, height, depth, format);
     }
 
     initRenderTarget(width: number, height: number, depthBufferBits: number, antiAliasing: boolean, format: RenderTargetFormat, stencilBufferBits: number, contextId: number) {
-        this.renderTarget = graphics4.RenderTarget.init(width, height, depthBufferBits, antiAliasing, format, stencilBufferBits, contextId);
+        this.renderTarget = RenderTarget.init(width, height, depthBufferBits, antiAliasing, format, stencilBufferBits, contextId);
     }
 
     private initFromBytes(bytes: ArrayBuffer, width: number, height: number, format: ImageFormat) {
@@ -157,7 +158,7 @@ export class Image implements Canvas {
         this.width = width;
         this.height = height;
         this.readable = true;
-        this.texture = graphics4.Texture.initFromImage(this);
+        this.texture = Texture.initFromImage(this);
     }
 
 
@@ -168,7 +169,7 @@ export class Image implements Canvas {
         this.height = height;
         this.readable = true;
         this.depth = depth;
-        this.texture = graphics4.Texture.initFromImage3D(this);
+        this.texture = Texture.initFromImage3D(this);
     }
 
     static fromBytes(bytes: Bytes, width: number, height: number, format: TextureFormat = null, usage: Usage = null) {
@@ -264,8 +265,8 @@ export class Image implements Canvas {
     /**
      * Use this for 2D operations.
      */
-    public get g2(): graphics4.Graphics2 {
-        this.graphics2 = new graphics4.Graphics2(this);
+    public get g2(): Graphics2 {
+        this.graphics2 = new Graphics2(this);
         return this.graphics2;
     }
 
@@ -273,8 +274,8 @@ export class Image implements Canvas {
     /**
      * Use this for 3D operations.
      */
-    public get g4(): graphics4.Graphics {
-        this.graphics4 = new graphics4.Graphics(this);
+    public get g4(): Graphics {
+        this.graphics4 = new Graphics(this);
         return this.graphics4;
     }
 
@@ -356,16 +357,16 @@ export class Image implements Canvas {
     }
 
     set(stage: number) {
-        const GL = GameView.context
-        GL.activeTexture(GL.TEXTURE0 + stage);
-        GL.bindTexture(GL.TEXTURE_2D, this.texture._texture);
+        const G = GL.context
+        G.activeTexture(G.TEXTURE0 + stage);
+        G.bindTexture(G.TEXTURE_2D, this.texture._texture);
         // if (video != null) SystemImpl.gl.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, GL.RGBA, GL.UNSIGNED_BYTE, video);
     }
 
     setDepth(stage: number) {
-        const GL = GameView.context
-        GL.activeTexture(GL.TEXTURE0 + stage);
-        if(this.renderTarget != null) GL.bindTexture(GL.TEXTURE_2D, this.renderTarget._depthTexture);
+        const G = GL.context
+        G.activeTexture(G.TEXTURE0 + stage);
+        if(this.renderTarget != null) G.bindTexture(G.TEXTURE_2D, this.renderTarget._depthTexture);
     }
 
 
