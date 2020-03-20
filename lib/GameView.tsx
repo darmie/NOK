@@ -97,20 +97,18 @@ export class GameView extends Component {
     frame: Framebuffer
 
     async componentDidMount() {
-        // console.log("mounted")
-        // OGL.context = OGL.context ? OGL.context : await GLView.createContextAsync();
-        // this.run()
+        console.log("mounted")
     }
 
     async loaded(GL:ExpoWebGLRenderingContext){
+        console.log("here")
         OGL.context = GL != null ? GL : await GLView.createContextAsync();
-        this.run() 
+        this.run()
     }
 
     async run(){
         const GL = OGL.context
         // var isWebGL2 = ( typeof WebGL2RenderingContext !== 'undefined' && GL instanceof WebGL2RenderingContext ) 
-        // console.log(isWebGL2)
         // // ||
 		// // ( typeof WebGL2ComputeRenderingContext !== 'undefined' && GL instanceof WebGL2ComputeRenderingContext );
         let screen:Screen = null;
@@ -192,7 +190,7 @@ export class GameView extends Component {
 
     render() {
         return (
-            <GLView  style={{width: Screen.Width, height:Screen.Height}}  onContextCreate={async (gl)=>{
+            <GLView  style={[{width: Screen.Width, height:Screen.Height}, (this.props as any).style]}  onContextCreate={async (gl)=>{
                 this.loaded(gl);
             }} /> 
         )

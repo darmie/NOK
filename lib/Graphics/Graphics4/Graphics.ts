@@ -77,6 +77,8 @@ export class Graphics implements IGraphics {
         if (this.renderTarget == null) {
             G.bindFramebuffer(G.FRAMEBUFFER, null);
             G.viewport(0, 0, Screen.Width, Screen.Height);
+            G.clearColor(0.0, 0.0, 0.0, 1.0)
+            G.clear(G.COLOR_BUFFER_BIT)
         } else {
             G.bindFramebuffer(G.FRAMEBUFFER, this.renderTargetFrameBuffer);
             G.viewport(0, 0, this.renderTarget.width, this.renderTarget.height);

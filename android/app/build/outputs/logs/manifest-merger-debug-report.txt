@@ -1,0 +1,524 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:1:1-48:12
+INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:1:1-48:12
+INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:1:1-48:12
+INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:1:1-48:12
+MERGED from [:expo-permissions] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-permissions/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-screens] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:unimodules-react-native-adapter] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/@unimodules/react-native-adapter/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-gesture-handler] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-reanimated] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/react-native-reanimated/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.react:react-native:0.61.5] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-react-native-0.61.5.aar/5d21c0b6b8bf36ebebab1ecfab6021a3/AndroidManifest.xml:2:1-13:12
+MERGED from [com.google.android.material:material:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/d32e10adc963915e3d49941c0cc3f099/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/appcompat-1.1.0.aar/c5cfcc801387d4ae058f79c8627475a4/AndroidManifest.xml:17:1-24:12
+MERGED from [:expo-app-loader-provider] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-app-loader-provider/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:expo-constants] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-constants/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:expo-error-recovery] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-error-recovery/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-30:12
+MERGED from [:expo-font] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-font/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:expo-gl] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-gl/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
+MERGED from [:expo-keep-awake] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-keep-awake/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:expo-linear-gradient] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-linear-gradient/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:expo-location] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-21:12
+MERGED from [:expo-sqlite] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-sqlite/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:expo-web-browser] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-web-browser/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:unimodules-barcode-scanner-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-barcode-scanner-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:unimodules-camera-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-camera-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:unimodules-constants-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-constants-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:unimodules-face-detector-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-face-detector-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:unimodules-file-system-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-file-system-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:unimodules-font-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-font-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:unimodules-permissions-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-permissions-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:unimodules-task-manager-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-task-manager-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:unimodules-core] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/@unimodules/core/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:expo-gl-cpp] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-gl-cpp/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:unimodules-image-loader-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-image-loader-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:unimodules-sensors-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-sensors-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [org.webkit:android-jsc:r245459] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/android-jsc-r245459.aar/9956fe0718e01d7b1be33a45d5994c04/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.browser:browser:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/browser-1.0.0.aar/b44071bd39e3b993a6a241a8f53a3fbf/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/transition-1.1.0.aar/a8186b8413d9c0942422dc7ae8167f2f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-location-16.0.0.aar/6ca5860a3c4ecc8a8a5cf05060c7c0d2/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/7bb980f85073db633d24db9062558bca/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-16.0.0.aar/b25a263903d925ee3ca3fec74b0a78df/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/e35dc4c867e8ba3ac683464a89875bb9/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/4574f5f20e9cea8816cdd7fd1d042496/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/legacy-support-v4-1.0.0.aar/9d42d63534c917840d2b7198f08bde1c/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/recyclerview-1.0.0.aar/50d33c4c60f59c853265b32b2dd260a0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/legacy-support-core-ui-1.0.0.aar/66dde48852858cb1cb8162dc36db4fea/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-1.0.0.aar/204eb774c15acaa768e6957d5c273c03/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/77295308d5325b892421ddb872e6ea95/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/legacy-support-core-utils-1.0.0.aar/be8329a98280999b62ec0bbf29e1bc59/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-1.0.0.aar/ccb65e72ceb9abfeedc86628665c9c78/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-glide-4.9.0.aar/93c24dc73cebf20881322290161e5aaa/AndroidManifest.xml:2:1-12:12
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/appcompat-resources-1.1.0.aar/f0b6a20732edf2a9962f4b944564bbb7/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/vectordrawable-animated-1.1.0.aar/9fde5d5909c9d40941ad119f51c089a7/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/interpolator-1.0.0.aar/862ee64e112f4fbbcae4e5e2aba95205/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/fragment-1.1.0.aar/141a43f430e8abfe0cde3f83ad2e7eed/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0.aar/ae4efa360f36994cf3f53db4c8870f61/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/viewpager-1.0.0.aar/ac2681960cf09b876cc60f6a236d77ce/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-1.0.0.aar/34cb8704a77f684f98b90a1acaf2a7b7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/customview-1.0.0.aar/734f4e99187770cd8f54d56295273390/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/loader-1.0.0.aar/df03126ecaed850ed72cbfdfa1d61783/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-1.0.0.aar/4241a1a9103da0d0aa0be98b9f981332/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/activity-1.0.0.aar/6af1ad61bd8fdc5928fd26f3fdff73f2/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/vectordrawable-1.1.0.aar/bf71662917c9b35de10768e8c9b4bee5/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/core-1.1.0.aar/9151f93839685fcfff5fe5da13156af9/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/cursoradapter-1.0.0.aar/55af187219d62e1ca34d00fd826e8237/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/c74c3f325faa9fb7490c4efe6b909215/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/documentfile-1.0.0.aar/365db010a3ab7e96c89307c50b572b77/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-1.0.0.aar/bb80faadb2baa7c5e066305d85394385/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/print-1.0.0.aar/ab170ef26b8f935c3b178e375526df30/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.1.0.aar/85f1f92bb6221b9d0c714d752c0a3d26/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/lifecycle-runtime-2.1.0.aar/cb44f9e4b9fff286d6e3d5c042d06ea0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.1.0.aar/d711065df0d5a4a529fd64b0dfa34ee7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/savedstate-1.0.0.aar/7ca044dffb3e7aad583f844c0567b6f7/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-2.0.0.aar/4f02f7f3b463fb49eb6dd13632162ce0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-core-2.0.0.aar/694fa34e44ae9ae344a8a419da45915f/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/core-runtime-2.0.0.aar/827a70d3fa7181de2d63f47a73ed05d3/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-gifdecoder-4.9.0.aar/5264215be0e578eb579ec31aeaeaade5/AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.fresco:fresco:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/fresco-2.0.0.aar/db3b6f46d713cac53d1909d16d880b5b/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/imagepipeline-okhttp3-2.0.0.aar/28e3858ac412a210a0e4ed726a731d61/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:drawee:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/drawee-2.0.0.aar/83d16711521b7ecfdbc944afea874e4e/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/nativeimagefilters-2.0.0.aar/39685a857fe8b52a0ce712245d982763/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/imagepipeline-2.0.0.aar/3ece971de9d2e80c2b63dfff4159eb2a/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/nativeimagetranscoder-2.0.0.aar/78a3c860ef2d235ba5d1be6c29dc4bbc/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-2.0.0.aar/713388cb832becae7fe84d7372e5e652/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.soloader:soloader:0.6.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/soloader-0.6.0.aar/d3e48b6fa7a79126d43e19bb9bcae32c/AndroidManifest.xml:2:1-13:12
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:2:1-30:12
+MERGED from [com.facebook.fresco:fbcore:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-fbcore-2.0.0.aar/5eef511c2cf85ced8a89cdec1bc0de0d/AndroidManifest.xml:2:1-9:12
+INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:1:1-48:12
+INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:1:1-48:12
+INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:1:1-48:12
+	package
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:2:5-22
+		INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:1:1-48:12
+		INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:1:1-48:12
+		INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:4:5-67
+MERGED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-67
+MERGED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-67
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:4:22-64
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:5:5-77
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:5:22-75
+uses-permission#android.permission.MANAGE_DOCUMENTS
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:8:5-75
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:8:22-72
+uses-permission#android.permission.READ_INTERNAL_STORAGE
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:9:5-80
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:9:22-77
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:10:5-75
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:10:22-72
+uses-permission#android.permission.USE_FINGERPRINT
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:11:5-74
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:11:22-71
+uses-permission#android.permission.VIBRATE
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:12:5-66
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:12:22-63
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:13:5-80
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:13:22-77
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:16:5-81
+MERGED from [:expo-location] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-81
+MERGED from [:expo-location] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-81
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:12:5-81
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:12:5-81
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:16:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:17:5-79
+MERGED from [:expo-location] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-79
+MERGED from [:expo-location] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-79
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:14:5-79
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:14:5-79
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:17:22-76
+uses-permission#android.permission.CAMERA
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:18:5-65
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:18:22-62
+uses-permission#android.permission.READ_CONTACTS
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:19:5-72
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:19:22-69
+uses-permission#android.permission.READ_CALENDAR
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:20:5-72
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:20:22-69
+uses-permission#android.permission.WRITE_CALENDAR
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:21:5-73
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:21:22-70
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:22:5-80
+MERGED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:5-80
+MERGED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:5-80
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:22:22-77
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:23:5-71
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:23:22-68
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:24:5-81
+MERGED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-81
+MERGED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-81
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:24:22-78
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:25:5-73
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:25:22-70
+application
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:28:5-46:19
+MERGED from [com.facebook.react:react-native:0.61.5] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-react-native-0.61.5.aar/5d21c0b6b8bf36ebebab1ecfab6021a3/AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.react:react-native:0.61.5] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-react-native-0.61.5.aar/5d21c0b6b8bf36ebebab1ecfab6021a3/AndroidManifest.xml:11:5-20
+MERGED from [com.google.android.material:material:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/d32e10adc963915e3d49941c0cc3f099/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/d32e10adc963915e3d49941c0cc3f099/AndroidManifest.xml:22:5-20
+MERGED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:5-28:19
+MERGED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:5-28:19
+MERGED from [:expo-location] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-19:19
+MERGED from [:expo-location] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-19:19
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-location-16.0.0.aar/6ca5860a3c4ecc8a8a5cf05060c7c0d2/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-location-16.0.0.aar/6ca5860a3c4ecc8a8a5cf05060c7c0d2/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/7bb980f85073db633d24db9062558bca/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/7bb980f85073db633d24db9062558bca/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-16.0.0.aar/b25a263903d925ee3ca3fec74b0a78df/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-16.0.0.aar/b25a263903d925ee3ca3fec74b0a78df/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/e35dc4c867e8ba3ac683464a89875bb9/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/e35dc4c867e8ba3ac683464a89875bb9/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/4574f5f20e9cea8816cdd7fd1d042496/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/4574f5f20e9cea8816cdd7fd1d042496/AndroidManifest.xml:22:5-26:19
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-glide-4.9.0.aar/93c24dc73cebf20881322290161e5aaa/AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-glide-4.9.0.aar/93c24dc73cebf20881322290161e5aaa/AndroidManifest.xml:10:5-20
+MERGED from [androidx.core:core:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/core-1.1.0.aar/9151f93839685fcfff5fe5da13156af9/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/core-1.1.0.aar/9151f93839685fcfff5fe5da13156af9/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.1.0.aar/85f1f92bb6221b9d0c714d752c0a3d26/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.1.0.aar/85f1f92bb6221b9d0c714d752c0a3d26/AndroidManifest.xml:24:5-25:19
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-gifdecoder-4.9.0.aar/5264215be0e578eb579ec31aeaeaade5/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-gifdecoder-4.9.0.aar/5264215be0e578eb579ec31aeaeaade5/AndroidManifest.xml:9:5-20
+MERGED from [com.facebook.soloader:soloader:0.6.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/soloader-0.6.0.aar/d3e48b6fa7a79126d43e19bb9bcae32c/AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:soloader:0.6.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/soloader-0.6.0.aar/d3e48b6fa7a79126d43e19bb9bcae32c/AndroidManifest.xml:11:5-20
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:18:5-28:19
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:18:5-28:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/core-1.1.0.aar/9151f93839685fcfff5fe5da13156af9/AndroidManifest.xml:24:18-86
+	android:label
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:30:7-39
+	android:roundIcon
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:32:7-52
+	android:icon
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:31:7-41
+	android:allowBackup
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:33:7-34
+	android:theme
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:34:7-38
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:29:7-38
+activity#com.nok.MainActivity
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:35:7-44:18
+	android:label
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:37:9-41
+	android:windowSoftInputMode
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:39:9-51
+	android:configChanges
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:38:9-79
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:36:9-37
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:40:9-43:25
+action#android.intent.action.MAIN
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:41:13-65
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:41:21-62
+category#android.intent.category.LAUNCHER
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:42:13-73
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:42:23-70
+activity#com.facebook.react.devsupport.DevSettingsActivity
+ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:45:7-84
+	android:name
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml:45:17-81
+uses-sdk
+INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+MERGED from [:expo-permissions] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-permissions/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-permissions] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-permissions/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-screens] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-screens] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-react-native-adapter] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/@unimodules/react-native-adapter/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-react-native-adapter] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/@unimodules/react-native-adapter/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-gesture-handler] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-gesture-handler] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-reanimated] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/react-native-reanimated/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-reanimated] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/react-native-reanimated/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.61.5] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-react-native-0.61.5.aar/5d21c0b6b8bf36ebebab1ecfab6021a3/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.61.5] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-react-native-0.61.5.aar/5d21c0b6b8bf36ebebab1ecfab6021a3/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.material:material:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/d32e10adc963915e3d49941c0cc3f099/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/d32e10adc963915e3d49941c0cc3f099/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/appcompat-1.1.0.aar/c5cfcc801387d4ae058f79c8627475a4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/appcompat-1.1.0.aar/c5cfcc801387d4ae058f79c8627475a4/AndroidManifest.xml:20:5-22:41
+MERGED from [:expo-app-loader-provider] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-app-loader-provider/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-app-loader-provider] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-app-loader-provider/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-constants] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-constants/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-constants] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-constants/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-error-recovery] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-error-recovery/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-error-recovery] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-error-recovery/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-10:41
+MERGED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-10:41
+MERGED from [:expo-font] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-font/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-font] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-font/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-gl] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-gl/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-gl] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-gl/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-keep-awake] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-keep-awake/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-keep-awake] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-keep-awake/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-linear-gradient] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-linear-gradient/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-linear-gradient] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-linear-gradient/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-location] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-location] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-sqlite] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-sqlite/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-sqlite] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-sqlite/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-web-browser] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-web-browser/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-web-browser] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-web-browser/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-barcode-scanner-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-barcode-scanner-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-barcode-scanner-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-barcode-scanner-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-camera-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-camera-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-camera-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-camera-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-constants-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-constants-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-constants-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-constants-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-face-detector-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-face-detector-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-face-detector-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-face-detector-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-file-system-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-file-system-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-file-system-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-file-system-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-font-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-font-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-font-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-font-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-permissions-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-permissions-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-permissions-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-permissions-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-task-manager-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-task-manager-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-task-manager-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-task-manager-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-core] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/@unimodules/core/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-core] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/@unimodules/core/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-gl-cpp] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-gl-cpp/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-gl-cpp] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-gl-cpp/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-image-loader-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-image-loader-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-image-loader-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-image-loader-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-sensors-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-sensors-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:unimodules-sensors-interface] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/unimodules-sensors-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [org.webkit:android-jsc:r245459] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/android-jsc-r245459.aar/9956fe0718e01d7b1be33a45d5994c04/AndroidManifest.xml:7:5-9:41
+MERGED from [org.webkit:android-jsc:r245459] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/android-jsc-r245459.aar/9956fe0718e01d7b1be33a45d5994c04/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.browser:browser:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/browser-1.0.0.aar/b44071bd39e3b993a6a241a8f53a3fbf/AndroidManifest.xml:20:5-44
+MERGED from [androidx.browser:browser:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/browser-1.0.0.aar/b44071bd39e3b993a6a241a8f53a3fbf/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/transition-1.1.0.aar/a8186b8413d9c0942422dc7ae8167f2f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/transition-1.1.0.aar/a8186b8413d9c0942422dc7ae8167f2f/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-location-16.0.0.aar/6ca5860a3c4ecc8a8a5cf05060c7c0d2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-location-16.0.0.aar/6ca5860a3c4ecc8a8a5cf05060c7c0d2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/7bb980f85073db633d24db9062558bca/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/7bb980f85073db633d24db9062558bca/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-16.0.0.aar/b25a263903d925ee3ca3fec74b0a78df/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-16.0.0.aar/b25a263903d925ee3ca3fec74b0a78df/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/e35dc4c867e8ba3ac683464a89875bb9/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-tasks-16.0.1.aar/e35dc4c867e8ba3ac683464a89875bb9/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/4574f5f20e9cea8816cdd7fd1d042496/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/4574f5f20e9cea8816cdd7fd1d042496/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/legacy-support-v4-1.0.0.aar/9d42d63534c917840d2b7198f08bde1c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/legacy-support-v4-1.0.0.aar/9d42d63534c917840d2b7198f08bde1c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/recyclerview-1.0.0.aar/50d33c4c60f59c853265b32b2dd260a0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/recyclerview-1.0.0.aar/50d33c4c60f59c853265b32b2dd260a0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/legacy-support-core-ui-1.0.0.aar/66dde48852858cb1cb8162dc36db4fea/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/legacy-support-core-ui-1.0.0.aar/66dde48852858cb1cb8162dc36db4fea/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-1.0.0.aar/204eb774c15acaa768e6957d5c273c03/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-1.0.0.aar/204eb774c15acaa768e6957d5c273c03/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/77295308d5325b892421ddb872e6ea95/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/77295308d5325b892421ddb872e6ea95/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/legacy-support-core-utils-1.0.0.aar/be8329a98280999b62ec0bbf29e1bc59/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/legacy-support-core-utils-1.0.0.aar/be8329a98280999b62ec0bbf29e1bc59/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-1.0.0.aar/ccb65e72ceb9abfeedc86628665c9c78/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-1.0.0.aar/ccb65e72ceb9abfeedc86628665c9c78/AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-glide-4.9.0.aar/93c24dc73cebf20881322290161e5aaa/AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-glide-4.9.0.aar/93c24dc73cebf20881322290161e5aaa/AndroidManifest.xml:6:5-8:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/appcompat-resources-1.1.0.aar/f0b6a20732edf2a9962f4b944564bbb7/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/appcompat-resources-1.1.0.aar/f0b6a20732edf2a9962f4b944564bbb7/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/vectordrawable-animated-1.1.0.aar/9fde5d5909c9d40941ad119f51c089a7/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/vectordrawable-animated-1.1.0.aar/9fde5d5909c9d40941ad119f51c089a7/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/interpolator-1.0.0.aar/862ee64e112f4fbbcae4e5e2aba95205/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/interpolator-1.0.0.aar/862ee64e112f4fbbcae4e5e2aba95205/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/fragment-1.1.0.aar/141a43f430e8abfe0cde3f83ad2e7eed/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/fragment-1.1.0.aar/141a43f430e8abfe0cde3f83ad2e7eed/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0.aar/ae4efa360f36994cf3f53db4c8870f61/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0.aar/ae4efa360f36994cf3f53db4c8870f61/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/viewpager-1.0.0.aar/ac2681960cf09b876cc60f6a236d77ce/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/viewpager-1.0.0.aar/ac2681960cf09b876cc60f6a236d77ce/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-1.0.0.aar/34cb8704a77f684f98b90a1acaf2a7b7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-1.0.0.aar/34cb8704a77f684f98b90a1acaf2a7b7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/customview-1.0.0.aar/734f4e99187770cd8f54d56295273390/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/customview-1.0.0.aar/734f4e99187770cd8f54d56295273390/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/loader-1.0.0.aar/df03126ecaed850ed72cbfdfa1d61783/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/loader-1.0.0.aar/df03126ecaed850ed72cbfdfa1d61783/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-1.0.0.aar/4241a1a9103da0d0aa0be98b9f981332/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-1.0.0.aar/4241a1a9103da0d0aa0be98b9f981332/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/activity-1.0.0.aar/6af1ad61bd8fdc5928fd26f3fdff73f2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/activity-1.0.0.aar/6af1ad61bd8fdc5928fd26f3fdff73f2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/vectordrawable-1.1.0.aar/bf71662917c9b35de10768e8c9b4bee5/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/vectordrawable-1.1.0.aar/bf71662917c9b35de10768e8c9b4bee5/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/core-1.1.0.aar/9151f93839685fcfff5fe5da13156af9/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/core-1.1.0.aar/9151f93839685fcfff5fe5da13156af9/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/cursoradapter-1.0.0.aar/55af187219d62e1ca34d00fd826e8237/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/cursoradapter-1.0.0.aar/55af187219d62e1ca34d00fd826e8237/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/c74c3f325faa9fb7490c4efe6b909215/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/c74c3f325faa9fb7490c4efe6b909215/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/documentfile-1.0.0.aar/365db010a3ab7e96c89307c50b572b77/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/documentfile-1.0.0.aar/365db010a3ab7e96c89307c50b572b77/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-1.0.0.aar/bb80faadb2baa7c5e066305d85394385/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-1.0.0.aar/bb80faadb2baa7c5e066305d85394385/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/print-1.0.0.aar/ab170ef26b8f935c3b178e375526df30/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/print-1.0.0.aar/ab170ef26b8f935c3b178e375526df30/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.1.0.aar/85f1f92bb6221b9d0c714d752c0a3d26/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.1.0.aar/85f1f92bb6221b9d0c714d752c0a3d26/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/lifecycle-runtime-2.1.0.aar/cb44f9e4b9fff286d6e3d5c042d06ea0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/lifecycle-runtime-2.1.0.aar/cb44f9e4b9fff286d6e3d5c042d06ea0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.1.0.aar/d711065df0d5a4a529fd64b0dfa34ee7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.1.0.aar/d711065df0d5a4a529fd64b0dfa34ee7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/savedstate-1.0.0.aar/7ca044dffb3e7aad583f844c0567b6f7/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/savedstate-1.0.0.aar/7ca044dffb3e7aad583f844c0567b6f7/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-2.0.0.aar/4f02f7f3b463fb49eb6dd13632162ce0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-2.0.0.aar/4f02f7f3b463fb49eb6dd13632162ce0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-core-2.0.0.aar/694fa34e44ae9ae344a8a419da45915f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-core-2.0.0.aar/694fa34e44ae9ae344a8a419da45915f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/core-runtime-2.0.0.aar/827a70d3fa7181de2d63f47a73ed05d3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/core-runtime-2.0.0.aar/827a70d3fa7181de2d63f47a73ed05d3/AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-gifdecoder-4.9.0.aar/5264215be0e578eb579ec31aeaeaade5/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-gifdecoder-4.9.0.aar/5264215be0e578eb579ec31aeaeaade5/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/fresco-2.0.0.aar/db3b6f46d713cac53d1909d16d880b5b/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/fresco-2.0.0.aar/db3b6f46d713cac53d1909d16d880b5b/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/imagepipeline-okhttp3-2.0.0.aar/28e3858ac412a210a0e4ed726a731d61/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/imagepipeline-okhttp3-2.0.0.aar/28e3858ac412a210a0e4ed726a731d61/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/drawee-2.0.0.aar/83d16711521b7ecfdbc944afea874e4e/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/drawee-2.0.0.aar/83d16711521b7ecfdbc944afea874e4e/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/nativeimagefilters-2.0.0.aar/39685a857fe8b52a0ce712245d982763/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/nativeimagefilters-2.0.0.aar/39685a857fe8b52a0ce712245d982763/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/imagepipeline-2.0.0.aar/3ece971de9d2e80c2b63dfff4159eb2a/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/imagepipeline-2.0.0.aar/3ece971de9d2e80c2b63dfff4159eb2a/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/nativeimagetranscoder-2.0.0.aar/78a3c860ef2d235ba5d1be6c29dc4bbc/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/nativeimagetranscoder-2.0.0.aar/78a3c860ef2d235ba5d1be6c29dc4bbc/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-2.0.0.aar/713388cb832becae7fe84d7372e5e652/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-2.0.0.aar/713388cb832becae7fe84d7372e5e652/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.soloader:soloader:0.6.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/soloader-0.6.0.aar/d3e48b6fa7a79126d43e19bb9bcae32c/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:soloader:0.6.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/soloader-0.6.0.aar/d3e48b6fa7a79126d43e19bb9bcae32c/AndroidManifest.xml:7:5-9:41
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:8:5-10:41
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:8:5-10:41
+MERGED from [com.facebook.fresco:fbcore:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-fbcore-2.0.0.aar/5eef511c2cf85ced8a89cdec1bc0de0d/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:2.0.0] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-fbcore-2.0.0.aar/5eef511c2cf85ced8a89cdec1bc0de0d/AndroidManifest.xml:5:5-7:41
+INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+		ADDED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.STORAGE
+ADDED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-66
+	android:name
+		ADDED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:22-63
+provider#expo.modules.filesystem.FileSystemFileProvider
+ADDED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:9-27:20
+	android:grantUriPermissions
+		ADDED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:13-47
+	android:authorities
+		ADDED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:13-74
+	android:exported
+		ADDED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:13-37
+	tools:replace
+		ADDED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:13-48
+	android:name
+		ADDED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:13-74
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:24:13-26:70
+	android:resource
+		ADDED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:17-67
+	android:name
+		ADDED from [:expo-file-system] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:17-67
+uses-feature#0x00020000
+ADDED from [:expo-gl] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-gl/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-13:36
+	android:glEsVersion
+		ADDED from [:expo-gl] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-gl/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-41
+	android:required
+		ADDED from [:expo-gl] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-gl/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:9-33
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from [:expo-location] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-77
+	android:name
+		ADDED from [:expo-location] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:22-74
+service#expo.modules.location.services.LocationTaskService
+ADDED from [:expo-location] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:9-18:40
+	android:exported
+		ADDED from [:expo-location] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-37
+	android:name
+		ADDED from [:expo-location] /Volumes/Vibranium/Workspace/Zenturi/project/nok/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-78
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/7bb980f85073db633d24db9062558bca/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/7bb980f85073db633d24db9062558bca/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/7bb980f85073db633d24db9062558bca/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/7bb980f85073db633d24db9062558bca/AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/4574f5f20e9cea8816cdd7fd1d042496/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/4574f5f20e9cea8816cdd7fd1d042496/AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/4574f5f20e9cea8816cdd7fd1d042496/AndroidManifest.xml:24:13-58
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:13:5-79
+	android:name
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:13:22-76
+uses-permission#com.google.android.providers.gsf.permission.READ_GSERVICES
+ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:15:5-98
+	android:name
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:15:22-95
+uses-permission#com.google.android.gms.permission.ACTIVITY_RECOGNITION
+ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:16:5-94
+	android:name
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:16:22-91
+service#io.nlopez.smartlocation.activity.providers.ActivityGooglePlayServicesProvider$ActivityRecognitionService
+ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:19:9-21:40
+	android:exported
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:21:13-37
+	android:name
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:20:13-132
+service#io.nlopez.smartlocation.geofencing.providers.GeofencingGooglePlayServicesProvider$GeofencingService
+ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:22:9-24:40
+	android:exported
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:24:13-37
+	android:name
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:23:13-127
+service#io.nlopez.smartlocation.geocoding.providers.AndroidGeocodingProvider$AndroidGeocodingService
+ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:25:9-27:40
+	android:exported
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/jetified-library-3.2.11.aar/cc895085fe53582a4002ef689bd6ab05/AndroidManifest.xml:26:13-120

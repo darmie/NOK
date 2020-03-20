@@ -1,0 +1,38 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Volumes/Vibranium/Workspace/Zenturi/project/nok/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "/Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/appcompat-1.1.0.aar/c5cfcc801387d4ae058f79c8627475a4/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "/Volumes/Vibranium/Users/damilare/.gradle/caches/transforms-1/files-1.1/core-1.1.0.aar/9151f93839685fcfff5fe5da13156af9/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+orientation = enum {
+    OrientationLandscapeLeft; OrientationLandscapeRight; OrientationPortrait; OrientationPortraitUpsideDown; OrientationUnknown;
+}
+
+system = interface +c {
+    init(width: i32, height: i32);
+    start();
+    frame(): bool;
+    stop();
+}

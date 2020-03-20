@@ -6,14 +6,12 @@ import { Color } from './lib/Graphics/Color';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <GameView draw={(framebuffer: Framebuffer) => {
+      <GameView style={styles.container} draw={(framebuffer: Framebuffer) => {
         const g = framebuffer.g4;
         g.begin()
         g.clear(Color.fromFloats(0.0, 0.0, 0.3), 0.6)
-        g.end()
+        g.end() 
       }} width={600} height={600} /> 
-    </View>
   );
 }
 

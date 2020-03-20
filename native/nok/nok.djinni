@@ -1,0 +1,654 @@
+
+@import "math.djinni"
+@import "system.djinni"
+# @import "audio.djinni"
+
+color = interface +c {
+    const Black: f64 = 4278190080;
+    const White: f32 = 4294967295;
+    const Red: f32 = 4294901760;
+    const Blue: f32 = 4278190335;
+	const Green: f32 = 4278255360;
+	const Magenta: f32 = 4294902015;
+	const Yellow: f32 = 4294967040;
+	const Cyan: f32 = 4278255615;
+	const Purple: f32 = 4286578816;
+	const Pink: f32 = 4294951115;
+	const Orange: f32 = 4294944000;
+
+    get_R():f32;
+    get_G():f32;
+    get_B():f32;
+    get_A():f32;
+
+    set_R(r:f32);
+    set_G(g:f32);
+    set_B(b:f32);
+    set_A(a:f32);
+
+    static create(color: f64): color;
+}
+
+
+font_style = record {
+    bold: bool;
+    italic: bool;
+    underlined: bool;
+}
+
+baked_char = record {
+    x0: i32;
+    y0: i32;
+    x1: i32;
+    x2: i32;
+
+    xoff: f32;
+    yoff: f32;
+    xadvance: f32;
+}
+
+aligned_quad = record {
+    x0: f32;
+    y0: f32;
+    s0: f32;
+    t0: f32; 
+
+    x1: f32;
+    y1: f32;
+    s1: f32;
+    t1: f32;  
+
+    xadvance: f32;
+}
+
+kavur = interface +c {
+    get_width():i32;
+    set_width(w: i32);
+
+    get_height():i32;
+    set_height(h: i32);
+
+    static load(name: string, style: font_style, size: f32): kavur;
+
+    getTexture(): texture;
+    getBakedQuad(char_index: i32, xpos: f32, ypos: f32): aligned_quad;
+    getHeight(): f32;
+    charsWidth(ch: string, offset: i32, length: i32): f32;
+    stringWidth(ch: string, length: i32): f32;
+    getBaselinePosition(): f32;
+}
+
+
+vertex_data = enum {
+    NoVertexData;
+	Float1VertexData;
+	Float2VertexData;
+	Float3VertexData;
+	Float4VertexData;
+	Float4x4VertexData; # not supported in fixed function OpenGL
+	Short2NormVertexData;
+	Short4NormVertexData;
+	ColorVertexData;
+}
+
+usage = enum  {
+    StaticUsage;
+    DynamicUsage;
+    ReadableUsage;
+}
+
+vertex_attribute = enum {
+    NoVertexAttribute;
+	VertexCoord;
+	VertexNormal;
+	VertexColor0;
+	VertexColor1;
+	VertexTexCoord0;
+	VertexTexCoord1;
+	VertexTexCoord2;
+	VertexTexCoord3;
+	VertexTexCoord4;
+	VertexTexCoord5;
+	VertexTexCoord6;
+	VertexTexCoord7;
+}
+
+vertex_element = interface +c {
+    get_name(): string;
+    set_name(n: string);
+    get_attribute(): vertex_attribute;
+    set_attribute(a: vertex_attribute);
+    get_data(): vertex_data;
+    set_data(d: vertex_data);
+    static create(): vertex_element;
+    static createWithName(name: string, data: vertex_data): vertex_element;
+    static createWithAttribute(attribute: vertex_attribute, data: vertex_data): vertex_element;
+}
+
+vertex_structure = interface +c {
+    const maxElementsCount: i32 = 16;
+    getElements(): list<vertex_element>;
+    get_size(): i32;
+    set_size(s: i32);
+    instanced(): bool;
+
+    static create();
+    add(name: string, data: vertex_data);
+    addAttribute(attribute: vertex_attribute, data: vertex_data);
+}
+
+vertex_buffer = interface +c {
+    static create(count: i32, structure:vertex_structure, usage: usage, instanceDataStepRate: i32): vertex_buffer;
+    lock(): list<f32>;
+    unlock();
+    count(): i32;
+    stride(): i32;
+}
+
+index_buffer = interface +c {
+    static create(count: i32): index_buffer;
+    lock(): list<i32>;
+    unlock();
+    count(): i32;
+}
+
+texture_addressing = enum {
+    Repeat; 
+    Mirror; 
+    Clamp; 
+    Border;
+}
+
+texture_filter = enum {
+    PointFilter; 
+    LinearFilter; 
+    AnisotropicFilter;
+}
+
+mipmap_filter = enum {
+    NoMipFilter;
+	PointMipFilter;
+	LinearMipFilter;
+}
+
+render_state = enum {
+    BlendingState;
+	DepthTest;
+	DepthTestCompare;
+	DepthWrite;
+	Normalize;
+	BackfaceCulling;
+	ScissorTestState;
+	AlphaTestState;
+	AlphaReferenceState;
+	ConservativeRasterization;
+}
+
+blending_operation = enum {
+ 	BlendOne;
+	BlendZero;
+	SourceAlpha;
+	DestinationAlpha;
+	InverseSourceAlpha;
+	InverseDestinationAlpha;
+	SourceColor;
+	DestinationColor;
+	InverseSourceColor;
+	InverseDestinationColor;  
+}
+
+
+z_compare_mode = enum {
+    ZCompareAlways;
+	ZCompareNever;
+	ZCompareEqual;
+	ZCompareNotEqual;
+	ZCompareLess;
+	ZCompareLessEqual;
+	ZCompareGreater;
+	ZCompareGreaterEqual;
+}
+
+cull_mode = enum {
+    Clockwise; 
+    CounterClockwise; 
+    NoCulling;
+}
+
+render_target_format = enum {
+    Target32Bit; 
+    Target64BitFloat; 
+    Target32BitRedFloat; 
+    Target128BitFloat; 
+    Target16BitDepth; 
+    Target8BitRed; 
+    Target16BitRedFloat;
+}
+
+stencil_action = enum {
+    Keep; 
+    Zero; 
+    Replace; 
+    Increment; 
+    IncrementWrap; 
+    Decrement; 
+    DecrementWrap; 
+    Invert;
+}
+
+texture_operation = enum {
+    ModulateOperation; 
+    SelectFirstOperation; 
+    SelectSecondOperation;
+}
+
+texture_argument = enum {
+    CurrentColorArgument; 
+    TextureColorArgument;
+}
+
+tex_dir = enum {
+    U; 
+    V; 
+    W;
+}
+
+fog_type = enum {
+    LinearFog;
+}
+
+texture_unit = record {
+    value:i32;
+}
+
+constant_location = record {}
+
+render_target = interface +c {
+    static create(width: i32, height: i32, depthBufferBits: i32, antialiasing:bool, format: render_target_format, stencilBufferBits: i32, contextId: i32): render_target;
+    static createCube(cubeMapSize: i32, depthBufferBits: i32, antialiasing:bool, format: render_target_format, stencilBufferBits: i32, contextId: i32): render_target;
+    get_width(): i32;
+    get_height(): i32;
+	get_texWidth(): i32;
+	get_texHeight(): i32;
+	get_contextId(): i32;
+
+    set_width(width: i32);
+    set_height(height: i32);
+	set_texWidth(width: i32);
+	set_texHeight(height: i32);
+	set_contextId(id: i32);
+
+	isCubeMap(): bool;
+	isDepthAttachment(): bool;
+			
+    useColorAsTexture(unit: texture_unit);
+	useDepthAsTexture(unit: texture_unit);
+	setDepthStencilFrom(source: render_target);
+	getPixels(data: binary);
+	generateMipmaps(levels: i32);
+}
+
+shader_type = enum {
+    FragmentShader;
+    VertexShader;
+    GeometryShader;
+    TessellationControlShader;
+    TessellationEvaluationShader;
+}
+
+shader = interface +c {
+    static create(data: binary, length: i32, type: shader_type): shader;
+    static createWithSource(source: string, type: shader_type): shader;
+}
+
+
+pipeline_state = interface +c {
+    get_inputLayout(): list<vertex_structure>;
+    get_vertexShader(): shader;
+    set_vertexShader(shader: shader);
+    get_fragmentShader(): shader;
+    set_fragmentShader(shader: shader);
+    get_geometryShader(): shader;
+    set_geometryShader(shader: shader);
+    get_tessellationControlShader(): shader;
+    set_tessellationControlShader(shader: shader);
+    get_tessellationEvaluationShader(): shader;
+    set_tessellationEvaluationShader(shader: shader);
+
+    get_cullMode(): cull_mode;
+    set_cullMode(cullMode: cull_mode);
+
+    depthWrite(): bool;
+    setDepthWrite(b: bool);
+    
+    depthMode(): z_compare_mode;
+    set_depthMode(m: z_compare_mode);
+
+    stencilMode(): z_compare_mode;
+    get_stencilMode(): z_compare_mode;
+
+    stencilBothPass(): stencil_action;
+    set_stencilBothPass(s: stencil_action);
+
+    stencilDepthFail(): stencil_action;
+    set_stencilDepthFail(s: stencil_action);
+
+    stencilFail(): stencil_action;
+    set_stencilFail(s: stencil_action);
+
+    blendSource(): blending_operation;
+    set_blendSource(s: blending_operation);
+
+    blendDestination(): blending_operation;
+    set_blendDestination(s: blending_operation);
+
+    alphaBlendSource(): blending_operation;
+    set_alphaBlendSource(s: blending_operation);
+
+    alphaBlendDestination(): blending_operation;
+    set_alphaBlendDestination(s: blending_operation);
+
+    colorWriteMaskRed():list<bool>;
+    set_colorWriteMaskRed(v:list<bool>);
+    colorWriteMaskGreen():list<bool>;
+    set_colorWriteMaskGreen(v:list<bool>);
+    colorWriteMaskBlue():list<bool>;
+    set_colorWriteMaskBlue(v:list<bool>): list<bool>;
+    colorWriteMaskAlpha():list<bool>;
+    set_colorWriteMaskAlpha(v:list<bool>);
+
+    conservativeRasterization(): bool;
+    set_conservativeRasterization(b: bool);
+
+    compile();
+
+    getConstantLocation(name: string): constant_location;
+
+    getTextureUnit(name: string): texture_unit;
+}
+
+image_format = enum  {
+    RGBA32;
+    GREY8;
+    RGB24;
+    RGBA128;
+    RGBA64;
+    A32;
+    BGRA32;
+    A16;
+}
+
+image_compression = enum {
+    ImageCompressionNone; 
+    ImageCompressionDXT5; 
+    ImageCompressionASTC; 
+    ImageCompressionPVRTC;
+}
+
+image = interface +c {
+    static sizeOf(format: image_format): i32;
+    static create(width: i32, height: i32, format: image_format, readable: bool): texture;
+    static create3D(width: i32, height: i32, depth: i32, format: image_format, readable: bool): texture;
+    static fromData(data: binary, width: i32, height: i32, format: image_format, readable: bool): texture;
+    static fromData3D(data: binary, width: i32, height: i32, depth: i32, format: image_format, readable: bool): texture;
+
+    at(x: i32, y: i32): i32;
+    getPixels(): binary;
+
+    get_format(): image_format;
+    readable(): bool;
+    get_compression(): image_compression;
+    get_data(): binary;
+    get_dataSize(): i32;
+    
+    get_height(): i32;
+    get_width(): i32;
+
+    set_width(width: i32);
+	set_height(height: i32);
+
+    get_depth(): i32;
+	set_depth(depth: i32);
+
+}
+
+texture = interface +c {
+    static create(width: i32, height: i32, format: image_format, readable: bool): texture;
+    static create3D(width: i32, height: i32, depth: i32, format: image_format, readable: bool): texture;
+    static fromData(data: binary, width: i32, height: i32, depth: i32, format: image_format, readable: bool): texture;
+    static fromData3D(data: binary, width: i32, height: i32, depth: i32, format: image_format, readable: bool): texture;
+    
+    _set(unit: texture_unit);
+    _setImage(unit: texture_unit);
+    lock(): binary;
+    unlock();
+
+    clear(x: i32, y: i32, z: i32, width: i32, height: i32, depth: i32, color: i8);
+    upload(data: binary, stride: i32);
+    generateMipmaps(levels: i32);
+    setMipMap(mipmap: texture, level: i32);
+
+    stride();
+    get_texHeight(): i32;
+    get_texWidth(): i32;
+	get_contextId(): i32;
+
+    set_texWidth(width: i32);
+	set_texHeight(height: i32);
+
+    get_texDepth(): i32;
+	set_texDepth(depth: i32);
+
+    at(x: i32, y: i32): i32;
+    getPixels(): binary;
+    get_format(): image_format;
+    readable(): bool;
+    get_compression(): image_compression;
+    get_data(): binary;
+    get_dataSize(): i32;
+    get_height(): i32;
+    get_width(): i32;
+
+    set_width(width: i32);
+	set_height(height: i32);
+
+    get_depth(): i32;
+	set_depth(depth: i32);
+}
+
+image_shader_painter = interface +c {
+    static create(): image_shader_painter;
+    get_pipeline(): pipeline_state;
+    set_pipeline(p: pipeline_state);
+
+    setBilinearFilter(bilinear: bool);
+    setBilinearMipmapFilter(bilinear: bool);
+
+    setProjection(projectionMatrix: mat4);
+
+    drawImageTexture(img: texture, bottomleftx: f32, bottomlefty: f32, topleftx: f32, toprightx: f32, toprighty: f32, bottomrightx: f32, bottomrighty: f32, opacity: f32, color: f64);
+    drawImageTextureScale(img: texture, sx: f32, sy: f32, sw: f32, sh: f32, left: f32, top: f32, right: f32, bottom: f32, opacity: f32, color: f64);
+    
+    drawImageRenderTarget(img: render_target, bottomleftx: f32, bottomlefty: f32, topleftx: f32, toprightx: f32, toprighty: f32, bottomrightx: f32, bottomrighty: f32, opacity: f32, color: f64);
+    drawImageRenderTargetScale(img: render_target, sx: f32, sy: f32, sw: f32, sh: f32, left: f32, top: f32, right: f32, bottom: f32, opacity: f32, color: f64);
+
+    end();
+}
+
+colored_shader_painter = interface +c {
+    static create(): colored_shader_painter;
+    get_pipeline(): pipeline_state;
+    set_pipeline(p: pipeline_state);
+
+    setProjection(projectionMatrix: mat4);
+
+    setRectVertices(bottomleftx: f32, bottomlefty: f32, topleftx: f32, toprightx: f32, toprighty: f32, bottomrightx: f32, bottomrighty: f32);
+    setRectColors(opacity: f32, color: f64);
+    
+    fillRect(opacity: f32, color: f64, bottomleftx: f32, bottomlefty: f32, topleftx: f32, toprightx: f32, toprighty: f32, bottomrightx: f32, bottomrighty: f32);
+    fillTriangle(opacity: f32, color: f64, x1: f32, y1: f32, x2: f32, y2: f32, x3: f32, y3: f32);
+
+    endTris(rectsDone: bool);
+    endRects(trisDone: bool);
+
+    end();
+}
+
+
+text_shader_painter = interface +c {
+    static create(): text_shader_painter;
+    get_fontSize(): i32;
+    get_pipeline(): pipeline_state;
+    set_pipeline(p: pipeline_state);
+
+    setProjection(projectionMatrix: mat4);
+    setBilinearFilter(bilinear: bool);
+
+    setFont(font: kavur);
+
+    drawString(text: string, start: i32, length: i32, opacity: f32, color: f64, x: f32, y: f32, transformation: mat3, fontGlyphs:list<i32>);
+
+    end();
+}
+
+
+image_scale_quality = enum { Low; High; }
+
+
+
+graphics2 = interface +c {
+    static create(width: i32, height: i32, rTargets: bool): graphics2;
+    pushRotation(angle: f32, centerx: f32, centery: f32);
+    drawImage(img: texture, x: f32, y: f32);
+    drawScaledSubImage(img: texture, sx: f32, sy: f32, sw: f32, sh: f32, dx: f32, dy: f32, dw: f32, dh: f32);
+    drawImageRenderTarget(img: render_target, x: f32, y: f32);
+    drawRect(x: f32, y: f32, width: f32, height: f32, strength: f32);
+    fillRect(x: f32, y: f32, width: f32, height: f32);
+    drawString(text: string, x: f32, y: f32);
+    drawLine(x1: f32, y1: f32, x2: f32, y2: f32, strength: f32);
+    fillTriangle(x1: f32, y1: f32, x2: f32, y2: f32, x3: f32, y3: f32);
+    setPipeline(pip: pipeline_state);
+    scissor(x: i32, y: i32, width: i32, height: i32);
+    disableScissor();
+
+    get_transformation():mat3;
+    get_projectionMatrix():mat4;
+
+    get_fontGlyphs():list<i32>;
+
+    begin(renderTargets: bool, width: i32, height: i32, clear: bool, clearColor:i32);
+    clear(color:i32);
+
+    flush();
+	end();
+
+    drawVideoInternal(x: f32, y: f32, width: f32, height: f32);
+	drawVideo(x:f32, y: f32, width: f32, height: f32);
+
+    getColor():i32;
+	setColor(color:f32);
+
+	getOpacity(): f32;
+	setOpacity(opacity: f32);
+
+	getImageScaleQuality():image_scale_quality;
+	setImageScaleQuality(value: image_scale_quality);
+
+	getMipmapScaleQuality(): image_scale_quality;
+	setMipmapScaleQuality(value: image_scale_quality);
+
+
+    getFont(): kavur;
+    getFontSize(): i32;
+	setFontSize(value: i32);
+	getFontColor():f64;
+	setFontColor(color: f64);
+}
+
+
+graphics = interface +c {
+    static setBool(location: constant_location,  value: bool);
+
+    static setInt(location: constant_location,  value: i32);
+
+    static setInt2(location: constant_location,  value1: i32, value2: i32);
+    static setInt3(location: constant_location,  value1: i32, value2: i32, value3: i32);
+    static setInt4(location: constant_location,  value1: i32, value2: i32, value3: i32, value4: i32);
+    static setInts(location: constant_location, values:list<i32>, count: i32);
+
+    static setFloat2(location: constant_location,  value1: f32, value2: f32);
+    static setFloat3(location: constant_location,  value1: f32, value2: f32, value3: f32);
+    static setFloat4(location: constant_location,  value1: i32, value2: f32, value3: f32, value4: f32);
+    static setFloats(location: constant_location, values:list<f32>, count: f32);
+
+    static setMatrix3(location: constant_location, mat: mat3);
+    static setMatrix4(location: constant_location, mat: mat4);
+
+    static setVertexBuffer(buf: vertex_buffer);
+    static setVertexBuffers(bufs: list<vertex_buffer>);
+
+    static setIndexBuffer(buf: index_buffer);
+    static setIndexBuffers(bufs: list<index_buffer>);
+
+    static setTexture(unit: texture_unit, texture: texture);
+    static setTextureArray(unit: texture_unit, texture: list<texture>);
+
+    static setPipeline(pipeline: pipeline_state);
+    static setStencilReferenceValue(value: i32);
+    
+    static drawIndexedVertices(start: i32, count: i32);
+    static drawIndexedVerticesInstanced(instanceCount: i32, start: i32, count: i32);
+    static antialiasingSamples():i32;
+    static setAntialiasingSamples(samples: i32);
+
+    static renderTargetsInvertedY(): bool;
+    static setRenderTargets(targets: list<render_target>, count: i32);
+    static setRenderTarget(target: render_target);
+
+    static setRenderTargetFace(texture: render_target, face: i32);
+    static restoreRenderTarget();
+
+    static begin(win: i32);
+    static end(win: i32);
+
+    static swapBuffers(): bool;
+
+    static viewport(x: i32, y: i32, width: i32, height: i32);
+    static scissor(x: i32, y: i32, width: i32, height: i32);
+
+    static disableScissor();
+
+    static setTextureAddressing(unit: texture_unit, dir: tex_dir, addressing: texture_addressing);
+    static setTextureMagnificationFilter(unit: texture_unit, filer: texture_filter);
+    static setTextureMinificationFilter(unit: texture_unit, filer: texture_filter);
+    static setTextureMipmapFilter(unit: texture_unit, filer: mipmap_filter);
+    static setTexture3DAddressing(unit: texture_unit, dir: tex_dir, addressing: texture_addressing);
+    static setTexture3DMagnificationFilter(unit: texture_unit, filer: texture_filter);
+    static setTexture3DMinificationFilter(unit: texture_unit, filer: texture_filter);
+    static setTexture3DMipmapFilter(unit: texture_unit, filer: mipmap_filter);
+    static setTextureCompareMode(unit: texture_unit, enabled: bool);
+    static setCubeMapCompareMode(unit: texture_unit, enabled: bool);
+    static setTextureOperation(operation: texture_operation,  arg1: texture_argument, arg2: texture_argument);
+
+    static nonPow2TexturesSupported():bool;
+
+    static get_fullscreen(): bool;
+
+    static init(windowId: i32, depthBufferBits: i32, stencilBufferBits: i32, vsync: bool);
+    static destroy(windowId: i32);
+
+    static flush();
+
+    static initOcclusionQuery(occlusionQuery: list<f64>): bool;
+    static deleteOcclusionQuery(occlusionQuery: f64);
+    static renderOcclusionQuery(occlusionQuery: f64, triangles: i32);
+    static isQueryResultsAvailable(occlusionQuery: f64): bool;
+    static getQueryResults(occlusionQuery: f64, pixelCount:list<f64>);
+
+    const  ClearColorFlag:i32 = 1;
+	const  ClearDepthFlag:i32 = 2;
+	const  ClearStencilFlag:i32 = 4;
+
+    static clear(flags: i32, color: f64, depth: f32, stencil: i32);
+
+}

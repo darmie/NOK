@@ -1,0 +1,3 @@
+[submodule "native/Kinc"]
+	path = native/Kinc
+	url = https://github.com/Kode/Kinc.git
