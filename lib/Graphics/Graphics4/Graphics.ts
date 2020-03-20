@@ -12,7 +12,7 @@ import { Canvas } from "../Canvas"
 import { Color } from "../Color";
 import { IndexBuffer } from "../IndexBuffer";
 import { TextureUnit } from "../TextureUnit";
-import { CubeMap } from "../CubeMap";
+// import { CubeMap } from "../CubeMap";
 import { TextureAddressing } from "../TextureAddressing";
 import { TextureFilter } from "../TextureFilter";
 import { MipMapFilter } from "../MipMapFilter";
@@ -37,15 +37,16 @@ export class Graphics implements IGraphics {
     private colorMaskBlue: boolean = true;
     private colorMaskAlpha: boolean = true;
     private indicesCount: number;
-    private renderTarget:RenderTarget;
-    private renderTargetFrameBuffer: any;
-    private renderTargetMSAA: any;
-    private renderTargetTexture: any;
+    private renderTarget:RenderTarget = null;
+    private renderTargetFrameBuffer: any = null;
+    private renderTargetMSAA: any = null;
+    private renderTargetTexture: any = null;
     private isCubeMap: boolean = false;
     private isDepthAttachment: boolean = false;
     private instancedExtension: boolean;
     private blendMinMaxExtension: any;
     private useVertexAttributes: number = 0;
+    private frameBuffer:WebGLFramebuffer = null
 
     constructor(public target: Canvas = null) {
         this.init()
@@ -53,19 +54,22 @@ export class Graphics implements IGraphics {
 
     private init(){
         if (this.target == null) return;
-        if(this.target  instanceof CubeMap){
-            const cubemap:CubeMap = <CubeMap>this.target
+        if((this.target as any).constructor.name == "CubeMap"){
+            const cubemap:any = this.target
             this.renderTarget = cubemap.renderTarget
         } else {
-            const image:Image = <Image>this.target
+            const image:any = this.target
             // this.renderTargetMSAA= image.MSAAFrameBuffer;
             this.renderTarget = image.renderTarget
         }  
+        this.renderTargetFrameBuffer = this.renderTarget ? this.renderTarget._framebuffer : null;
+        this.renderTargetTexture = this.renderTarget ? this.renderTarget._texture : null
+        this.frameBuffer = null;
     }
 
 
 
-    async begin(additionalRenderTargets?: Canvas[]) {
+    begin(additionalRenderTargets?: Canvas[]) {
         let G = GL.context
         G.enable(G.BLEND);
         G.blendFunc(G.SRC_ALPHA, G.ONE_MINUS_SRC_ALPHA);
@@ -97,7 +101,7 @@ export class Graphics implements IGraphics {
         G.framebufferTexture2D(G.FRAMEBUFFER, this.isDepthAttachment ? G.DEPTH_ATTACHMENT : G.COLOR_ATTACHMENT0, G.TEXTURE_CUBE_MAP_POSITIVE_X + face, this.renderTargetTexture, 0);
         G.viewport(0, 0, this.renderTarget.width, this.renderTarget.height);
     }
-    async beginEye(eye: number) {
+    beginEye(eye: number) {
         const G = GL.context
         
         G.enable(G.BLEND);
@@ -111,6 +115,7 @@ export class Graphics implements IGraphics {
     }
     end(): void {
         const G = GL.context
+       
         if (this.renderTargetMSAA != null) {
             G.bindFramebuffer(G.READ_FRAMEBUFFER, this.renderTargetFrameBuffer);
             G.bindFramebuffer(G.DRAW_FRAMEBUFFER, this.renderTargetMSAA);
@@ -125,25 +130,25 @@ export class Graphics implements IGraphics {
             case G.NO_ERROR:
                 break;
             case G.INVALID_ENUM:
-                console.error("GL error: Invalid enum");
+                console.warn("GL error: Invalid enum");
                 break;
             case G.INVALID_VALUE:
-                console.error("GL error: Invalid value");
+                console.warn("GL error: Invalid value");
                 break;
             case G.INVALID_OPERATION:
-                console.error("GL error: Invalid operation");
+                console.warn("GL error: Invalid operation");
                 break;
             case G.INVALID_FRAMEBUFFER_OPERATION:
-                console.error("GL error: Invalid framebuffer operation");
+                console.warn("GL error: Invalid framebuffer operation");
                 break;
             case G.OUT_OF_MEMORY:
-                console.error("GL error: Out of memory");
+                console.warn("GL error: Out of memory");
                 break;
             case G.CONTEXT_LOST_WEBGL:
-                console.error("GL error: Context lost");
+                console.warn("GL error: Context lost");
                 break;
             default:
-                console.error("Unknown GL error");
+                console.warn("Unknown GL error");
         }
 
     }
@@ -173,6 +178,7 @@ export class Graphics implements IGraphics {
             G.stencilMask(0xff);
             G.clearStencil(stencil);
         }
+       
         G.clear(clearMask);
         G.colorMask(this.colorMaskRed, this.colorMaskGreen, this.colorMaskBlue, this.colorMaskAlpha);
         if (this.depthTest) {
@@ -183,7 +189,7 @@ export class Graphics implements IGraphics {
         }
         G.depthMask(this.depthMask);
     }
-    async viewport(x: number, y: number, width: number, height: number) {
+    viewport(x: number, y: number, width: number, height: number) {
         
         const G = GL.context
         if (this.renderTarget == null) {
@@ -336,7 +342,7 @@ export class Graphics implements IGraphics {
             G.texParameteri(G.TEXTURE_CUBE_MAP, G.TEXTURE_COMPARE_MODE, G.NONE);
         }
     }
-    setCubeMap(stage: TextureUnit, cubeMap: CubeMap): void {
+    setCubeMap(stage: TextureUnit, cubeMap: any): void {
         const G = GL.context
         if (cubeMap == null) {
             G.activeTexture(G.TEXTURE0 + stage.value);
@@ -346,8 +352,8 @@ export class Graphics implements IGraphics {
             cubeMap.set(stage.value);
         }
     }
-    setCubeMapDepth(stage: TextureUnit, cubeMap: CubeMap): void {
-        cubeMap.setDepth(stage.value);
+    setCubeMapDepth(stage: TextureUnit, cubeMap: Canvas): void {
+        (cubeMap as any).setDepth(stage.value);
     }
     setStencilReferenceValue(value: number): void {
         const G = GL.context

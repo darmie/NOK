@@ -1,13 +1,14 @@
 import { RenderTarget, RenderTargetFormat } from "./Graphics/Graphics4/RenderTarget"
-import { VertexStructure } from "./Graphics/VertexStructure"
-import { VertexData } from "./Graphics/VertexData"
-import { VertexBuffer } from "./Graphics/VertexBuffer"
-import { Usage } from "./Graphics/Usage"
-import { IndexBuffer } from "./Graphics/IndexBuffer"
-import { PipelineState } from "./Graphics/PipelineState"
-import { VertexShader } from "./Graphics/VertexShader"
-import { FragmentShader } from "./Graphics/FragmentShader"
+// import { VertexStructure } from "./Graphics/VertexStructure"
+// import { VertexData } from "./Graphics/VertexData"
+// import { VertexBuffer } from "./Graphics/VertexBuffer"
+// import { Usage } from "./Graphics/Usage"
+// import { IndexBuffer } from "./Graphics/IndexBuffer"
+// import { PipelineState } from "./Graphics/PipelineState"
+// import { VertexShader } from "./Graphics/VertexShader"
+// import { FragmentShader } from "./Graphics/FragmentShader"
 import { ExpoWebGLRenderingContext } from "expo-gl"
+import { Dimensions } from "react-native"
 
 export class Screen {
 
@@ -15,30 +16,28 @@ export class Screen {
     vertexArray: WebGLVertexArrayObject = null
     frameBuffer: WebGLFramebuffer = null
 
-    constructor(private GL:ExpoWebGLRenderingContext, private innerWidth?: number, private innerHeight?: number, private depthBufferBits: number = 16, private stencilBufferBits: number = 8) {
+    constructor(private GL: ExpoWebGLRenderingContext, private innerWidth?: number, private innerHeight?: number, private depthBufferBits: number = 16, private stencilBufferBits: number = 8) {
     }
 
     async init() {
-        const native = await (import("react-native"))
-       
-        if (native) {
-            const dim = native.Dimensions.get("screen")
 
-            this.innerWidth = this.innerWidth  ? this.innerWidth : dim.width
-            this.innerHeight = this.innerHeight  ? this.innerHeight : dim.height
+        const dim = Dimensions.get("screen")
 
-   
-           
-        } else {
-            this.innerWidth =  this.innerWidth ? this.innerWidth : 800
-            this.innerHeight =  this.innerHeight !=0 ? this.innerHeight : 600
-        }
- 
-     
+        this.innerWidth = this.innerWidth ? this.innerWidth : dim.width
+        this.innerHeight = this.innerHeight ? this.innerHeight : dim.height
+
+
+
+        // } else {
+        //     this.innerWidth =  this.innerWidth ? this.innerWidth : 800
+        //     this.innerHeight =  this.innerHeight !=0 ? this.innerHeight : 600
+        // }
+
+
         Screen.Width = this.innerWidth
         Screen.Height = this.innerHeight
-       
-       
+
+
         // this.renderTarget = RenderTarget.init(this.innerWidth, this.innerHeight, depthBufferBits, false, RenderTargetFormat.FORMAT_32BIT, stencilBufferBits, 0)
         // const vertexStructure = new VertexStructure();
         // vertexStructure.add("pos", VertexData.Float2);
@@ -80,13 +79,13 @@ export class Screen {
         // const fragmentShader = FragmentShader.fromSource(
         // "#version 100\n"+
         // "precision highp float;"+
-		// "uniform sampler2D tex;\n"+
-		// "varying vec2 texCoord;\n"+
-		// // "varying vec4 frag;\n"+
+        // "uniform sampler2D tex;\n"+
+        // "varying vec2 texCoord;\n"+
+        // // "varying vec4 frag;\n"+
         // "void main(){\n"+
         // "vec4 color = texture2D(tex, texCoord);\n"+
-		// "gl_FragColor = color;\n"+
-		// "}"
+        // "gl_FragColor = color;\n"+
+        // "}"
         // )
 
         // const pipeline = new PipelineState()
@@ -99,7 +98,7 @@ export class Screen {
         // this.vertexArray = this.GL.createVertexArray()
         // this.GL.bindVertexArray(this.vertexArray)
 
-      
+
 
         // this.GL.bindFramebuffer(this.GL.FRAMEBUFFER, this.frameBuffer)
 

@@ -10,9 +10,9 @@ export default function App() {
       <GameView draw={(framebuffer: Framebuffer) => {
         const g = framebuffer.g4;
         g.begin()
-        g.clear(Color.fromFloats(0.3, 0.0, 0.3), 1.0)
+        g.clear(Color.fromFloats(0.0, 0.0, 0.3), 0.6)
         g.end()
-      }} width={600} height={600} />
+      }} width={600} height={600} /> 
     </View>
   );
 }
@@ -20,7 +20,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
   },
