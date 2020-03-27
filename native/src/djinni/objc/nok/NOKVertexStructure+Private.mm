@@ -60,9 +60,10 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)create {
++ (nullable NOKVertexStructure *)create {
     try {
-        ::nok::VertexStructure::create();
+        auto objcpp_result_ = ::nok::VertexStructure::create();
+        return ::djinni_generated::VertexStructure::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

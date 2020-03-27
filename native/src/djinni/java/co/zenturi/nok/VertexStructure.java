@@ -21,9 +21,9 @@ public abstract class VertexStructure {
 
     public abstract void addAttribute(VertexAttribute attribute, VertexData data);
 
-    public static void create()
+    public static VertexStructure create()
     {
-        CppProxy.create();
+        return CppProxy.create();
     }
 
     private static final class CppProxy extends VertexStructure
@@ -97,6 +97,6 @@ public abstract class VertexStructure {
         }
         private native void native_addAttribute(long _nativeRef, VertexAttribute attribute, VertexData data);
 
-        public static native void create();
+        public static native VertexStructure create();
     }
 }

@@ -14,9 +14,9 @@ namespace nok {
     }
     
     std::vector<uint8_t> TextureImpl::lock() {
-        uint8_t* lock = this->_texture->lock();
+        const unsigned char* lock = (unsigned char*)this->_texture->lock();
         int size = sizeof(lock)/sizeof(uint8_t);
-        std::vector<uint8_t> store(&lock[0], &lock[size - 1]);
+        std::vector<uint8_t> store(lock, lock + size);
         return store;
     }
 
@@ -76,9 +76,9 @@ namespace nok {
     }
 
     std::vector<uint8_t> TextureImpl::getPixels(){
-        uint8_t* px = this->_texture->getPixels();
+        const unsigned char* px = (unsigned char*) this->_texture->getPixels();
         int size = sizeof(px)/sizeof(uint8_t);
-        std::vector<uint8_t> store(&px[0], &px[size - 1]);
+        std::vector<uint8_t> store(px, px + size);
         return store;
     }
 

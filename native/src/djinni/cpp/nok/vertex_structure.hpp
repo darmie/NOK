@@ -28,7 +28,7 @@ public:
 
     virtual bool instanced() = 0;
 
-    static void create();
+    static std::shared_ptr<VertexStructure> create();
 
     virtual void add(const std::string & name, VertexData data) = 0;
 

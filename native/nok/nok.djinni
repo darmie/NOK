@@ -132,7 +132,7 @@ vertex_structure = interface +c {
     set_size(s: i32);
     instanced(): bool;
 
-    static create();
+    static create(): vertex_structure;
     add(name: string, data: vertex_data);
     addAttribute(attribute: vertex_attribute, data: vertex_data);
 }

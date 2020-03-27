@@ -61,12 +61,13 @@ CJNIEXPORT jboolean JNICALL Java_co_zenturi_nok_VertexStructure_00024CppProxy_na
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT void JNICALL Java_co_zenturi_nok_VertexStructure_00024CppProxy_create(JNIEnv* jniEnv, jobject /*this*/)
+CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_VertexStructure_00024CppProxy_create(JNIEnv* jniEnv, jobject /*this*/)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
-        ::nok::VertexStructure::create();
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+        auto r = ::nok::VertexStructure::create();
+        return ::djinni::release(::djinni_generated::NativeVertexStructure::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
 CJNIEXPORT void JNICALL Java_co_zenturi_nok_VertexStructure_00024CppProxy_native_1add(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_name, jobject j_data)

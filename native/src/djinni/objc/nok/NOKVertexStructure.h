@@ -5,6 +5,7 @@
 #import "NOKVertexData.h"
 #import <Foundation/Foundation.h>
 @class NOKVertexElement;
+@class NOKVertexStructure;
 
 extern int32_t const NOKVertexStructureMaxElementsCount;
 
@@ -18,7 +19,7 @@ extern int32_t const NOKVertexStructureMaxElementsCount;
 
 - (BOOL)instanced;
 
-+ (void)create;
++ (nullable NOKVertexStructure *)create;
 
 - (void)add:(nonnull NSString *)name
        data:(NOKVertexData)data;
