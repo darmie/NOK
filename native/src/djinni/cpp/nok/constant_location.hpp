@@ -3,11 +3,11 @@
 
 #pragma once
 
-#include <utility>
-
 namespace nok {
 
-struct ConstantLocation final {
+class ConstantLocation {
+public:
+    virtual ~ConstantLocation() {}
 };
 
 }  // namespace nok

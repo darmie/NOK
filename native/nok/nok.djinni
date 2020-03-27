@@ -257,11 +257,9 @@ fog_type = enum {
     LinearFog;
 }
 
-texture_unit = record {
-    value:i32;
-}
+texture_unit = interface +c {}
 
-constant_location = record {}
+constant_location = interface +c {}
 
 render_target = interface +c {
     static create(width: i32, height: i32, depthBufferBits: i32, antialiasing:bool, format: render_target_format, stencilBufferBits: i32, contextId: i32): render_target;
@@ -325,7 +323,7 @@ pipeline_state = interface +c {
     set_depthMode(m: z_compare_mode);
 
     stencilMode(): z_compare_mode;
-    get_stencilMode(): z_compare_mode;
+    set_stencilMode(m: z_compare_mode);
 
     stencilBothPass(): stencil_action;
     set_stencilBothPass(s: stencil_action);
@@ -387,10 +385,10 @@ image_compression = enum {
 
 image = interface +c {
     static sizeOf(format: image_format): i32;
-    static create(width: i32, height: i32, format: image_format, readable: bool): texture;
-    static create3D(width: i32, height: i32, depth: i32, format: image_format, readable: bool): texture;
-    static fromData(data: binary, width: i32, height: i32, format: image_format, readable: bool): texture;
-    static fromData3D(data: binary, width: i32, height: i32, depth: i32, format: image_format, readable: bool): texture;
+    static create(width: i32, height: i32, format: image_format, readable: bool): image;
+    static create3D(width: i32, height: i32, depth: i32, format: image_format, readable: bool): image;
+    static fromData(data: binary, width: i32, height: i32, format: image_format, readable: bool): image;
+    static fromData3D(data: binary, width: i32, height: i32, depth: i32, format: image_format, readable: bool): image;
 
     at(x: i32, y: i32): i32;
     getPixels(): binary;
@@ -412,10 +410,14 @@ image = interface +c {
 
 }
 
+texture_array = interface +c {
+    static create(image: list<image>, count: i32): texture_array;
+}
+
 texture = interface +c {
     static create(width: i32, height: i32, format: image_format, readable: bool): texture;
     static create3D(width: i32, height: i32, depth: i32, format: image_format, readable: bool): texture;
-    static fromData(data: binary, width: i32, height: i32, depth: i32, format: image_format, readable: bool): texture;
+    static fromData(data: binary, width: i32, height: i32, format: image_format, readable: bool): texture;
     static fromData3D(data: binary, width: i32, height: i32, depth: i32, format: image_format, readable: bool): texture;
     
     _set(unit: texture_unit);
@@ -423,7 +425,7 @@ texture = interface +c {
     lock(): binary;
     unlock();
 
-    clear(x: i32, y: i32, z: i32, width: i32, height: i32, depth: i32, color: i8);
+    clear(x: i32, y: i32, z: i32, width: i32, height: i32, depth: i32, color: i32);
     upload(data: binary, stride: i32);
     generateMipmaps(levels: i32);
     setMipMap(mipmap: texture, level: i32);
@@ -431,7 +433,7 @@ texture = interface +c {
     stride();
     get_texHeight(): i32;
     get_texWidth(): i32;
-	get_contextId(): i32;
+	# get_contextId(): i32;
 
     set_texWidth(width: i32);
 	set_texHeight(height: i32);
@@ -585,13 +587,13 @@ graphics = interface +c {
     static setMatrix4(location: constant_location, mat: mat4);
 
     static setVertexBuffer(buf: vertex_buffer);
-    static setVertexBuffers(bufs: list<vertex_buffer>);
+    static setVertexBuffers(bufs: list<vertex_buffer>, count: i32);
 
     static setIndexBuffer(buf: index_buffer);
-    static setIndexBuffers(bufs: list<index_buffer>);
+   
 
     static setTexture(unit: texture_unit, texture: texture);
-    static setTextureArray(unit: texture_unit, texture: list<texture>);
+    static setTextureArray(unit: texture_unit, texture_array: texture_array);
 
     static setPipeline(pipeline: pipeline_state);
     static setStencilReferenceValue(value: i32);

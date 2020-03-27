@@ -5,23 +5,17 @@
 
 namespace djinni_generated {
 
-NativeConstantLocation::NativeConstantLocation() = default;
+NativeConstantLocation::NativeConstantLocation() : ::djinni::JniInterface<::nok::ConstantLocation, NativeConstantLocation>("co/zenturi/nok/ConstantLocation$CppProxy") {}
 
 NativeConstantLocation::~NativeConstantLocation() = default;
 
-auto NativeConstantLocation::fromCpp(JNIEnv* jniEnv, const CppType& c) -> ::djinni::LocalRef<JniType> {
-    (void)c; // Suppress warnings in release builds for empty records
-    const auto& data = ::djinni::JniClass<NativeConstantLocation>::get();
-    auto r = ::djinni::LocalRef<JniType>{jniEnv->NewObject(data.clazz.get(), data.jconstructor)};
-    ::djinni::jniExceptionCheck(jniEnv);
-    return r;
-}
 
-auto NativeConstantLocation::toCpp(JNIEnv* jniEnv, JniType j) -> CppType {
-    ::djinni::JniLocalScope jscope(jniEnv, 1);
-    assert(j != nullptr);
-    (void)j; // Suppress warnings in release builds for empty records
-    return {};
+CJNIEXPORT void JNICALL Java_co_zenturi_nok_ConstantLocation_00024CppProxy_nativeDestroy(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        delete reinterpret_cast<::djinni::CppProxyHandle<::nok::ConstantLocation>*>(nativeRef);
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
 }  // namespace djinni_generated

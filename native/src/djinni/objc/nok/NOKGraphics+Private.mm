@@ -17,6 +17,7 @@
 #import "NOKTexture+Private.h"
 #import "NOKTextureAddressing+Private.h"
 #import "NOKTextureArgument+Private.h"
+#import "NOKTextureArray+Private.h"
 #import "NOKTextureFilter+Private.h"
 #import "NOKTextureOperation+Private.h"
 #import "NOKTextureUnit+Private.h"
@@ -45,7 +46,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
-+ (void)setBool:(nonnull NOKConstantLocation *)location
++ (void)setBool:(nullable NOKConstantLocation *)location
           value:(BOOL)value {
     try {
         ::nok::Graphics::setBool(::djinni_generated::ConstantLocation::toCpp(location),
@@ -53,7 +54,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setInt:(nonnull NOKConstantLocation *)location
++ (void)setInt:(nullable NOKConstantLocation *)location
          value:(int32_t)value {
     try {
         ::nok::Graphics::setInt(::djinni_generated::ConstantLocation::toCpp(location),
@@ -61,7 +62,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setInt2:(nonnull NOKConstantLocation *)location
++ (void)setInt2:(nullable NOKConstantLocation *)location
          value1:(int32_t)value1
          value2:(int32_t)value2 {
     try {
@@ -71,7 +72,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setInt3:(nonnull NOKConstantLocation *)location
++ (void)setInt3:(nullable NOKConstantLocation *)location
          value1:(int32_t)value1
          value2:(int32_t)value2
          value3:(int32_t)value3 {
@@ -83,7 +84,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setInt4:(nonnull NOKConstantLocation *)location
++ (void)setInt4:(nullable NOKConstantLocation *)location
          value1:(int32_t)value1
          value2:(int32_t)value2
          value3:(int32_t)value3
@@ -97,7 +98,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setInts:(nonnull NOKConstantLocation *)location
++ (void)setInts:(nullable NOKConstantLocation *)location
          values:(nonnull NSArray<NSNumber *> *)values
           count:(int32_t)count {
     try {
@@ -107,7 +108,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setFloat2:(nonnull NOKConstantLocation *)location
++ (void)setFloat2:(nullable NOKConstantLocation *)location
            value1:(float)value1
            value2:(float)value2 {
     try {
@@ -117,7 +118,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setFloat3:(nonnull NOKConstantLocation *)location
++ (void)setFloat3:(nullable NOKConstantLocation *)location
            value1:(float)value1
            value2:(float)value2
            value3:(float)value3 {
@@ -129,7 +130,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setFloat4:(nonnull NOKConstantLocation *)location
++ (void)setFloat4:(nullable NOKConstantLocation *)location
            value1:(int32_t)value1
            value2:(float)value2
            value3:(float)value3
@@ -143,7 +144,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setFloats:(nonnull NOKConstantLocation *)location
++ (void)setFloats:(nullable NOKConstantLocation *)location
            values:(nonnull NSArray<NSNumber *> *)values
             count:(float)count {
     try {
@@ -153,7 +154,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setMatrix3:(nonnull NOKConstantLocation *)location
++ (void)setMatrix3:(nullable NOKConstantLocation *)location
                mat:(nullable NOKMat3 *)mat {
     try {
         ::nok::Graphics::setMatrix3(::djinni_generated::ConstantLocation::toCpp(location),
@@ -161,7 +162,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setMatrix4:(nonnull NOKConstantLocation *)location
++ (void)setMatrix4:(nullable NOKConstantLocation *)location
                mat:(nullable NOKMat4 *)mat {
     try {
         ::nok::Graphics::setMatrix4(::djinni_generated::ConstantLocation::toCpp(location),
@@ -175,9 +176,11 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setVertexBuffers:(nonnull NSArray<NOKVertexBuffer *> *)bufs {
++ (void)setVertexBuffers:(nonnull NSArray<NOKVertexBuffer *> *)bufs
+                   count:(int32_t)count {
     try {
-        ::nok::Graphics::setVertexBuffers(::djinni::List<::djinni_generated::VertexBuffer>::toCpp(bufs));
+        ::nok::Graphics::setVertexBuffers(::djinni::List<::djinni_generated::VertexBuffer>::toCpp(bufs),
+                                          ::djinni::I32::toCpp(count));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -187,13 +190,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setIndexBuffers:(nonnull NSArray<NOKIndexBuffer *> *)bufs {
-    try {
-        ::nok::Graphics::setIndexBuffers(::djinni::List<::djinni_generated::IndexBuffer>::toCpp(bufs));
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-+ (void)setTexture:(nonnull NOKTextureUnit *)unit
++ (void)setTexture:(nullable NOKTextureUnit *)unit
            texture:(nullable NOKTexture *)texture {
     try {
         ::nok::Graphics::setTexture(::djinni_generated::TextureUnit::toCpp(unit),
@@ -201,11 +198,11 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setTextureArray:(nonnull NOKTextureUnit *)unit
-                texture:(nonnull NSArray<NOKTexture *> *)texture {
++ (void)setTextureArray:(nullable NOKTextureUnit *)unit
+           textureArray:(nullable NOKTextureArray *)textureArray {
     try {
         ::nok::Graphics::setTextureArray(::djinni_generated::TextureUnit::toCpp(unit),
-                                         ::djinni::List<::djinni_generated::Texture>::toCpp(texture));
+                                         ::djinni_generated::TextureArray::toCpp(textureArray));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -336,7 +333,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setTextureAddressing:(nonnull NOKTextureUnit *)unit
++ (void)setTextureAddressing:(nullable NOKTextureUnit *)unit
                          dir:(NOKTexDir)dir
                   addressing:(NOKTextureAddressing)addressing {
     try {
@@ -346,7 +343,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setTextureMagnificationFilter:(nonnull NOKTextureUnit *)unit
++ (void)setTextureMagnificationFilter:(nullable NOKTextureUnit *)unit
                                 filer:(NOKTextureFilter)filer {
     try {
         ::nok::Graphics::setTextureMagnificationFilter(::djinni_generated::TextureUnit::toCpp(unit),
@@ -354,7 +351,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setTextureMinificationFilter:(nonnull NOKTextureUnit *)unit
++ (void)setTextureMinificationFilter:(nullable NOKTextureUnit *)unit
                                filer:(NOKTextureFilter)filer {
     try {
         ::nok::Graphics::setTextureMinificationFilter(::djinni_generated::TextureUnit::toCpp(unit),
@@ -362,7 +359,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setTextureMipmapFilter:(nonnull NOKTextureUnit *)unit
++ (void)setTextureMipmapFilter:(nullable NOKTextureUnit *)unit
                          filer:(NOKMipmapFilter)filer {
     try {
         ::nok::Graphics::setTextureMipmapFilter(::djinni_generated::TextureUnit::toCpp(unit),
@@ -370,7 +367,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setTexture3DAddressing:(nonnull NOKTextureUnit *)unit
++ (void)setTexture3DAddressing:(nullable NOKTextureUnit *)unit
                            dir:(NOKTexDir)dir
                     addressing:(NOKTextureAddressing)addressing {
     try {
@@ -380,7 +377,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setTexture3DMagnificationFilter:(nonnull NOKTextureUnit *)unit
++ (void)setTexture3DMagnificationFilter:(nullable NOKTextureUnit *)unit
                                   filer:(NOKTextureFilter)filer {
     try {
         ::nok::Graphics::setTexture3DMagnificationFilter(::djinni_generated::TextureUnit::toCpp(unit),
@@ -388,7 +385,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setTexture3DMinificationFilter:(nonnull NOKTextureUnit *)unit
++ (void)setTexture3DMinificationFilter:(nullable NOKTextureUnit *)unit
                                  filer:(NOKTextureFilter)filer {
     try {
         ::nok::Graphics::setTexture3DMinificationFilter(::djinni_generated::TextureUnit::toCpp(unit),
@@ -396,7 +393,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setTexture3DMipmapFilter:(nonnull NOKTextureUnit *)unit
++ (void)setTexture3DMipmapFilter:(nullable NOKTextureUnit *)unit
                            filer:(NOKMipmapFilter)filer {
     try {
         ::nok::Graphics::setTexture3DMipmapFilter(::djinni_generated::TextureUnit::toCpp(unit),
@@ -404,7 +401,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setTextureCompareMode:(nonnull NOKTextureUnit *)unit
++ (void)setTextureCompareMode:(nullable NOKTextureUnit *)unit
                       enabled:(BOOL)enabled {
     try {
         ::nok::Graphics::setTextureCompareMode(::djinni_generated::TextureUnit::toCpp(unit),
@@ -412,7 +409,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (void)setCubeMapCompareMode:(nonnull NOKTextureUnit *)unit
++ (void)setCubeMapCompareMode:(nullable NOKTextureUnit *)unit
                       enabled:(BOOL)enabled {
     try {
         ::nok::Graphics::setCubeMapCompareMode(::djinni_generated::TextureUnit::toCpp(unit),

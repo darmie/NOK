@@ -47,14 +47,13 @@ CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_Texture_00024CppProxy_create3D(JN
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_Texture_00024CppProxy_fromData(JNIEnv* jniEnv, jobject /*this*/, jbyteArray j_data, jint j_width, jint j_height, jint j_depth, jobject j_format, jboolean j_readable)
+CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_Texture_00024CppProxy_fromData(JNIEnv* jniEnv, jobject /*this*/, jbyteArray j_data, jint j_width, jint j_height, jobject j_format, jboolean j_readable)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
         auto r = ::nok::Texture::fromData(::djinni::Binary::toCpp(jniEnv, j_data),
                                           ::djinni::I32::toCpp(jniEnv, j_width),
                                           ::djinni::I32::toCpp(jniEnv, j_height),
-                                          ::djinni::I32::toCpp(jniEnv, j_depth),
                                           ::djinni_generated::NativeImageFormat::toCpp(jniEnv, j_format),
                                           ::djinni::Bool::toCpp(jniEnv, j_readable));
         return ::djinni::release(::djinni_generated::NativeTexture::fromCpp(jniEnv, r));
@@ -112,7 +111,7 @@ CJNIEXPORT void JNICALL Java_co_zenturi_nok_Texture_00024CppProxy_native_1unlock
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT void JNICALL Java_co_zenturi_nok_Texture_00024CppProxy_native_1clear(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_x, jint j_y, jint j_z, jint j_width, jint j_height, jint j_depth, jbyte j_color)
+CJNIEXPORT void JNICALL Java_co_zenturi_nok_Texture_00024CppProxy_native_1clear(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_x, jint j_y, jint j_z, jint j_width, jint j_height, jint j_depth, jint j_color)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
@@ -123,7 +122,7 @@ CJNIEXPORT void JNICALL Java_co_zenturi_nok_Texture_00024CppProxy_native_1clear(
                    ::djinni::I32::toCpp(jniEnv, j_width),
                    ::djinni::I32::toCpp(jniEnv, j_height),
                    ::djinni::I32::toCpp(jniEnv, j_depth),
-                   ::djinni::I8::toCpp(jniEnv, j_color));
+                   ::djinni::I32::toCpp(jniEnv, j_color));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
@@ -181,16 +180,6 @@ CJNIEXPORT jint JNICALL Java_co_zenturi_nok_Texture_00024CppProxy_native_1getTex
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::nok::Texture>(nativeRef);
         auto r = ref->get_texWidth();
-        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
-}
-
-CJNIEXPORT jint JNICALL Java_co_zenturi_nok_Texture_00024CppProxy_native_1getContextId(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
-{
-    try {
-        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
-        const auto& ref = ::djinni::objectFromHandleAddress<::nok::Texture>(nativeRef);
-        auto r = ref->get_contextId();
         return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

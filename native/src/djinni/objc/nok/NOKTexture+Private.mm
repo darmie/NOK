@@ -64,14 +64,12 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 + (nullable NOKTexture *)fromData:(nonnull NSData *)data
                             width:(int32_t)width
                            height:(int32_t)height
-                            depth:(int32_t)depth
                            format:(NOKImageFormat)format
                          readable:(BOOL)readable {
     try {
         auto objcpp_result_ = ::nok::Texture::fromData(::djinni::Binary::toCpp(data),
                                                        ::djinni::I32::toCpp(width),
                                                        ::djinni::I32::toCpp(height),
-                                                       ::djinni::I32::toCpp(depth),
                                                        ::djinni::Enum<::nok::ImageFormat, NOKImageFormat>::toCpp(format),
                                                        ::djinni::Bool::toCpp(readable));
         return ::djinni_generated::Texture::fromCpp(objcpp_result_);
@@ -95,13 +93,13 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)Set:(nonnull NOKTextureUnit *)unit {
+- (void)Set:(nullable NOKTextureUnit *)unit {
     try {
         _cppRefHandle.get()->_set(::djinni_generated::TextureUnit::toCpp(unit));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)SetImage:(nonnull NOKTextureUnit *)unit {
+- (void)SetImage:(nullable NOKTextureUnit *)unit {
     try {
         _cppRefHandle.get()->_setImage(::djinni_generated::TextureUnit::toCpp(unit));
     } DJINNI_TRANSLATE_EXCEPTIONS()
@@ -126,7 +124,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
         width:(int32_t)width
        height:(int32_t)height
         depth:(int32_t)depth
-        color:(int8_t)color {
+        color:(int32_t)color {
     try {
         _cppRefHandle.get()->clear(::djinni::I32::toCpp(x),
                                    ::djinni::I32::toCpp(y),
@@ -134,7 +132,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
                                    ::djinni::I32::toCpp(width),
                                    ::djinni::I32::toCpp(height),
                                    ::djinni::I32::toCpp(depth),
-                                   ::djinni::I8::toCpp(color));
+                                   ::djinni::I32::toCpp(color));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -176,13 +174,6 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 - (int32_t)getTexWidth {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->get_texWidth();
-        return ::djinni::I32::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (int32_t)getContextId {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_contextId();
         return ::djinni::I32::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

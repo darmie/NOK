@@ -9,9 +9,9 @@
 
 namespace nok {
 
+class TextureUnit;
 enum class ImageCompression;
 enum class ImageFormat;
-struct TextureUnit;
 
 class Texture {
 public:
@@ -21,19 +21,19 @@ public:
 
     static std::shared_ptr<Texture> create3D(int32_t width, int32_t height, int32_t depth, ImageFormat format, bool readable);
 
-    static std::shared_ptr<Texture> fromData(const std::vector<uint8_t> & data, int32_t width, int32_t height, int32_t depth, ImageFormat format, bool readable);
+    static std::shared_ptr<Texture> fromData(const std::vector<uint8_t> & data, int32_t width, int32_t height, ImageFormat format, bool readable);
 
     static std::shared_ptr<Texture> fromData3D(const std::vector<uint8_t> & data, int32_t width, int32_t height, int32_t depth, ImageFormat format, bool readable);
 
-    virtual void _set(const TextureUnit & unit) = 0;
+    virtual void _set(const std::shared_ptr<TextureUnit> & unit) = 0;
 
-    virtual void _setImage(const TextureUnit & unit) = 0;
+    virtual void _setImage(const std::shared_ptr<TextureUnit> & unit) = 0;
 
     virtual std::vector<uint8_t> lock() = 0;
 
     virtual void unlock() = 0;
 
-    virtual void clear(int32_t x, int32_t y, int32_t z, int32_t width, int32_t height, int32_t depth, int8_t color) = 0;
+    virtual void clear(int32_t x, int32_t y, int32_t z, int32_t width, int32_t height, int32_t depth, int32_t color) = 0;
 
     virtual void upload(const std::vector<uint8_t> & data, int32_t stride) = 0;
 
@@ -47,8 +47,7 @@ public:
 
     virtual int32_t get_texWidth() = 0;
 
-    virtual int32_t get_contextId() = 0;
-
+    /** get_contextId(): i32; */
     virtual void set_texWidth(int32_t width) = 0;
 
     virtual void set_texHeight(int32_t height) = 0;

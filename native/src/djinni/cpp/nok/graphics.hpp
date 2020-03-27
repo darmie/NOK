@@ -9,12 +9,15 @@
 
 namespace nok {
 
+class ConstantLocation;
 class IndexBuffer;
 class Mat3;
 class Mat4;
 class PipelineState;
 class RenderTarget;
 class Texture;
+class TextureArray;
+class TextureUnit;
 class VertexBuffer;
 enum class MipmapFilter;
 enum class TexDir;
@@ -22,8 +25,6 @@ enum class TextureAddressing;
 enum class TextureArgument;
 enum class TextureFilter;
 enum class TextureOperation;
-struct ConstantLocation;
-struct TextureUnit;
 
 class Graphics {
 public:
@@ -35,41 +36,39 @@ public:
 
     static constexpr int32_t CLEARSTENCILFLAG = 4;
 
-    static void setBool(const ConstantLocation & location, bool value);
+    static void setBool(const std::shared_ptr<ConstantLocation> & location, bool value);
 
-    static void setInt(const ConstantLocation & location, int32_t value);
+    static void setInt(const std::shared_ptr<ConstantLocation> & location, int32_t value);
 
-    static void setInt2(const ConstantLocation & location, int32_t value1, int32_t value2);
+    static void setInt2(const std::shared_ptr<ConstantLocation> & location, int32_t value1, int32_t value2);
 
-    static void setInt3(const ConstantLocation & location, int32_t value1, int32_t value2, int32_t value3);
+    static void setInt3(const std::shared_ptr<ConstantLocation> & location, int32_t value1, int32_t value2, int32_t value3);
 
-    static void setInt4(const ConstantLocation & location, int32_t value1, int32_t value2, int32_t value3, int32_t value4);
+    static void setInt4(const std::shared_ptr<ConstantLocation> & location, int32_t value1, int32_t value2, int32_t value3, int32_t value4);
 
-    static void setInts(const ConstantLocation & location, const std::vector<int32_t> & values, int32_t count);
+    static void setInts(const std::shared_ptr<ConstantLocation> & location, const std::vector<int32_t> & values, int32_t count);
 
-    static void setFloat2(const ConstantLocation & location, float value1, float value2);
+    static void setFloat2(const std::shared_ptr<ConstantLocation> & location, float value1, float value2);
 
-    static void setFloat3(const ConstantLocation & location, float value1, float value2, float value3);
+    static void setFloat3(const std::shared_ptr<ConstantLocation> & location, float value1, float value2, float value3);
 
-    static void setFloat4(const ConstantLocation & location, int32_t value1, float value2, float value3, float value4);
+    static void setFloat4(const std::shared_ptr<ConstantLocation> & location, int32_t value1, float value2, float value3, float value4);
 
-    static void setFloats(const ConstantLocation & location, const std::vector<float> & values, float count);
+    static void setFloats(const std::shared_ptr<ConstantLocation> & location, const std::vector<float> & values, float count);
 
-    static void setMatrix3(const ConstantLocation & location, const std::shared_ptr<Mat3> & mat);
+    static void setMatrix3(const std::shared_ptr<ConstantLocation> & location, const std::shared_ptr<Mat3> & mat);
 
-    static void setMatrix4(const ConstantLocation & location, const std::shared_ptr<Mat4> & mat);
+    static void setMatrix4(const std::shared_ptr<ConstantLocation> & location, const std::shared_ptr<Mat4> & mat);
 
     static void setVertexBuffer(const std::shared_ptr<VertexBuffer> & buf);
 
-    static void setVertexBuffers(const std::vector<std::shared_ptr<VertexBuffer>> & bufs);
+    static void setVertexBuffers(const std::vector<std::shared_ptr<VertexBuffer>> & bufs, int32_t count);
 
     static void setIndexBuffer(const std::shared_ptr<IndexBuffer> & buf);
 
-    static void setIndexBuffers(const std::vector<std::shared_ptr<IndexBuffer>> & bufs);
+    static void setTexture(const std::shared_ptr<TextureUnit> & unit, const std::shared_ptr<Texture> & texture);
 
-    static void setTexture(const TextureUnit & unit, const std::shared_ptr<Texture> & texture);
-
-    static void setTextureArray(const TextureUnit & unit, const std::vector<std::shared_ptr<Texture>> & texture);
+    static void setTextureArray(const std::shared_ptr<TextureUnit> & unit, const std::shared_ptr<TextureArray> & texture_array);
 
     static void setPipeline(const std::shared_ptr<PipelineState> & pipeline);
 
@@ -105,25 +104,25 @@ public:
 
     static void disableScissor();
 
-    static void setTextureAddressing(const TextureUnit & unit, TexDir dir, TextureAddressing addressing);
+    static void setTextureAddressing(const std::shared_ptr<TextureUnit> & unit, TexDir dir, TextureAddressing addressing);
 
-    static void setTextureMagnificationFilter(const TextureUnit & unit, TextureFilter filer);
+    static void setTextureMagnificationFilter(const std::shared_ptr<TextureUnit> & unit, TextureFilter filer);
 
-    static void setTextureMinificationFilter(const TextureUnit & unit, TextureFilter filer);
+    static void setTextureMinificationFilter(const std::shared_ptr<TextureUnit> & unit, TextureFilter filer);
 
-    static void setTextureMipmapFilter(const TextureUnit & unit, MipmapFilter filer);
+    static void setTextureMipmapFilter(const std::shared_ptr<TextureUnit> & unit, MipmapFilter filer);
 
-    static void setTexture3DAddressing(const TextureUnit & unit, TexDir dir, TextureAddressing addressing);
+    static void setTexture3DAddressing(const std::shared_ptr<TextureUnit> & unit, TexDir dir, TextureAddressing addressing);
 
-    static void setTexture3DMagnificationFilter(const TextureUnit & unit, TextureFilter filer);
+    static void setTexture3DMagnificationFilter(const std::shared_ptr<TextureUnit> & unit, TextureFilter filer);
 
-    static void setTexture3DMinificationFilter(const TextureUnit & unit, TextureFilter filer);
+    static void setTexture3DMinificationFilter(const std::shared_ptr<TextureUnit> & unit, TextureFilter filer);
 
-    static void setTexture3DMipmapFilter(const TextureUnit & unit, MipmapFilter filer);
+    static void setTexture3DMipmapFilter(const std::shared_ptr<TextureUnit> & unit, MipmapFilter filer);
 
-    static void setTextureCompareMode(const TextureUnit & unit, bool enabled);
+    static void setTextureCompareMode(const std::shared_ptr<TextureUnit> & unit, bool enabled);
 
-    static void setCubeMapCompareMode(const TextureUnit & unit, bool enabled);
+    static void setCubeMapCompareMode(const std::shared_ptr<TextureUnit> & unit, bool enabled);
 
     static void setTextureOperation(TextureOperation operation, TextureArgument arg1, TextureArgument arg2);
 

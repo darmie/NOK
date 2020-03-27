@@ -104,19 +104,15 @@ public abstract class Graphics {
         CppProxy.setVertexBuffer(buf);
     }
 
-    public static void setVertexBuffers(ArrayList<VertexBuffer> bufs)
+    public static void setVertexBuffers(ArrayList<VertexBuffer> bufs, int count)
     {
-        CppProxy.setVertexBuffers(bufs);
+        CppProxy.setVertexBuffers(bufs,
+                                  count);
     }
 
     public static void setIndexBuffer(IndexBuffer buf)
     {
         CppProxy.setIndexBuffer(buf);
-    }
-
-    public static void setIndexBuffers(ArrayList<IndexBuffer> bufs)
-    {
-        CppProxy.setIndexBuffers(bufs);
     }
 
     public static void setTexture(TextureUnit unit, Texture texture)
@@ -125,10 +121,10 @@ public abstract class Graphics {
                             texture);
     }
 
-    public static void setTextureArray(TextureUnit unit, ArrayList<Texture> texture)
+    public static void setTextureArray(TextureUnit unit, TextureArray textureArray)
     {
         CppProxy.setTextureArray(unit,
-                                 texture);
+                                 textureArray);
     }
 
     public static void setPipeline(PipelineState pipeline)
@@ -408,15 +404,13 @@ public abstract class Graphics {
 
         public static native void setVertexBuffer(VertexBuffer buf);
 
-        public static native void setVertexBuffers(ArrayList<VertexBuffer> bufs);
+        public static native void setVertexBuffers(ArrayList<VertexBuffer> bufs, int count);
 
         public static native void setIndexBuffer(IndexBuffer buf);
 
-        public static native void setIndexBuffers(ArrayList<IndexBuffer> bufs);
-
         public static native void setTexture(TextureUnit unit, Texture texture);
 
-        public static native void setTextureArray(TextureUnit unit, ArrayList<Texture> texture);
+        public static native void setTextureArray(TextureUnit unit, TextureArray textureArray);
 
         public static native void setPipeline(PipelineState pipeline);
 

@@ -8,25 +8,25 @@
 
 namespace djinni_generated {
 
-class NativeTextureUnit final {
+class NativeTextureUnit final : ::djinni::JniInterface<::nok::TextureUnit, NativeTextureUnit> {
 public:
-    using CppType = ::nok::TextureUnit;
+    using CppType = std::shared_ptr<::nok::TextureUnit>;
+    using CppOptType = std::shared_ptr<::nok::TextureUnit>;
     using JniType = jobject;
 
     using Boxed = NativeTextureUnit;
 
     ~NativeTextureUnit();
 
-    static CppType toCpp(JNIEnv* jniEnv, JniType j);
-    static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, const CppType& c);
+    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<NativeTextureUnit>::get()._fromJava(jniEnv, j); }
+    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<NativeTextureUnit>::get()._toJava(jniEnv, c)}; }
+    static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, const CppType& c) { return fromCppOpt(jniEnv, c); }
 
 private:
     NativeTextureUnit();
     friend ::djinni::JniClass<NativeTextureUnit>;
+    friend ::djinni::JniInterface<::nok::TextureUnit, NativeTextureUnit>;
 
-    const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("co/zenturi/nok/TextureUnit") };
-    const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "(I)V") };
-    const jfieldID field_mValue { ::djinni::jniGetFieldID(clazz.get(), "mValue", "I") };
 };
 
 }  // namespace djinni_generated

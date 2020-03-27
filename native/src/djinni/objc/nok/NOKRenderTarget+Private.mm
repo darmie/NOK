@@ -147,13 +147,13 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)useColorAsTexture:(nonnull NOKTextureUnit *)unit {
+- (void)useColorAsTexture:(nullable NOKTextureUnit *)unit {
     try {
         _cppRefHandle.get()->useColorAsTexture(::djinni_generated::TextureUnit::toCpp(unit));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)useDepthAsTexture:(nonnull NOKTextureUnit *)unit {
+- (void)useDepthAsTexture:(nullable NOKTextureUnit *)unit {
     try {
         _cppRefHandle.get()->useDepthAsTexture(::djinni_generated::TextureUnit::toCpp(unit));
     } DJINNI_TRANSLATE_EXCEPTIONS()

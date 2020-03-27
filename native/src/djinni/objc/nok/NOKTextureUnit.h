@@ -3,10 +3,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NOKTextureUnit : NSObject
-- (nonnull instancetype)initWithValue:(int32_t)value;
-+ (nonnull instancetype)textureUnitWithValue:(int32_t)value;
 
-@property (nonatomic, readonly) int32_t value;
+@interface NOKTextureUnit : NSObject
 
 @end

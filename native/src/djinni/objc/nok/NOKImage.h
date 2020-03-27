@@ -4,36 +4,36 @@
 #import "NOKImageCompression.h"
 #import "NOKImageFormat.h"
 #import <Foundation/Foundation.h>
-@class NOKTexture;
+@class NOKImage;
 
 
 @interface NOKImage : NSObject
 
 + (int32_t)sizeOf:(NOKImageFormat)format;
 
-+ (nullable NOKTexture *)create:(int32_t)width
++ (nullable NOKImage *)create:(int32_t)width
+                       height:(int32_t)height
+                       format:(NOKImageFormat)format
+                     readable:(BOOL)readable;
+
++ (nullable NOKImage *)create3D:(int32_t)width
+                         height:(int32_t)height
+                          depth:(int32_t)depth
+                         format:(NOKImageFormat)format
+                       readable:(BOOL)readable;
+
++ (nullable NOKImage *)fromData:(nonnull NSData *)data
+                          width:(int32_t)width
                          height:(int32_t)height
                          format:(NOKImageFormat)format
                        readable:(BOOL)readable;
 
-+ (nullable NOKTexture *)create3D:(int32_t)width
++ (nullable NOKImage *)fromData3D:(nonnull NSData *)data
+                            width:(int32_t)width
                            height:(int32_t)height
                             depth:(int32_t)depth
                            format:(NOKImageFormat)format
                          readable:(BOOL)readable;
-
-+ (nullable NOKTexture *)fromData:(nonnull NSData *)data
-                            width:(int32_t)width
-                           height:(int32_t)height
-                           format:(NOKImageFormat)format
-                         readable:(BOOL)readable;
-
-+ (nullable NOKTexture *)fromData3D:(nonnull NSData *)data
-                              width:(int32_t)width
-                             height:(int32_t)height
-                              depth:(int32_t)depth
-                             format:(NOKImageFormat)format
-                           readable:(BOOL)readable;
 
 - (int32_t)at:(int32_t)x
             y:(int32_t)y;

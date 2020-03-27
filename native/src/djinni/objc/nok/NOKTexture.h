@@ -3,9 +3,9 @@
 
 #import "NOKImageCompression.h"
 #import "NOKImageFormat.h"
-#import "NOKTextureUnit.h"
 #import <Foundation/Foundation.h>
 @class NOKTexture;
+@class NOKTextureUnit;
 
 
 @interface NOKTexture : NSObject
@@ -24,7 +24,6 @@
 + (nullable NOKTexture *)fromData:(nonnull NSData *)data
                             width:(int32_t)width
                            height:(int32_t)height
-                            depth:(int32_t)depth
                            format:(NOKImageFormat)format
                          readable:(BOOL)readable;
 
@@ -35,9 +34,9 @@
                              format:(NOKImageFormat)format
                            readable:(BOOL)readable;
 
-- (void)Set:(nonnull NOKTextureUnit *)unit;
+- (void)Set:(nullable NOKTextureUnit *)unit;
 
-- (void)SetImage:(nonnull NOKTextureUnit *)unit;
+- (void)SetImage:(nullable NOKTextureUnit *)unit;
 
 - (nonnull NSData *)lock;
 
@@ -49,7 +48,7 @@
         width:(int32_t)width
        height:(int32_t)height
         depth:(int32_t)depth
-        color:(int8_t)color;
+        color:(int32_t)color;
 
 - (void)upload:(nonnull NSData *)data
         stride:(int32_t)stride;
@@ -65,8 +64,7 @@
 
 - (int32_t)getTexWidth;
 
-- (int32_t)getContextId;
-
+/** get_contextId(): i32; */
 - (void)setTexWidth:(int32_t)width;
 
 - (void)setTexHeight:(int32_t)height;

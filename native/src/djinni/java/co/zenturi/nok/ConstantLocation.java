@@ -3,17 +3,31 @@
 
 package co.zenturi.nok;
 
-public final class ConstantLocation {
+import java.util.concurrent.atomic.AtomicBoolean;
 
+public abstract class ConstantLocation {
 
-    public ConstantLocation(
-            ) {
+    private static final class CppProxy extends ConstantLocation
+    {
+        private final long nativeRef;
+        private final AtomicBoolean destroyed = new AtomicBoolean(false);
+
+        private CppProxy(long nativeRef)
+        {
+            if (nativeRef == 0) throw new RuntimeException("nativeRef is zero");
+            this.nativeRef = nativeRef;
+        }
+
+        private native void nativeDestroy(long nativeRef);
+        public void _djinni_private_destroy()
+        {
+            boolean destroyed = this.destroyed.getAndSet(true);
+            if (!destroyed) nativeDestroy(this.nativeRef);
+        }
+        protected void finalize() throws java.lang.Throwable
+        {
+            _djinni_private_destroy();
+            super.finalize();
+        }
     }
-
-    @Override
-    public String toString() {
-        return "ConstantLocation{" +
-        "}";
-    }
-
 }

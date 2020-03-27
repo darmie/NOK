@@ -199,14 +199,13 @@ CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_PipelineState_00024CppProxy_nativ
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_PipelineState_00024CppProxy_native_1getStencilMode(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT void JNICALL Java_co_zenturi_nok_PipelineState_00024CppProxy_native_1setStencilMode(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_m)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::nok::PipelineState>(nativeRef);
-        auto r = ref->get_stencilMode();
-        return ::djinni::release(::djinni_generated::NativeZCompareMode::fromCpp(jniEnv, r));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+        ref->set_stencilMode(::djinni_generated::NativeZCompareMode::toCpp(jniEnv, j_m));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
 CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_PipelineState_00024CppProxy_native_1stencilBothPass(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)

@@ -3,8 +3,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface NOKConstantLocation : NSObject
-- (nonnull instancetype)init;
-+ (nonnull instancetype)constantLocation;
 
 @end

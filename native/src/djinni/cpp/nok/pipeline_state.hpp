@@ -9,14 +9,14 @@
 
 namespace nok {
 
+class ConstantLocation;
 class Shader;
+class TextureUnit;
 class VertexStructure;
 enum class BlendingOperation;
 enum class CullMode;
 enum class StencilAction;
 enum class ZCompareMode;
-struct ConstantLocation;
-struct TextureUnit;
 
 class PipelineState {
 public:
@@ -58,7 +58,7 @@ public:
 
     virtual ZCompareMode stencilMode() = 0;
 
-    virtual ZCompareMode get_stencilMode() = 0;
+    virtual void set_stencilMode(ZCompareMode m) = 0;
 
     virtual StencilAction stencilBothPass() = 0;
 
@@ -110,9 +110,9 @@ public:
 
     virtual void compile() = 0;
 
-    virtual ConstantLocation getConstantLocation(const std::string & name) = 0;
+    virtual std::shared_ptr<ConstantLocation> getConstantLocation(const std::string & name) = 0;
 
-    virtual TextureUnit getTextureUnit(const std::string & name) = 0;
+    virtual std::shared_ptr<TextureUnit> getTextureUnit(const std::string & name) = 0;
 };
 
 }  // namespace nok

@@ -14,6 +14,7 @@
 #include "NativeTexture.hpp"
 #include "NativeTextureAddressing.hpp"
 #include "NativeTextureArgument.hpp"
+#include "NativeTextureArray.hpp"
 #include "NativeTextureFilter.hpp"
 #include "NativeTextureOperation.hpp"
 #include "NativeTextureUnit.hpp"
@@ -164,11 +165,12 @@ CJNIEXPORT void JNICALL Java_co_zenturi_nok_Graphics_00024CppProxy_setVertexBuff
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT void JNICALL Java_co_zenturi_nok_Graphics_00024CppProxy_setVertexBuffers(JNIEnv* jniEnv, jobject /*this*/, jobject j_bufs)
+CJNIEXPORT void JNICALL Java_co_zenturi_nok_Graphics_00024CppProxy_setVertexBuffers(JNIEnv* jniEnv, jobject /*this*/, jobject j_bufs, jint j_count)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
-        ::nok::Graphics::setVertexBuffers(::djinni::List<::djinni_generated::NativeVertexBuffer>::toCpp(jniEnv, j_bufs));
+        ::nok::Graphics::setVertexBuffers(::djinni::List<::djinni_generated::NativeVertexBuffer>::toCpp(jniEnv, j_bufs),
+                                          ::djinni::I32::toCpp(jniEnv, j_count));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
@@ -177,14 +179,6 @@ CJNIEXPORT void JNICALL Java_co_zenturi_nok_Graphics_00024CppProxy_setIndexBuffe
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
         ::nok::Graphics::setIndexBuffer(::djinni_generated::NativeIndexBuffer::toCpp(jniEnv, j_buf));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
-}
-
-CJNIEXPORT void JNICALL Java_co_zenturi_nok_Graphics_00024CppProxy_setIndexBuffers(JNIEnv* jniEnv, jobject /*this*/, jobject j_bufs)
-{
-    try {
-        DJINNI_FUNCTION_PROLOGUE0(jniEnv);
-        ::nok::Graphics::setIndexBuffers(::djinni::List<::djinni_generated::NativeIndexBuffer>::toCpp(jniEnv, j_bufs));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
@@ -197,12 +191,12 @@ CJNIEXPORT void JNICALL Java_co_zenturi_nok_Graphics_00024CppProxy_setTexture(JN
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT void JNICALL Java_co_zenturi_nok_Graphics_00024CppProxy_setTextureArray(JNIEnv* jniEnv, jobject /*this*/, jobject j_unit, jobject j_texture)
+CJNIEXPORT void JNICALL Java_co_zenturi_nok_Graphics_00024CppProxy_setTextureArray(JNIEnv* jniEnv, jobject /*this*/, jobject j_unit, jobject j_textureArray)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
         ::nok::Graphics::setTextureArray(::djinni_generated::NativeTextureUnit::toCpp(jniEnv, j_unit),
-                                         ::djinni::List<::djinni_generated::NativeTexture>::toCpp(jniEnv, j_texture));
+                                         ::djinni_generated::NativeTextureArray::toCpp(jniEnv, j_textureArray));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 

@@ -3,11 +3,17 @@
 
 package co.zenturi.nok;
 
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public abstract class TextureUnit {
+public abstract class TextureArray {
+    public static TextureArray create(ArrayList<Image> image, int count)
+    {
+        return CppProxy.create(image,
+                               count);
+    }
 
-    private static final class CppProxy extends TextureUnit
+    private static final class CppProxy extends TextureArray
     {
         private final long nativeRef;
         private final AtomicBoolean destroyed = new AtomicBoolean(false);
@@ -29,5 +35,7 @@ public abstract class TextureUnit {
             _djinni_private_destroy();
             super.finalize();
         }
+
+        public static native TextureArray create(ArrayList<Image> image, int count);
     }
 }

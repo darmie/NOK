@@ -14,7 +14,7 @@ public abstract class Texture {
 
     public abstract void unlock();
 
-    public abstract void clear(int x, int y, int z, int width, int height, int depth, byte color);
+    public abstract void clear(int x, int y, int z, int width, int height, int depth, int color);
 
     public abstract void upload(byte[] data, int stride);
 
@@ -28,8 +28,7 @@ public abstract class Texture {
 
     public abstract int getTexWidth();
 
-    public abstract int getContextId();
-
+    /** get_contextId(): i32; */
     public abstract void setTexWidth(int width);
 
     public abstract void setTexHeight(int height);
@@ -81,12 +80,11 @@ public abstract class Texture {
                                  readable);
     }
 
-    public static Texture fromData(byte[] data, int width, int height, int depth, ImageFormat format, boolean readable)
+    public static Texture fromData(byte[] data, int width, int height, ImageFormat format, boolean readable)
     {
         return CppProxy.fromData(data,
                                  width,
                                  height,
-                                 depth,
                                  format,
                                  readable);
     }
@@ -157,12 +155,12 @@ public abstract class Texture {
         private native void native_unlock(long _nativeRef);
 
         @Override
-        public void clear(int x, int y, int z, int width, int height, int depth, byte color)
+        public void clear(int x, int y, int z, int width, int height, int depth, int color)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             native_clear(this.nativeRef, x, y, z, width, height, depth, color);
         }
-        private native void native_clear(long _nativeRef, int x, int y, int z, int width, int height, int depth, byte color);
+        private native void native_clear(long _nativeRef, int x, int y, int z, int width, int height, int depth, int color);
 
         @Override
         public void upload(byte[] data, int stride)
@@ -211,14 +209,6 @@ public abstract class Texture {
             return native_getTexWidth(this.nativeRef);
         }
         private native int native_getTexWidth(long _nativeRef);
-
-        @Override
-        public int getContextId()
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getContextId(this.nativeRef);
-        }
-        private native int native_getContextId(long _nativeRef);
 
         @Override
         public void setTexWidth(int width)
@@ -360,7 +350,7 @@ public abstract class Texture {
 
         public static native Texture create3D(int width, int height, int depth, ImageFormat format, boolean readable);
 
-        public static native Texture fromData(byte[] data, int width, int height, int depth, ImageFormat format, boolean readable);
+        public static native Texture fromData(byte[] data, int width, int height, ImageFormat format, boolean readable);
 
         public static native Texture fromData3D(byte[] data, int width, int height, int depth, ImageFormat format, boolean readable);
     }

@@ -8,7 +8,6 @@
 #import "DJIMarshal+Private.h"
 #import "NOKImageCompression+Private.h"
 #import "NOKImageFormat+Private.h"
-#import "NOKTexture+Private.h"
 #include <exception>
 #include <stdexcept>
 #include <utility>
@@ -40,55 +39,55 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable NOKTexture *)create:(int32_t)width
-                         height:(int32_t)height
-                         format:(NOKImageFormat)format
-                       readable:(BOOL)readable {
++ (nullable NOKImage *)create:(int32_t)width
+                       height:(int32_t)height
+                       format:(NOKImageFormat)format
+                     readable:(BOOL)readable {
     try {
         auto objcpp_result_ = ::nok::Image::create(::djinni::I32::toCpp(width),
                                                    ::djinni::I32::toCpp(height),
                                                    ::djinni::Enum<::nok::ImageFormat, NOKImageFormat>::toCpp(format),
                                                    ::djinni::Bool::toCpp(readable));
-        return ::djinni_generated::Texture::fromCpp(objcpp_result_);
+        return ::djinni_generated::Image::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable NOKTexture *)create3D:(int32_t)width
-                           height:(int32_t)height
-                            depth:(int32_t)depth
-                           format:(NOKImageFormat)format
-                         readable:(BOOL)readable {
++ (nullable NOKImage *)create3D:(int32_t)width
+                         height:(int32_t)height
+                          depth:(int32_t)depth
+                         format:(NOKImageFormat)format
+                       readable:(BOOL)readable {
     try {
         auto objcpp_result_ = ::nok::Image::create3D(::djinni::I32::toCpp(width),
                                                      ::djinni::I32::toCpp(height),
                                                      ::djinni::I32::toCpp(depth),
                                                      ::djinni::Enum<::nok::ImageFormat, NOKImageFormat>::toCpp(format),
                                                      ::djinni::Bool::toCpp(readable));
-        return ::djinni_generated::Texture::fromCpp(objcpp_result_);
+        return ::djinni_generated::Image::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable NOKTexture *)fromData:(nonnull NSData *)data
-                            width:(int32_t)width
-                           height:(int32_t)height
-                           format:(NOKImageFormat)format
-                         readable:(BOOL)readable {
++ (nullable NOKImage *)fromData:(nonnull NSData *)data
+                          width:(int32_t)width
+                         height:(int32_t)height
+                         format:(NOKImageFormat)format
+                       readable:(BOOL)readable {
     try {
         auto objcpp_result_ = ::nok::Image::fromData(::djinni::Binary::toCpp(data),
                                                      ::djinni::I32::toCpp(width),
                                                      ::djinni::I32::toCpp(height),
                                                      ::djinni::Enum<::nok::ImageFormat, NOKImageFormat>::toCpp(format),
                                                      ::djinni::Bool::toCpp(readable));
-        return ::djinni_generated::Texture::fromCpp(objcpp_result_);
+        return ::djinni_generated::Image::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable NOKTexture *)fromData3D:(nonnull NSData *)data
-                              width:(int32_t)width
-                             height:(int32_t)height
-                              depth:(int32_t)depth
-                             format:(NOKImageFormat)format
-                           readable:(BOOL)readable {
++ (nullable NOKImage *)fromData3D:(nonnull NSData *)data
+                            width:(int32_t)width
+                           height:(int32_t)height
+                            depth:(int32_t)depth
+                           format:(NOKImageFormat)format
+                         readable:(BOOL)readable {
     try {
         auto objcpp_result_ = ::nok::Image::fromData3D(::djinni::Binary::toCpp(data),
                                                        ::djinni::I32::toCpp(width),
@@ -96,7 +95,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
                                                        ::djinni::I32::toCpp(depth),
                                                        ::djinni::Enum<::nok::ImageFormat, NOKImageFormat>::toCpp(format),
                                                        ::djinni::Bool::toCpp(readable));
-        return ::djinni_generated::Texture::fromCpp(objcpp_result_);
+        return ::djinni_generated::Image::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

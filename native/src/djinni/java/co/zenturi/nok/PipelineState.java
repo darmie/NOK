@@ -43,7 +43,7 @@ public abstract class PipelineState {
 
     public abstract ZCompareMode stencilMode();
 
-    public abstract ZCompareMode getStencilMode();
+    public abstract void setStencilMode(ZCompareMode m);
 
     public abstract StencilAction stencilBothPass();
 
@@ -267,12 +267,12 @@ public abstract class PipelineState {
         private native ZCompareMode native_stencilMode(long _nativeRef);
 
         @Override
-        public ZCompareMode getStencilMode()
+        public void setStencilMode(ZCompareMode m)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getStencilMode(this.nativeRef);
+            native_setStencilMode(this.nativeRef, m);
         }
-        private native ZCompareMode native_getStencilMode(long _nativeRef);
+        private native void native_setStencilMode(long _nativeRef, ZCompareMode m);
 
         @Override
         public StencilAction stencilBothPass()

@@ -156,10 +156,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (NOKZCompareMode)getStencilMode {
+- (void)setStencilMode:(NOKZCompareMode)m {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_stencilMode();
-        return ::djinni::Enum<::nok::ZCompareMode, NOKZCompareMode>::fromCpp(objcpp_result_);
+        _cppRefHandle.get()->set_stencilMode(::djinni::Enum<::nok::ZCompareMode, NOKZCompareMode>::toCpp(m));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -326,14 +325,14 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nonnull NOKConstantLocation *)getConstantLocation:(nonnull NSString *)name {
+- (nullable NOKConstantLocation *)getConstantLocation:(nonnull NSString *)name {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->getConstantLocation(::djinni::String::toCpp(name));
         return ::djinni_generated::ConstantLocation::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nonnull NOKTextureUnit *)getTextureUnit:(nonnull NSString *)name {
+- (nullable NOKTextureUnit *)getTextureUnit:(nonnull NSString *)name {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->getTextureUnit(::djinni::String::toCpp(name));
         return ::djinni_generated::TextureUnit::fromCpp(objcpp_result_);

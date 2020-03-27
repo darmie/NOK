@@ -3,17 +3,11 @@
 
 #pragma once
 
-#include <cstdint>
-#include <utility>
-
 namespace nok {
 
-struct TextureUnit final {
-    int32_t value;
-
-    TextureUnit(int32_t value_)
-    : value(std::move(value_))
-    {}
+class TextureUnit {
+public:
+    virtual ~TextureUnit() {}
 };
 
 }  // namespace nok

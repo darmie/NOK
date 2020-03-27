@@ -9,7 +9,6 @@
 
 namespace nok {
 
-class Texture;
 enum class ImageCompression;
 enum class ImageFormat;
 
@@ -19,13 +18,13 @@ public:
 
     static int32_t sizeOf(ImageFormat format);
 
-    static std::shared_ptr<Texture> create(int32_t width, int32_t height, ImageFormat format, bool readable);
+    static std::shared_ptr<Image> create(int32_t width, int32_t height, ImageFormat format, bool readable);
 
-    static std::shared_ptr<Texture> create3D(int32_t width, int32_t height, int32_t depth, ImageFormat format, bool readable);
+    static std::shared_ptr<Image> create3D(int32_t width, int32_t height, int32_t depth, ImageFormat format, bool readable);
 
-    static std::shared_ptr<Texture> fromData(const std::vector<uint8_t> & data, int32_t width, int32_t height, ImageFormat format, bool readable);
+    static std::shared_ptr<Image> fromData(const std::vector<uint8_t> & data, int32_t width, int32_t height, ImageFormat format, bool readable);
 
-    static std::shared_ptr<Texture> fromData3D(const std::vector<uint8_t> & data, int32_t width, int32_t height, int32_t depth, ImageFormat format, bool readable);
+    static std::shared_ptr<Image> fromData3D(const std::vector<uint8_t> & data, int32_t width, int32_t height, int32_t depth, ImageFormat format, bool readable);
 
     virtual int32_t at(int32_t x, int32_t y) = 0;
 

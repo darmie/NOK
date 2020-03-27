@@ -8,24 +8,25 @@
 
 namespace djinni_generated {
 
-class NativeConstantLocation final {
+class NativeConstantLocation final : ::djinni::JniInterface<::nok::ConstantLocation, NativeConstantLocation> {
 public:
-    using CppType = ::nok::ConstantLocation;
+    using CppType = std::shared_ptr<::nok::ConstantLocation>;
+    using CppOptType = std::shared_ptr<::nok::ConstantLocation>;
     using JniType = jobject;
 
     using Boxed = NativeConstantLocation;
 
     ~NativeConstantLocation();
 
-    static CppType toCpp(JNIEnv* jniEnv, JniType j);
-    static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, const CppType& c);
+    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<NativeConstantLocation>::get()._fromJava(jniEnv, j); }
+    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<NativeConstantLocation>::get()._toJava(jniEnv, c)}; }
+    static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, const CppType& c) { return fromCppOpt(jniEnv, c); }
 
 private:
     NativeConstantLocation();
     friend ::djinni::JniClass<NativeConstantLocation>;
+    friend ::djinni::JniInterface<::nok::ConstantLocation, NativeConstantLocation>;
 
-    const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("co/zenturi/nok/ConstantLocation") };
-    const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "()V") };
 };
 
 }  // namespace djinni_generated

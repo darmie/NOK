@@ -37,7 +37,7 @@ public abstract class Image {
         return CppProxy.sizeOf(format);
     }
 
-    public static Texture create(int width, int height, ImageFormat format, boolean readable)
+    public static Image create(int width, int height, ImageFormat format, boolean readable)
     {
         return CppProxy.create(width,
                                height,
@@ -45,7 +45,7 @@ public abstract class Image {
                                readable);
     }
 
-    public static Texture create3D(int width, int height, int depth, ImageFormat format, boolean readable)
+    public static Image create3D(int width, int height, int depth, ImageFormat format, boolean readable)
     {
         return CppProxy.create3D(width,
                                  height,
@@ -54,7 +54,7 @@ public abstract class Image {
                                  readable);
     }
 
-    public static Texture fromData(byte[] data, int width, int height, ImageFormat format, boolean readable)
+    public static Image fromData(byte[] data, int width, int height, ImageFormat format, boolean readable)
     {
         return CppProxy.fromData(data,
                                  width,
@@ -63,7 +63,7 @@ public abstract class Image {
                                  readable);
     }
 
-    public static Texture fromData3D(byte[] data, int width, int height, int depth, ImageFormat format, boolean readable)
+    public static Image fromData3D(byte[] data, int width, int height, int depth, ImageFormat format, boolean readable)
     {
         return CppProxy.fromData3D(data,
                                    width,
@@ -202,12 +202,12 @@ public abstract class Image {
 
         public static native int sizeOf(ImageFormat format);
 
-        public static native Texture create(int width, int height, ImageFormat format, boolean readable);
+        public static native Image create(int width, int height, ImageFormat format, boolean readable);
 
-        public static native Texture create3D(int width, int height, int depth, ImageFormat format, boolean readable);
+        public static native Image create3D(int width, int height, int depth, ImageFormat format, boolean readable);
 
-        public static native Texture fromData(byte[] data, int width, int height, ImageFormat format, boolean readable);
+        public static native Image fromData(byte[] data, int width, int height, ImageFormat format, boolean readable);
 
-        public static native Texture fromData3D(byte[] data, int width, int height, int depth, ImageFormat format, boolean readable);
+        public static native Image fromData3D(byte[] data, int width, int height, int depth, ImageFormat format, boolean readable);
     }
 }

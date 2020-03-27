@@ -9,8 +9,8 @@
 
 namespace nok {
 
+class TextureUnit;
 enum class RenderTargetFormat;
-struct TextureUnit;
 
 class RenderTarget {
 public:
@@ -44,9 +44,9 @@ public:
 
     virtual bool isDepthAttachment() = 0;
 
-    virtual void useColorAsTexture(const TextureUnit & unit) = 0;
+    virtual void useColorAsTexture(const std::shared_ptr<TextureUnit> & unit) = 0;
 
-    virtual void useDepthAsTexture(const TextureUnit & unit) = 0;
+    virtual void useDepthAsTexture(const std::shared_ptr<TextureUnit> & unit) = 0;
 
     virtual void setDepthStencilFrom(const std::shared_ptr<RenderTarget> & source) = 0;
 

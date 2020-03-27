@@ -5,7 +5,6 @@
 #include "Marshal.hpp"
 #include "NativeImageCompression.hpp"
 #include "NativeImageFormat.hpp"
-#include "NativeTexture.hpp"
 
 namespace djinni_generated {
 
@@ -39,7 +38,7 @@ CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_Image_00024CppProxy_create(JNIEnv
                                       ::djinni::I32::toCpp(jniEnv, j_height),
                                       ::djinni_generated::NativeImageFormat::toCpp(jniEnv, j_format),
                                       ::djinni::Bool::toCpp(jniEnv, j_readable));
-        return ::djinni::release(::djinni_generated::NativeTexture::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni_generated::NativeImage::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
@@ -52,7 +51,7 @@ CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_Image_00024CppProxy_create3D(JNIE
                                         ::djinni::I32::toCpp(jniEnv, j_depth),
                                         ::djinni_generated::NativeImageFormat::toCpp(jniEnv, j_format),
                                         ::djinni::Bool::toCpp(jniEnv, j_readable));
-        return ::djinni::release(::djinni_generated::NativeTexture::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni_generated::NativeImage::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
@@ -65,7 +64,7 @@ CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_Image_00024CppProxy_fromData(JNIE
                                         ::djinni::I32::toCpp(jniEnv, j_height),
                                         ::djinni_generated::NativeImageFormat::toCpp(jniEnv, j_format),
                                         ::djinni::Bool::toCpp(jniEnv, j_readable));
-        return ::djinni::release(::djinni_generated::NativeTexture::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni_generated::NativeImage::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
@@ -79,7 +78,7 @@ CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_Image_00024CppProxy_fromData3D(JN
                                           ::djinni::I32::toCpp(jniEnv, j_depth),
                                           ::djinni_generated::NativeImageFormat::toCpp(jniEnv, j_format),
                                           ::djinni::Bool::toCpp(jniEnv, j_readable));
-        return ::djinni::release(::djinni_generated::NativeTexture::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni_generated::NativeImage::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
