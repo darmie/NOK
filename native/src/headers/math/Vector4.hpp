@@ -1,6 +1,6 @@
 #pragma once
 
-#include "nok/vec3.hpp"
+#include "nok/vec4.hpp"
 #include "Kore/Math/Vector.h"
 
 namespace nok
@@ -67,10 +67,6 @@ public:
 
     bool isZero() {
         return static_cast<Kore::Vector<T, 4U> *>(this)->isZero();
-    }
-
-    std::shared_ptr<Vec4> get_xyz() {
-        return std::make_shared<Kore::Vector<T, 4U>>(static_cast<Vector4<T> *>(static_cast<Kore::Vector<T, 4U> *>(this)->xyz()));
     }
 
     void set(double x, double y, double z, double w) {
