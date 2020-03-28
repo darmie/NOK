@@ -10,7 +10,7 @@ class Vector3 : public nok::Vec3, public Kore::Vector<T, 3U>
 {
 public:
     Vector3() : nok::Vec3(), Kore::Vector<T, 3U>(){};
-    Vector3(T x, T y), nok::Vec3(), Kore::Vector<T, 3U>(x, y){};
+    Vector3(T x, T y, T z), nok::Vec3(), Kore::Vector<T, 3U>(x, y){};
     ~Vector3(){};
 
     double get_x() {

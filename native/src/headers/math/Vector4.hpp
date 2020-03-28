@@ -10,7 +10,7 @@ class Vector4 : public nok::Vec4, public Kore::Vector<T, 4U>
 {
 public:
     Vector4() : nok::Vec4(), Kore::Vector<T, 4U>(){};
-    Vector4(T x, T y), nok::Vec4(), Kore::Vector<T, 4U>(x, y){};
+    Vector4(T x, T y, T z, T w), nok::Vec4(), Kore::Vector<T, 4U>(x, y){};
     ~Vector4(){};
 
     double get_x() {
