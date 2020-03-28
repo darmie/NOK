@@ -299,137 +299,6 @@ vec4d = interface +c {
 }
 
 
-mat2i = interface +c {
-    const width: i32 = 2;
-    const height: i32 = 2;
-
-
-    get(row: i32, col: i32):f32;
-    set(row: i32, col: i32, v: i32);
-
-    static orthogonalProjection(left: f32, right: f32, bottom: f32, top: f32, zn: f32, zf: f32): mat2i;
-    static perspective(left: f32, right: f32, top: f32, bottom: f32, near: f32, far: f32): mat2i;
-    static perspectiveFOV(fov: f32, aspect: f32, near: f32, far: f32): mat2i;
-
-    static lookAt(eye: vec3i, at: vec3i, up: vec3i): mat2i;
-    static lookAlong(axis: vec3i, eye: vec3i, up: vec3i): mat2i;
-
-    static translation(x: f32, y: f32): mat2i;
-    static movement(x: f32, y: f32, z: f32):mat2i;
-    static identity(): mat2i;
-    static scale(scale: f32): mat2i;
-    
-    static rotationX(alpha: f32): mat2i;
-    static rotationY(alpha: f32): mat2i;
-    static rotationZ(alpha: f32): mat2i;
-
-    static rotation(yaw: f32, pitch: f32, roll: f32): mat2i;
-
-    static create(): mat2i;
-
-    static from(mat: mat2i): mat2i;
-
-    add(mat: mat2i): mat2i;
-    sub(mat: mat2i): mat2i;
-
-    multiply(i: i32): mat2i;
-    clone(): mat2i;
-    transpose(): mat2i;
-    transpose3x3(): mat2i;
-    trace(): i32;
-    determinant(): i32;
-
-    static linearInterpolate(a: mat2i, b: mat2i, prop: f32): mat2i;
-}
-
-
-mat3i = interface +c {
-    const width: i32 = 3;
-    const height: i32 = 3;
-
-
-    get(row: i32, col: i32):f32;
-    set(row: i32, col: i32, v: i32);
-
-    static orthogonalProjection(left: f32, right: f32, bottom: f32, top: f32, zn: f32, zf: f32): mat3i;
-    static perspective(left: f32, right: f32, top: f32, bottom: f32, near: f32, far: f32): mat3i;
-    static perspectiveFOV(fov: f32, aspect: f32, near: f32, far: f32): mat3i;
-
-    static lookAt(eye: vec3i, at: vec3i, up: vec3i): mat3i;
-    static lookAlong(axis: vec3i, eye: vec3i, up: vec3i): mat3i;
-
-    static translation(x: f32, y: f32): mat3i;
-    static movement(x: f32, y: f32, z: f32):mat3i;
-    static identity(): mat3i;
-    static scale(scale: f32): mat3i;
-    
-    static rotationX(alpha: f32): mat3i;
-    static rotationY(alpha: f32): mat3i;
-    static rotationZ(alpha: f32): mat3i;
-
-    static rotation(yaw: f32, pitch: f32, roll: f32): mat3i;
-
-    static create(): mat3i;
-
-    static from(mat: mat3i): mat3i;
-
-    add(mat: mat3i): mat3i;
-    sub(mat: mat3i): mat3i;
-
-    multiply(i: i32): mat3i;
-    clone(): mat3i;
-    transpose(): mat3i;
-    transpose3x3(): mat3i;
-    trace(): i32;
-    determinant(): i32;
-
-    static linearInterpolate(a: mat3i, b: mat3i, prop: f32): mat3i;
-}
-
-mat4i = interface +c {
-    const width: i32 = 4;
-    const height: i32 = 4;
-
-
-    get(row: i32, col: i32):f32;
-    set(row: i32, col: i32, v: i32);
-
-    static orthogonalProjection(left: f32, right: f32, bottom: f32, top: f32, zn: f32, zf: f32): mat4i;
-    static perspective(left: f32, right: f32, top: f32, bottom: f32, near: f32, far: f32): mat4i;
-    static perspectiveFOV(fov: f32, aspect: f32, near: f32, far: f32): mat4i;
-
-    static lookAt(eye: vec3i, at: vec3i, up: vec3i): mat4i;
-    static lookAlong(axis: vec3i, eye: vec3i, up: vec3i): mat4i;
-
-    static translation(x: f32, y: f32): mat4i;
-    static movement(x: f32, y: f32, z: f32):mat4i;
-    static identity(): mat4i;
-    static scale(scale: f32): mat4i;
-    
-    static rotationX(alpha: f32): mat4i;
-    static rotationY(alpha: f32): mat4i;
-    static rotationZ(alpha: f32): mat4i;
-
-    static rotation(yaw: f32, pitch: f32, roll: f32): mat4i;
-
-    static create(): mat4i;
-
-    static from(mat: mat4i): mat4i;
-
-    add(mat: mat4i): mat4i;
-    sub(mat: mat4i): mat4i;
-
-    multiply(i: i32): mat4i;
-    clone(): mat4i;
-    transpose(): mat4i;
-    transpose3x3(): mat4i;
-    trace(): i32;
-    determinant(): i32;
-
-    static linearInterpolate(a: mat4i, b: mat4i, prop: f32): mat4i;
-}
-
-
 mat2 = interface +c {
     const width: f32 = 2;
     const height: f32 = 2;
@@ -561,6 +430,141 @@ mat4 = interface +c {
 
     static linearInterpolate(a: mat4, b: mat4, prop: f32): mat4;
 }
+
+
+
+mat2d = interface +c {
+    const width: f64 = 2;
+    const height: f64 = 2;
+
+
+    get(row: f64, col: f64):f64;
+    set(row: f64, col: f64, v: f64);
+
+    static orthogonalProjection(left: f64, right: f64, bottom: f64, top: f64, zn: f64, zf: f64): mat2d;
+    static perspective(left: f64, right: f64, top: f64, bottom: f64, near: f64, far: f64): mat2d;
+    static perspectiveFOV(fov: f64, aspect: f64, near: f64, far: f64): mat2d;
+
+    static lookAt(eye: vec3i, at: vec3i, up: vec3i): mat2d;
+    static lookAlong(axis: vec3i, eye: vec3i, up: vec3i): mat2d;
+
+    static translation(x: f64, y: f64): mat2d;
+    static movement(x: f64, y: f64, z: f64):mat2d;
+    static identity(): mat2d;
+    static scale(scale: f64): mat2d;
+    
+    static rotationX(alpha: f64): mat2d;
+    static rotationY(alpha: f64): mat2d;
+    static rotationZ(alpha: f64): mat2d;
+
+    static rotation(yaw: f64, pitch: f64, roll: f64): mat2d;
+
+    static create(): mat2d;
+
+    static from(mat: mat2d): mat2d;
+
+    add(mat: mat2d): mat2d;
+    sub(mat: mat2d): mat2d;
+
+    multiply(i: f64): mat2d;
+    clone(): mat2d;
+    transpose(): mat2d;
+    transpose3x3(): mat2d;
+    trace(): f64;
+    determinant(): f64;
+
+    static linearInterpolate(a: mat2d, b: mat2d, prop: f64): mat2d;
+}
+
+
+mat3d = interface +c {
+    const width: f64 = 3;
+    const height: f64 = 3;
+
+
+    get(row: f64, col: f64):f64;
+    set(row: f64, col: f64, v: f64);
+
+    static orthogonalProjection(left: f64, right: f64, bottom: f64, top: f64, zn: f64, zf: f64): mat3d;
+    static perspective(left: f64, right: f64, top: f64, bottom: f64, near: f64, far: f64): mat3d;
+    static perspectiveFOV(fov: f64, aspect: f64, near: f64, far: f64): mat3d;
+
+    static lookAt(eye: vec3i, at: vec3i, up: vec3i): mat3d;
+    static lookAlong(axis: vec3i, eye: vec3i, up: vec3i): mat3d;
+
+    static translation(x: f64, y: f64): mat3d;
+    static movement(x: f64, y: f64, z: f64):mat3d;
+    static identity(): mat3d;
+    static scale(scale: f64): mat3d;
+    
+    static rotationX(alpha: f64): mat3d;
+    static rotationY(alpha: f64): mat3d;
+    static rotationZ(alpha: f64): mat3d;
+
+    static rotation(yaw: f64, pitch: f64, roll: f64): mat3d;
+
+    static create(): mat3d;
+
+    static from(mat: mat3d): mat3d;
+
+    add(mat: mat3d): mat3d;
+    sub(mat: mat3d): mat3d;
+
+    multiply(i: f64): mat3d;
+    clone(): mat3d;
+    transpose(): mat3d;
+    transpose3x3(): mat3d;
+    trace(): f64;
+    determinant(): f64;
+
+    static linearInterpolate(a: mat3d, b: mat3d, prop: f64): mat3d;
+}
+
+
+
+mat4d = interface +c {
+    const width: f64 = 4;
+    const height: f64 = 4;
+
+
+    get(row: f64, col: f64):f64;
+    set(row: f64, col: f64, v: f64);
+
+    static orthogonalProjection(left: f64, right: f64, bottom: f64, top: f64, zn: f64, zf: f64): mat4d;
+    static perspective(left: f64, right: f64, top: f64, bottom: f64, near: f64, far: f64): mat4d;
+    static perspectiveFOV(fov: f64, aspect: f64, near: f64, far: f64): mat4d;
+
+    static lookAt(eye: vec3i, at: vec3i, up: vec3i): mat4d;
+    static lookAlong(axis: vec3i, eye: vec3i, up: vec3i): mat4d;
+
+    static translation(x: f64, y: f64): mat4d;
+    static movement(x: f64, y: f64, z: f64):mat4d;
+    static identity(): mat4d;
+    static scale(scale: f64): mat4d;
+    
+    static rotationX(alpha: f64): mat4d;
+    static rotationY(alpha: f64): mat4d;
+    static rotationZ(alpha: f64): mat4d;
+
+    static rotation(yaw: f64, pitch: f64, roll: f64): mat4d;
+
+    static create(): mat4d;
+
+    static from(mat: mat4d): mat4d;
+
+    add(mat: mat4d): mat4d;
+    sub(mat: mat4d): mat4d;
+
+    multiply(i: f64): mat4d;
+    clone(): mat4d;
+    transpose(): mat4d;
+    transpose3x3(): mat4d;
+    trace(): f64;
+    determinant(): f64;
+
+    static linearInterpolate(a: mat4d, b: mat4d, prop: f64): mat4d;
+}
+
 
 
 quaternion = interface +c {
