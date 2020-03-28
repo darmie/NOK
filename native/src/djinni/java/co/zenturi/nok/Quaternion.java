@@ -38,11 +38,15 @@ public abstract class Quaternion {
 
     public abstract float getZ();
 
+    public abstract float getW();
+
     public abstract void setX(float x);
 
     public abstract void setY(float y);
 
     public abstract void setZ(float z);
+
+    public abstract void setW(float w);
 
     public static Quaternion create(float x, float y, float z, float w)
     {
@@ -210,6 +214,14 @@ public abstract class Quaternion {
         private native float native_getZ(long _nativeRef);
 
         @Override
+        public float getW()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getW(this.nativeRef);
+        }
+        private native float native_getW(long _nativeRef);
+
+        @Override
         public void setX(float x)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
@@ -232,6 +244,14 @@ public abstract class Quaternion {
             native_setZ(this.nativeRef, z);
         }
         private native void native_setZ(long _nativeRef, float z);
+
+        @Override
+        public void setW(float w)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_setW(this.nativeRef, w);
+        }
+        private native void native_setW(long _nativeRef, float w);
 
         public static native Quaternion create(float x, float y, float z, float w);
 

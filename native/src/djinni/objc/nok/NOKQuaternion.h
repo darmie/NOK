@@ -50,10 +50,14 @@
 
 - (float)getZ;
 
+- (float)getW;
+
 - (void)setX:(float)x;
 
 - (void)setY:(float)y;
 
 - (void)setZ:(float)z;
+
+- (void)setW:(float)w;
 
 @end

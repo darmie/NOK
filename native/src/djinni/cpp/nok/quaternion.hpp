@@ -50,11 +50,15 @@ public:
 
     virtual float get_z() = 0;
 
+    virtual float get_w() = 0;
+
     virtual void set_x(float x) = 0;
 
     virtual void set_y(float y) = 0;
 
     virtual void set_z(float z) = 0;
+
+    virtual void set_w(float w) = 0;
 };
 
 }  // namespace nok

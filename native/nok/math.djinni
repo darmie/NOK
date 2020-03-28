@@ -247,8 +247,10 @@ quaternion = interface +c {
     get_x(): f32;
     get_y(): f32;
     get_z(): f32;
+    get_w(): f32;
 
     set_x(x: f32);
     set_y(y: f32);
     set_z(z: f32);
+    set_w(w: f32);
 }
