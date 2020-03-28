@@ -146,5 +146,7 @@ public:
 };
 
 typedef Matrix2<float> mat2;
+typedef Matrix2<float> mat2x2;
 typedef Matrix2<double> mat2d;
+typedef Matrix2<double> mat2x2d;
 } // namespace nok

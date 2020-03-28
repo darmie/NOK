@@ -143,4 +143,6 @@ public:
 };
 typedef Matrix3<float> mat3;
 typedef Matrix3<double> mat3d;
+typedef Matrix3<float> mat3x3;
+typedef Matrix3<double> mat3x3d;
 } // namespace nok

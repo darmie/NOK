@@ -146,4 +146,6 @@ public:
 };
 typedef Matrix4<float> mat4;
 typedef Matrix4<double> mat4d;
+typedef Matrix4<float> mat4x4;
+typedef Matrix4<double> mat4x4d;
 } // namespace nok
