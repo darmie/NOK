@@ -3,7 +3,7 @@
 
 #include "NativeMat3.hpp"  // my header
 #include "Marshal.hpp"
-#include "NativeVec3i.hpp"
+#include "NativeVec3.hpp"
 
 namespace djinni_generated {
 
@@ -86,9 +86,9 @@ CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_Mat3_00024CppProxy_lookAt(JNIEnv*
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
-        auto r = ::nok::Mat3::lookAt(::djinni_generated::NativeVec3i::toCpp(jniEnv, j_eye),
-                                     ::djinni_generated::NativeVec3i::toCpp(jniEnv, j_at),
-                                     ::djinni_generated::NativeVec3i::toCpp(jniEnv, j_up));
+        auto r = ::nok::Mat3::lookAt(::djinni_generated::NativeVec3::toCpp(jniEnv, j_eye),
+                                     ::djinni_generated::NativeVec3::toCpp(jniEnv, j_at),
+                                     ::djinni_generated::NativeVec3::toCpp(jniEnv, j_up));
         return ::djinni::release(::djinni_generated::NativeMat3::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -97,9 +97,9 @@ CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_Mat3_00024CppProxy_lookAlong(JNIE
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
-        auto r = ::nok::Mat3::lookAlong(::djinni_generated::NativeVec3i::toCpp(jniEnv, j_axis),
-                                        ::djinni_generated::NativeVec3i::toCpp(jniEnv, j_eye),
-                                        ::djinni_generated::NativeVec3i::toCpp(jniEnv, j_up));
+        auto r = ::nok::Mat3::lookAlong(::djinni_generated::NativeVec3::toCpp(jniEnv, j_axis),
+                                        ::djinni_generated::NativeVec3::toCpp(jniEnv, j_eye),
+                                        ::djinni_generated::NativeVec3::toCpp(jniEnv, j_up));
         return ::djinni::release(::djinni_generated::NativeMat3::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

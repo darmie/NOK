@@ -1,7 +1,6 @@
 #pragma once
 
 #include "nok/mat4.hpp"
-#include "nok/mat4d.hpp"
 #include "Kore/Math/Matrix.h"
 
 namespace nok
@@ -39,11 +38,11 @@ public:
         return std::make_shared<Matrix4<T>>(Kore::Matrix<4U, 4U, T>::Perspective(fov, aspect, near, far));
     }
 
-    static std::shared_ptr<Mat4> lookAt(const std::shared_ptr<Vec3i> &eye, const std::shared_ptr<Vec3i> &at, const std::shared_ptr<Vec3i> &up)
+    static std::shared_ptr<Mat4> lookAt(const std::shared_ptr<Vec3> &eye, const std::shared_ptr<Vec3> &at, const std::shared_ptr<Vec3> &up)
     {
     }
 
-    static std::shared_ptr<Mat4> lookAlong(const std::shared_ptr<Vec3i> &axis, const std::shared_ptr<Vec3i> &eye, const std::shared_ptr<Vec3i> &up)
+    static std::shared_ptr<Mat4> lookAlong(const std::shared_ptr<Vec3> &axis, const std::shared_ptr<Vec3> &eye, const std::shared_ptr<Vec3> &up)
     {
     }
 

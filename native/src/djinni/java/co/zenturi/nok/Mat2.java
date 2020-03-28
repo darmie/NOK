@@ -58,14 +58,14 @@ public abstract class Mat2 {
                                        far);
     }
 
-    public static Mat2 lookAt(Vec3i eye, Vec3i at, Vec3i up)
+    public static Mat2 lookAt(Vec3 eye, Vec3 at, Vec3 up)
     {
         return CppProxy.lookAt(eye,
                                at,
                                up);
     }
 
-    public static Mat2 lookAlong(Vec3i axis, Vec3i eye, Vec3i up)
+    public static Mat2 lookAlong(Vec3 axis, Vec3 eye, Vec3 up)
     {
         return CppProxy.lookAlong(axis,
                                   eye,
@@ -243,9 +243,9 @@ public abstract class Mat2 {
 
         public static native Mat2 perspectiveFOV(float fov, float aspect, float near, float far);
 
-        public static native Mat2 lookAt(Vec3i eye, Vec3i at, Vec3i up);
+        public static native Mat2 lookAt(Vec3 eye, Vec3 at, Vec3 up);
 
-        public static native Mat2 lookAlong(Vec3i axis, Vec3i eye, Vec3i up);
+        public static native Mat2 lookAlong(Vec3 axis, Vec3 eye, Vec3 up);
 
         public static native Mat2 translation(float x, float y);
 

@@ -7,19 +7,11 @@
 
 @interface NOKVec4 : NSObject
 
-- (float)getX;
+- (double)getX;
 
-- (float)getY;
+- (double)getY;
 
-- (float)getZ;
-
-- (void)setX:(float)x;
-
-- (void)setY:(float)y;
-
-- (void)setZ:(float)z;
-
-- (void)setW:(float)w;
+- (double)getZ;
 
 - (void)add:(nullable NOKVec4 *)v;
 
@@ -27,35 +19,35 @@
 
 - (void)sub:(nullable NOKVec4 *)v;
 
-- (void)multiply:(float)i;
+- (void)multiply:(double)i;
 
-- (void)divide:(float)i;
+- (void)divide:(double)i;
 
-- (float)squareLength;
+- (double)squareLength;
 
-- (float)getLength;
+- (double)getLength;
 
-- (void)setLength:(float)length;
+- (void)setLength:(double)length;
 
 - (nullable NOKVec4 *)normalize;
 
 - (BOOL)isZero;
 
-- (float)get:(float)i;
+- (void)set:(double)x
+          y:(double)y
+          z:(double)z
+          w:(double)w;
 
-- (void)set:(float)i
-          v:(float)v;
-
-- (float)dot:(nullable NOKVec4 *)v;
+- (double)dot:(nullable NOKVec4 *)v;
 
 - (nullable NOKVec4 *)cross:(nullable NOKVec4 *)v;
 
-- (float)distance:(nullable NOKVec4 *)v;
+- (double)distance:(nullable NOKVec4 *)v;
 
 - (void)invert;
 
-+ (nullable NOKVec4 *)create:(float)x
-                           y:(float)y
-                           z:(float)z;
++ (nullable NOKVec4 *)create:(double)x
+                           y:(double)y
+                           z:(double)z;
 
 @end

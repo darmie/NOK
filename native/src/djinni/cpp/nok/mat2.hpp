@@ -7,7 +7,7 @@
 
 namespace nok {
 
-class Vec3i;
+class Vec3;
 
 class Mat2 {
 public:
@@ -27,9 +27,9 @@ public:
 
     static std::shared_ptr<Mat2> perspectiveFOV(float fov, float aspect, float near, float far);
 
-    static std::shared_ptr<Mat2> lookAt(const std::shared_ptr<Vec3i> & eye, const std::shared_ptr<Vec3i> & at, const std::shared_ptr<Vec3i> & up);
+    static std::shared_ptr<Mat2> lookAt(const std::shared_ptr<Vec3> & eye, const std::shared_ptr<Vec3> & at, const std::shared_ptr<Vec3> & up);
 
-    static std::shared_ptr<Mat2> lookAlong(const std::shared_ptr<Vec3i> & axis, const std::shared_ptr<Vec3i> & eye, const std::shared_ptr<Vec3i> & up);
+    static std::shared_ptr<Mat2> lookAlong(const std::shared_ptr<Vec3> & axis, const std::shared_ptr<Vec3> & eye, const std::shared_ptr<Vec3> & up);
 
     static std::shared_ptr<Mat2> translation(float x, float y);
 

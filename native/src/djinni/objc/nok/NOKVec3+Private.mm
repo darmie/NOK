@@ -30,42 +30,24 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
-- (float)getX {
+- (double)getX {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->get_x();
-        return ::djinni::F32::fromCpp(objcpp_result_);
+        return ::djinni::F64::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (float)getY {
+- (double)getY {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->get_y();
-        return ::djinni::F32::fromCpp(objcpp_result_);
+        return ::djinni::F64::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (float)getZ {
+- (double)getZ {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->get_z();
-        return ::djinni::F32::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (void)setX:(float)x {
-    try {
-        _cppRefHandle.get()->set_x(::djinni::F32::toCpp(x));
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (void)setY:(float)y {
-    try {
-        _cppRefHandle.get()->set_y(::djinni::F32::toCpp(y));
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (void)setZ:(float)z {
-    try {
-        _cppRefHandle.get()->set_z(::djinni::F32::toCpp(z));
+        return ::djinni::F64::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -87,35 +69,35 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)multiply:(float)i {
+- (void)multiply:(double)i {
     try {
-        _cppRefHandle.get()->multiply(::djinni::F32::toCpp(i));
+        _cppRefHandle.get()->multiply(::djinni::F64::toCpp(i));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)divide:(float)i {
+- (void)divide:(double)i {
     try {
-        _cppRefHandle.get()->divide(::djinni::F32::toCpp(i));
+        _cppRefHandle.get()->divide(::djinni::F64::toCpp(i));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (float)squareLength {
+- (double)squareLength {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->squareLength();
-        return ::djinni::F32::fromCpp(objcpp_result_);
+        return ::djinni::F64::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (float)getLength {
+- (double)getLength {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->getLength();
-        return ::djinni::F32::fromCpp(objcpp_result_);
+        return ::djinni::F64::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)setLength:(float)length {
+- (void)setLength:(double)length {
     try {
-        _cppRefHandle.get()->setLength(::djinni::F32::toCpp(length));
+        _cppRefHandle.get()->setLength(::djinni::F64::toCpp(length));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -133,25 +115,27 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (float)get:(float)i {
+- (nullable NOKVec3 *)getXyz {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->get(::djinni::F32::toCpp(i));
-        return ::djinni::F32::fromCpp(objcpp_result_);
+        auto objcpp_result_ = _cppRefHandle.get()->get_xyz();
+        return ::djinni_generated::Vec3::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)set:(float)i
-          v:(float)v {
+- (void)set:(double)x
+          y:(double)y
+          z:(double)z {
     try {
-        _cppRefHandle.get()->set(::djinni::F32::toCpp(i),
-                                 ::djinni::F32::toCpp(v));
+        _cppRefHandle.get()->set(::djinni::F64::toCpp(x),
+                                 ::djinni::F64::toCpp(y),
+                                 ::djinni::F64::toCpp(z));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (float)dot:(nullable NOKVec3 *)v {
+- (double)dot:(nullable NOKVec3 *)v {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->dot(::djinni_generated::Vec3::toCpp(v));
-        return ::djinni::F32::fromCpp(objcpp_result_);
+        return ::djinni::F64::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -162,20 +146,26 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (float)distance:(nullable NOKVec3 *)v {
+- (double)distance:(nullable NOKVec3 *)v {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->distance(::djinni_generated::Vec3::toCpp(v));
-        return ::djinni::F32::fromCpp(objcpp_result_);
+        return ::djinni::F64::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable NOKVec3 *)create:(float)x
-                           y:(float)y
-                           z:(float)z {
+- (void)invert {
     try {
-        auto objcpp_result_ = ::nok::Vec3::create(::djinni::F32::toCpp(x),
-                                                  ::djinni::F32::toCpp(y),
-                                                  ::djinni::F32::toCpp(z));
+        _cppRefHandle.get()->invert();
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (nullable NOKVec3 *)create:(double)x
+                           y:(double)y
+                           z:(double)z {
+    try {
+        auto objcpp_result_ = ::nok::Vec3::create(::djinni::F64::toCpp(x),
+                                                  ::djinni::F64::toCpp(y),
+                                                  ::djinni::F64::toCpp(z));
         return ::djinni_generated::Vec3::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

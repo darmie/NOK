@@ -19,61 +19,34 @@ CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_nativeDestroy(JNI
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jfloat JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1getX(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jdouble JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1getX(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
         auto r = ref->get_x();
-        return ::djinni::release(::djinni::F32::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni::F64::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jfloat JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1getY(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jdouble JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1getY(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
         auto r = ref->get_y();
-        return ::djinni::release(::djinni::F32::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni::F64::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jfloat JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1getZ(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jdouble JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1getZ(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
         auto r = ref->get_z();
-        return ::djinni::release(::djinni::F32::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni::F64::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
-}
-
-CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1setX(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jfloat j_x)
-{
-    try {
-        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
-        const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
-        ref->set_x(::djinni::F32::toCpp(jniEnv, j_x));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
-}
-
-CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1setY(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jfloat j_y)
-{
-    try {
-        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
-        const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
-        ref->set_y(::djinni::F32::toCpp(jniEnv, j_y));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
-}
-
-CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1setZ(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jfloat j_z)
-{
-    try {
-        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
-        const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
-        ref->set_z(::djinni::F32::toCpp(jniEnv, j_z));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
 CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1add(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_v)
@@ -103,50 +76,50 @@ CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1sub(JNIEn
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1multiply(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jfloat j_i)
+CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1multiply(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jdouble j_i)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
-        ref->multiply(::djinni::F32::toCpp(jniEnv, j_i));
+        ref->multiply(::djinni::F64::toCpp(jniEnv, j_i));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1divide(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jfloat j_i)
+CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1divide(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jdouble j_i)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
-        ref->divide(::djinni::F32::toCpp(jniEnv, j_i));
+        ref->divide(::djinni::F64::toCpp(jniEnv, j_i));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jfloat JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1squareLength(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jdouble JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1squareLength(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
         auto r = ref->squareLength();
-        return ::djinni::release(::djinni::F32::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni::F64::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jfloat JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1getLength(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jdouble JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1getLength(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
         auto r = ref->getLength();
-        return ::djinni::release(::djinni::F32::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni::F64::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1setLength(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jfloat j_length)
+CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1setLength(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jdouble j_length)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
-        ref->setLength(::djinni::F32::toCpp(jniEnv, j_length));
+        ref->setLength(::djinni::F64::toCpp(jniEnv, j_length));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
@@ -170,33 +143,34 @@ CJNIEXPORT jboolean JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1isZer
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jfloat JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1get(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jfloat j_i)
+CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1getXyz(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
-        auto r = ref->get(::djinni::F32::toCpp(jniEnv, j_i));
-        return ::djinni::release(::djinni::F32::fromCpp(jniEnv, r));
+        auto r = ref->get_xyz();
+        return ::djinni::release(::djinni_generated::NativeVec3::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1set(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jfloat j_i, jfloat j_v)
+CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1set(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jdouble j_x, jdouble j_y, jdouble j_z)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
-        ref->set(::djinni::F32::toCpp(jniEnv, j_i),
-                 ::djinni::F32::toCpp(jniEnv, j_v));
+        ref->set(::djinni::F64::toCpp(jniEnv, j_x),
+                 ::djinni::F64::toCpp(jniEnv, j_y),
+                 ::djinni::F64::toCpp(jniEnv, j_z));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jfloat JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1dot(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_v)
+CJNIEXPORT jdouble JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1dot(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_v)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
         auto r = ref->dot(::djinni_generated::NativeVec3::toCpp(jniEnv, j_v));
-        return ::djinni::release(::djinni::F32::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni::F64::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
@@ -210,23 +184,32 @@ CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1cross(
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jfloat JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1distance(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_v)
+CJNIEXPORT jdouble JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1distance(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_v)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
         const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
         auto r = ref->distance(::djinni_generated::NativeVec3::toCpp(jniEnv, j_v));
-        return ::djinni::release(::djinni::F32::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni::F64::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_create(JNIEnv* jniEnv, jobject /*this*/, jfloat j_x, jfloat j_y, jfloat j_z)
+CJNIEXPORT void JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_native_1invert(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::nok::Vec3>(nativeRef);
+        ref->invert();
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
+CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_Vec3_00024CppProxy_create(JNIEnv* jniEnv, jobject /*this*/, jdouble j_x, jdouble j_y, jdouble j_z)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
-        auto r = ::nok::Vec3::create(::djinni::F32::toCpp(jniEnv, j_x),
-                                     ::djinni::F32::toCpp(jniEnv, j_y),
-                                     ::djinni::F32::toCpp(jniEnv, j_z));
+        auto r = ::nok::Vec3::create(::djinni::F64::toCpp(jniEnv, j_x),
+                                     ::djinni::F64::toCpp(jniEnv, j_y),
+                                     ::djinni::F64::toCpp(jniEnv, j_z));
         return ::djinni::release(::djinni_generated::NativeVec3::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

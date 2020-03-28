@@ -3,7 +3,7 @@
 
 #import <Foundation/Foundation.h>
 @class NOKMat4;
-@class NOKVec3i;
+@class NOKVec3;
 
 extern float const NOKMat4Width;
 extern float const NOKMat4Height;
@@ -36,13 +36,13 @@ extern float const NOKMat4Height;
                                 near:(float)near
                                  far:(float)far;
 
-+ (nullable NOKMat4 *)lookAt:(nullable NOKVec3i *)eye
-                          at:(nullable NOKVec3i *)at
-                          up:(nullable NOKVec3i *)up;
++ (nullable NOKMat4 *)lookAt:(nullable NOKVec3 *)eye
+                          at:(nullable NOKVec3 *)at
+                          up:(nullable NOKVec3 *)up;
 
-+ (nullable NOKMat4 *)lookAlong:(nullable NOKVec3i *)axis
-                            eye:(nullable NOKVec3i *)eye
-                             up:(nullable NOKVec3i *)up;
++ (nullable NOKMat4 *)lookAlong:(nullable NOKVec3 *)axis
+                            eye:(nullable NOKVec3 *)eye
+                             up:(nullable NOKVec3 *)up;
 
 + (nullable NOKMat4 *)translation:(float)x
                                 y:(float)y;

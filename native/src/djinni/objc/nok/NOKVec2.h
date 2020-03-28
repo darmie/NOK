@@ -7,13 +7,9 @@
 
 @interface NOKVec2 : NSObject
 
-- (float)getX;
+- (double)getX;
 
-- (float)getY;
-
-- (void)setX:(float)x;
-
-- (void)setY:(float)y;
+- (double)getY;
 
 - (void)add:(nullable NOKVec2 *)v;
 
@@ -21,32 +17,34 @@
 
 - (void)sub:(nullable NOKVec2 *)v;
 
-- (void)multiply:(float)i;
+- (void)multiply:(double)i;
 
-- (void)divide:(float)i;
+- (void)divide:(double)i;
 
-- (float)squareLength;
+- (double)squareLength;
 
-- (float)getLength;
+- (double)getLength;
 
-- (void)setLength:(float)length;
+- (void)setLength:(double)length;
 
 - (nullable NOKVec2 *)normalize;
 
 - (BOOL)isZero;
 
-- (float)get:(float)i;
+- (nullable NOKVec2 *)getXy;
 
-- (void)set:(float)i
-          v:(float)v;
+- (void)set:(double)i
+          v:(double)v;
 
-- (float)dot:(nullable NOKVec2 *)v;
+- (double)dot:(nullable NOKVec2 *)v;
 
 - (nullable NOKVec2 *)cross:(nullable NOKVec2 *)v;
 
-- (float)distance:(nullable NOKVec2 *)v;
+- (double)distance:(nullable NOKVec2 *)v;
 
-+ (nullable NOKVec2 *)create:(float)x
-                           y:(float)y;
+- (void)invert;
+
++ (nullable NOKVec2 *)create:(double)x
+                           y:(double)y;
 
 @end

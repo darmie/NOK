@@ -6,7 +6,7 @@
 #import "DJICppWrapperCache+Private.h"
 #import "DJIError.h"
 #import "DJIMarshal+Private.h"
-#import "NOKVec3i+Private.h"
+#import "NOKVec3+Private.h"
 #include <exception>
 #include <stdexcept>
 #include <utility>
@@ -97,24 +97,24 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable NOKMat3 *)lookAt:(nullable NOKVec3i *)eye
-                          at:(nullable NOKVec3i *)at
-                          up:(nullable NOKVec3i *)up {
++ (nullable NOKMat3 *)lookAt:(nullable NOKVec3 *)eye
+                          at:(nullable NOKVec3 *)at
+                          up:(nullable NOKVec3 *)up {
     try {
-        auto objcpp_result_ = ::nok::Mat3::lookAt(::djinni_generated::Vec3i::toCpp(eye),
-                                                  ::djinni_generated::Vec3i::toCpp(at),
-                                                  ::djinni_generated::Vec3i::toCpp(up));
+        auto objcpp_result_ = ::nok::Mat3::lookAt(::djinni_generated::Vec3::toCpp(eye),
+                                                  ::djinni_generated::Vec3::toCpp(at),
+                                                  ::djinni_generated::Vec3::toCpp(up));
         return ::djinni_generated::Mat3::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable NOKMat3 *)lookAlong:(nullable NOKVec3i *)axis
-                            eye:(nullable NOKVec3i *)eye
-                             up:(nullable NOKVec3i *)up {
++ (nullable NOKMat3 *)lookAlong:(nullable NOKVec3 *)axis
+                            eye:(nullable NOKVec3 *)eye
+                             up:(nullable NOKVec3 *)up {
     try {
-        auto objcpp_result_ = ::nok::Mat3::lookAlong(::djinni_generated::Vec3i::toCpp(axis),
-                                                     ::djinni_generated::Vec3i::toCpp(eye),
-                                                     ::djinni_generated::Vec3i::toCpp(up));
+        auto objcpp_result_ = ::nok::Mat3::lookAlong(::djinni_generated::Vec3::toCpp(axis),
+                                                     ::djinni_generated::Vec3::toCpp(eye),
+                                                     ::djinni_generated::Vec3::toCpp(up));
         return ::djinni_generated::Mat3::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

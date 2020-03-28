@@ -11,19 +11,11 @@ class Vec4 {
 public:
     virtual ~Vec4() {}
 
-    virtual float get_x() = 0;
+    virtual double get_x() = 0;
 
-    virtual float get_y() = 0;
+    virtual double get_y() = 0;
 
-    virtual float get_z() = 0;
-
-    virtual void set_x(float x) = 0;
-
-    virtual void set_y(float y) = 0;
-
-    virtual void set_z(float z) = 0;
-
-    virtual void set_w(float w) = 0;
+    virtual double get_z() = 0;
 
     virtual void add(const std::shared_ptr<Vec4> & v) = 0;
 
@@ -31,33 +23,31 @@ public:
 
     virtual void sub(const std::shared_ptr<Vec4> & v) = 0;
 
-    virtual void multiply(float i) = 0;
+    virtual void multiply(double i) = 0;
 
-    virtual void divide(float i) = 0;
+    virtual void divide(double i) = 0;
 
-    virtual float squareLength() = 0;
+    virtual double squareLength() = 0;
 
-    virtual float getLength() = 0;
+    virtual double getLength() = 0;
 
-    virtual void setLength(float length) = 0;
+    virtual void setLength(double length) = 0;
 
     virtual std::shared_ptr<Vec4> normalize() = 0;
 
     virtual bool isZero() = 0;
 
-    virtual float get(float i) = 0;
+    virtual void set(double x, double y, double z, double w) = 0;
 
-    virtual void set(float i, float v) = 0;
-
-    virtual float dot(const std::shared_ptr<Vec4> & v) = 0;
+    virtual double dot(const std::shared_ptr<Vec4> & v) = 0;
 
     virtual std::shared_ptr<Vec4> cross(const std::shared_ptr<Vec4> & v) = 0;
 
-    virtual float distance(const std::shared_ptr<Vec4> & v) = 0;
+    virtual double distance(const std::shared_ptr<Vec4> & v) = 0;
 
     virtual void invert() = 0;
 
-    static std::shared_ptr<Vec4> create(float x, float y, float z);
+    static std::shared_ptr<Vec4> create(double x, double y, double z);
 };
 
 }  // namespace nok

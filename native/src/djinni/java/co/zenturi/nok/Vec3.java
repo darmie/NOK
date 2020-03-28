@@ -6,17 +6,11 @@ package co.zenturi.nok;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class Vec3 {
-    public abstract float getX();
+    public abstract double getX();
 
-    public abstract float getY();
+    public abstract double getY();
 
-    public abstract float getZ();
-
-    public abstract void setX(float x);
-
-    public abstract void setY(float y);
-
-    public abstract void setZ(float z);
+    public abstract double getZ();
 
     public abstract void add(Vec3 v);
 
@@ -24,31 +18,33 @@ public abstract class Vec3 {
 
     public abstract void sub(Vec3 v);
 
-    public abstract void multiply(float i);
+    public abstract void multiply(double i);
 
-    public abstract void divide(float i);
+    public abstract void divide(double i);
 
-    public abstract float squareLength();
+    public abstract double squareLength();
 
-    public abstract float getLength();
+    public abstract double getLength();
 
-    public abstract void setLength(float length);
+    public abstract void setLength(double length);
 
     public abstract Vec3 normalize();
 
     public abstract boolean isZero();
 
-    public abstract float get(float i);
+    public abstract Vec3 getXyz();
 
-    public abstract void set(float i, float v);
+    public abstract void set(double x, double y, double z);
 
-    public abstract float dot(Vec3 v);
+    public abstract double dot(Vec3 v);
 
     public abstract Vec3 cross(Vec3 v);
 
-    public abstract float distance(Vec3 v);
+    public abstract double distance(Vec3 v);
 
-    public static Vec3 create(float x, float y, float z)
+    public abstract void invert();
+
+    public static Vec3 create(double x, double y, double z)
     {
         return CppProxy.create(x,
                                y,
@@ -79,52 +75,28 @@ public abstract class Vec3 {
         }
 
         @Override
-        public float getX()
+        public double getX()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_getX(this.nativeRef);
         }
-        private native float native_getX(long _nativeRef);
+        private native double native_getX(long _nativeRef);
 
         @Override
-        public float getY()
+        public double getY()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_getY(this.nativeRef);
         }
-        private native float native_getY(long _nativeRef);
+        private native double native_getY(long _nativeRef);
 
         @Override
-        public float getZ()
+        public double getZ()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_getZ(this.nativeRef);
         }
-        private native float native_getZ(long _nativeRef);
-
-        @Override
-        public void setX(float x)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_setX(this.nativeRef, x);
-        }
-        private native void native_setX(long _nativeRef, float x);
-
-        @Override
-        public void setY(float y)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_setY(this.nativeRef, y);
-        }
-        private native void native_setY(long _nativeRef, float y);
-
-        @Override
-        public void setZ(float z)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_setZ(this.nativeRef, z);
-        }
-        private native void native_setZ(long _nativeRef, float z);
+        private native double native_getZ(long _nativeRef);
 
         @Override
         public void add(Vec3 v)
@@ -151,44 +123,44 @@ public abstract class Vec3 {
         private native void native_sub(long _nativeRef, Vec3 v);
 
         @Override
-        public void multiply(float i)
+        public void multiply(double i)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             native_multiply(this.nativeRef, i);
         }
-        private native void native_multiply(long _nativeRef, float i);
+        private native void native_multiply(long _nativeRef, double i);
 
         @Override
-        public void divide(float i)
+        public void divide(double i)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             native_divide(this.nativeRef, i);
         }
-        private native void native_divide(long _nativeRef, float i);
+        private native void native_divide(long _nativeRef, double i);
 
         @Override
-        public float squareLength()
+        public double squareLength()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_squareLength(this.nativeRef);
         }
-        private native float native_squareLength(long _nativeRef);
+        private native double native_squareLength(long _nativeRef);
 
         @Override
-        public float getLength()
+        public double getLength()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_getLength(this.nativeRef);
         }
-        private native float native_getLength(long _nativeRef);
+        private native double native_getLength(long _nativeRef);
 
         @Override
-        public void setLength(float length)
+        public void setLength(double length)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             native_setLength(this.nativeRef, length);
         }
-        private native void native_setLength(long _nativeRef, float length);
+        private native void native_setLength(long _nativeRef, double length);
 
         @Override
         public Vec3 normalize()
@@ -207,28 +179,28 @@ public abstract class Vec3 {
         private native boolean native_isZero(long _nativeRef);
 
         @Override
-        public float get(float i)
+        public Vec3 getXyz()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_get(this.nativeRef, i);
+            return native_getXyz(this.nativeRef);
         }
-        private native float native_get(long _nativeRef, float i);
+        private native Vec3 native_getXyz(long _nativeRef);
 
         @Override
-        public void set(float i, float v)
+        public void set(double x, double y, double z)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_set(this.nativeRef, i, v);
+            native_set(this.nativeRef, x, y, z);
         }
-        private native void native_set(long _nativeRef, float i, float v);
+        private native void native_set(long _nativeRef, double x, double y, double z);
 
         @Override
-        public float dot(Vec3 v)
+        public double dot(Vec3 v)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_dot(this.nativeRef, v);
         }
-        private native float native_dot(long _nativeRef, Vec3 v);
+        private native double native_dot(long _nativeRef, Vec3 v);
 
         @Override
         public Vec3 cross(Vec3 v)
@@ -239,13 +211,21 @@ public abstract class Vec3 {
         private native Vec3 native_cross(long _nativeRef, Vec3 v);
 
         @Override
-        public float distance(Vec3 v)
+        public double distance(Vec3 v)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_distance(this.nativeRef, v);
         }
-        private native float native_distance(long _nativeRef, Vec3 v);
+        private native double native_distance(long _nativeRef, Vec3 v);
 
-        public static native Vec3 create(float x, float y, float z);
+        @Override
+        public void invert()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_invert(this.nativeRef);
+        }
+        private native void native_invert(long _nativeRef);
+
+        public static native Vec3 create(double x, double y, double z);
     }
 }

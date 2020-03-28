@@ -1,301 +1,87 @@
-vec2i = interface +c {
-    get_x(): i32;
-    get_y(): i32;
-
-    set_x(x: i32);
-    set_y(y: i32);
-
-    add(v: vec2i);
-    addScaledVector(v: vec2i);
-    sub(v: vec2i);
-    multiply(i: i32);
-    divide(i: i32);
-
-    squareLength(): i32;
-    getLength(): i32;
-    setLength(length: i32);
-
-    normalize(): vec2i;
-    isZero(): bool;
-
-    get(i: i32): i32;
-    set(i: i32, v:i32);
-
-    dot(v: vec2i): i32;
-    cross(v: vec2i): vec2i;
-
-    distance(v: vec2i): i32;
-
-    static create(x: i32, y: i32): vec2i;
-}
-
-vec3i = interface +c {
-    get_x(): i32;
-    get_y():i32;
-    get_z():i32;
-
-    set_x(x: i32);
-    set_y(y: i32);
-    set_z(z: i32);
-
-    add(v: vec3i);
-    addScaledVector(v: vec3i);
-    sub(v: vec3i);
-    multiply(i: i32);
-    divide(i: i32);
-
-    squareLength(): i32;
-    getLength(): i32;
-    setLength(length: i32);
-
-    normalize(): vec3i;
-    isZero(): bool;
-
-    get(i: i32): i32;
-    set(i: i32, v:i32);
-
-    dot(v: vec3i): i32;
-    cross(v: vec3i): vec3i;
-
-    distance(v: vec3i): i32;
-
-    static create(x: i32, y: i32, z: i32): vec3i;
-}
-
-vec4i = interface +c {
-    get_x(): i32;
-    get_y():i32;
-    get_z():i32;
-
-    set_x(x: i32);
-    set_y(y: i32);
-    set_z(z: i32);
-    set_w(w: i32);
-
-    add(v: vec4i);
-    addScaledVector(v: vec4i);
-    sub(v: vec4i);
-    multiply(i: i32);
-    divide(i: i32);
-
-    squareLength(): i32;
-    getLength(): i32;
-    setLength(length: i32);
-
-    normalize(): vec4i;
-    isZero(): bool;
-
-    get(i: i32): i32;
-    set(i: i32, v:i32);
-
-    dot(v: vec4i): i32;
-    cross(v: vec4i): vec4i;
-
-    distance(v: vec4i): i32;
-
-    static create(x: i32, y: i32, z: i32): vec4i;
-}
-
-
-
 vec2 = interface +c {
-    get_x(): f32;
-    get_y(): f32;
-
-    set_x(x: f32);
-    set_y(y: f32);
+    get_x(): f64;
+    get_y(): f64;
 
     add(v: vec2);
     addScaledVector(v: vec2);
     sub(v: vec2);
-    multiply(i: f32);
-    divide(i: f32);
+    multiply(i: f64);
+    divide(i: f64);
 
-    squareLength(): f32;
-    getLength(): f32;
-    setLength(length: f32);
+    squareLength(): f64;
+    getLength(): f64;
+    setLength(length: f64);
 
     normalize(): vec2;
     isZero(): bool;
+    get_xy():vec2;
+    set(i: f64, v:f64);
 
-    get(i: f32): f32;
-    set(i: f32, v:f32);
-
-    dot(v: vec2): f32;
+    dot(v: vec2): f64;
     cross(v: vec2): vec2;
 
-    distance(v: vec2): f32;
+    distance(v: vec2): f64;
 
-    static create(x: f32, y: f32): vec2;
+    invert();
+    static create(x: f64, y: f64): vec2;
 }
 
 vec3 = interface +c {
-    get_x(): f32;
-    get_y(): f32;
-    get_z(): f32;
-
-    set_x(x: f32);
-    set_y(y: f32);
-    set_z(z: f32);
+    get_x(): f64;
+    get_y(): f64;
+    get_z(): f64;
 
     add(v: vec3);
     addScaledVector(v: vec3);
     sub(v: vec3);
-    multiply(i: f32);
-    divide(i: f32);
+    multiply(i: f64);
+    divide(i: f64);
 
-    squareLength(): f32;
-    getLength(): f32;
-    setLength(length: f32);
+    squareLength(): f64;
+    getLength(): f64;
+    setLength(length: f64);
 
     normalize(): vec3;
     isZero(): bool;
+    get_xyz():vec3;
+    set(x: f64, y:f64, z:f64);
 
-    get(i: f32): f32;
-    set(i: f32, v:f32);
-
-    dot(v: vec3): f32;
+    dot(v: vec3): f64;
     cross(v: vec3): vec3;
 
-    distance(v: vec3): f32;
+    distance(v: vec3): f64;
 
-    static create(x: f32, y: f32, z: f32): vec3;
+    invert();
+    static create(x: f64, y: f64, z: f64): vec3;
 }
 
 vec4 = interface +c {
-    get_x(): f32;
-    get_y():f32;
-    get_z():f32;
-
-    set_x(x: f32);
-    set_y(y: f32);
-    set_z(z: f32);
-    set_w(w: f32);
+    get_x(): f64;
+    get_y(): f64;
+    get_z(): f64;
 
     add(v: vec4);
     addScaledVector(v: vec4);
     sub(v: vec4);
-    multiply(i: f32);
-    divide(i: f32);
+    multiply(i: f64);
+    divide(i: f64);
 
-    squareLength(): f32;
-    getLength(): f32;
-    setLength(length: f32);
+    squareLength(): f64;
+    getLength(): f64;
+    setLength(length: f64);
 
     normalize(): vec4;
     isZero(): bool;
 
-    get(i: f32): f32;
-    set(i: f32, v:f32);
+    set(x: f64, y:f64, z:f64, w:f64);
 
-    dot(v: vec4): f32;
+    dot(v: vec4): f64;
     cross(v: vec4): vec4;
 
-    distance(v: vec4): f32;
+    distance(v: vec4): f64;
 
     invert();
-    static create(x: f32, y: f32, z: f32): vec4;
-}
-
-vec2d = interface +c {
-    get_x(): f64;
-    get_y(): f64;
-
-    set_x(x: f64);
-    set_y(y: f64);
-
-    add(v: vec2d);
-    addScaledVector(v: vec2d);
-    sub(v: vec2d);
-    multiply(i: f64);
-    divide(i: f64);
-
-    squareLength(): f64;
-    getLength(): f64;
-    setLength(length: f64);
-
-    normalize(): vec2d;
-    isZero(): bool;
-
-    get(i: f64): f64;
-    set(i: f64, v:f64);
-
-    dot(v: vec2d): f64;
-    cross(v: vec2d): vec2d;
-
-    distance(v: vec2d): f64;
-
-    invert();
-    static create(x: f64, y: f64): vec2d;
-}
-
-vec3d = interface +c {
-    get_x(): f64;
-    get_y(): f64;
-    get_z(): f64;
-
-    set_x(x: f64);
-    set_y(y: f64);
-    set_z(z: f64);
-
-    add(v: vec3d);
-    addScaledVector(v: vec3d);
-    sub(v: vec3d);
-    multiply(i: f64);
-    divide(i: f64);
-
-    squareLength(): f64;
-    getLength(): f64;
-    setLength(length: f64);
-
-    normalize(): vec3d;
-    isZero(): bool;
-
-    get(i: f64): f64;
-    set(i: f64, v:f64);
-
-    dot(v: vec3d): f64;
-    cross(v: vec3d): vec3d;
-
-    distance(v: vec3d): f64;
-
-    invert();
-    static create(x: f64, y: f64, z: f64): vec3d;
-}
-
-vec4d = interface +c {
-    get_x(): f64;
-    get_y(): f64;
-    get_z(): f64;
-
-    set_x(x: f64);
-    set_y(y: f64);
-    set_z(z: f64);
-    set_w(w: f64);
-
-    add(v: vec4d);
-    addScaledVector(v: vec4d);
-    sub(v: vec4d);
-    multiply(i: f64);
-    divide(i: f64);
-
-    squareLength(): f64;
-    getLength(): f64;
-    setLength(length: f64);
-
-    normalize(): vec4d;
-    isZero(): bool;
-
-    get(i: f64): f64;
-    set(i: f64, v:f64);
-
-    dot(v: vec4d): f64;
-    cross(v: vec4d): vec4d;
-
-    distance(v: vec4d): f64;
-
-    invert();
-    static create(x: f64, y: f64, z: f64): vec4d;
+    static create(x: f64, y: f64, z: f64): vec4;
 }
 
 
@@ -311,8 +97,8 @@ mat2 = interface +c {
     static perspective(left: f32, right: f32, top: f32, bottom: f32, near: f32, far: f32): mat2;
     static perspectiveFOV(fov: f32, aspect: f32, near: f32, far: f32): mat2;
 
-    static lookAt(eye: vec3i, at: vec3i, up: vec3i): mat2;
-    static lookAlong(axis: vec3i, eye: vec3i, up: vec3i): mat2;
+    static lookAt(eye: vec3, at: vec3, up: vec3): mat2;
+    static lookAlong(axis: vec3, eye: vec3, up: vec3): mat2;
 
     static translation(x: f32, y: f32): mat2;
     static movement(x: f32, y: f32, z: f32):mat2;
@@ -355,8 +141,8 @@ mat3 = interface +c {
     static perspective(left: f32, right: f32, top: f32, bottom: f32, near: f32, far: f32): mat3;
     static perspectiveFOV(fov: f32, aspect: f32, near: f32, far: f32): mat3;
 
-    static lookAt(eye: vec3i, at: vec3i, up: vec3i): mat3;
-    static lookAlong(axis: vec3i, eye: vec3i, up: vec3i): mat3;
+    static lookAt(eye: vec3, at: vec3, up: vec3): mat3;
+    static lookAlong(axis: vec3, eye: vec3, up: vec3): mat3;
 
     static translation(x: f32, y: f32): mat3;
     static movement(x: f32, y: f32, z: f32):mat3;
@@ -400,8 +186,8 @@ mat4 = interface +c {
     static perspective(left: f32, right: f32, top: f32, bottom: f32, near: f32, far: f32): mat4;
     static perspectiveFOV(fov: f32, aspect: f32, near: f32, far: f32): mat4;
 
-    static lookAt(eye: vec3i, at: vec3i, up: vec3i): mat4;
-    static lookAlong(axis: vec3i, eye: vec3i, up: vec3i): mat4;
+    static lookAt(eye: vec3, at: vec3, up: vec3): mat4;
+    static lookAlong(axis: vec3, eye: vec3, up: vec3): mat4;
 
     static translation(x: f32, y: f32): mat4;
     static movement(x: f32, y: f32, z: f32):mat4;

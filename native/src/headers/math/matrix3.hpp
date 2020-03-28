@@ -35,11 +35,11 @@ public:
         return std::make_shared<Matrix3<T>>(Kore::Matrix<3U, 3U, T>::Perspective(fov, aspect, near, far));
     }
 
-    static std::shared_ptr<Mat3> lookAt(const std::shared_ptr<Vec3i> &eye, const std::shared_ptr<Vec3i> &at, const std::shared_ptr<Vec3i> &up)
+    static std::shared_ptr<Mat3> lookAt(const std::shared_ptr<Vec3> &eye, const std::shared_ptr<Vec3> &at, const std::shared_ptr<Vec3> &up)
     {
     }
 
-    static std::shared_ptr<Mat3> lookAlong(const std::shared_ptr<Vec3i> &axis, const std::shared_ptr<Vec3i> &eye, const std::shared_ptr<Vec3i> &up)
+    static std::shared_ptr<Mat3> lookAlong(const std::shared_ptr<Vec3> &axis, const std::shared_ptr<Vec3> &eye, const std::shared_ptr<Vec3> &up)
     {
     }
 
