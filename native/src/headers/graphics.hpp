@@ -84,13 +84,13 @@ namespace nok
 
             static void setMatrix3(const std::shared_ptr<ConstantLocation> & location, const std::shared_ptr<Mat3> & mat) {
                 Kore::Graphics4::ConstantLocation loc = *static_cast<ConstantLocationImpl*>(location.get());
-                Kore::mat3 mat3 = *static_cast<Matrix3Impl*>(mat.get());
+                Kore::mat3 mat3 = *static_cast<Matrix3<float>*>(mat.get());
                 Kore::Graphics4::setMatrix(loc, mat3);
             }
 
             static void setMatrix4(const std::shared_ptr<ConstantLocation> & location, const std::shared_ptr<Mat4> & mat) {
                 Kore::Graphics4::ConstantLocation loc = *static_cast<ConstantLocationImpl*>(location.get());
-                Kore::mat4 mat4 = *static_cast<Matrix4Impl*>(mat.get());
+                Kore::mat4 mat4 = *static_cast<Matrix4<float>*>(mat.get());
                 Kore::Graphics4::setMatrix(loc, mat4);
             }
 
