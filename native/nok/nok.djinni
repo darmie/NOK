@@ -1,7 +1,7 @@
 
 @import "math.djinni"
 @import "system.djinni"
-# @import "audio.djinni"
+@import "audio.djinni"
 
 color = interface +c {
     const Black: f64 = 4278190080;

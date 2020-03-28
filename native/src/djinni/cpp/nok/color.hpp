@@ -7,7 +7,6 @@
 
 namespace nok {
 
-/** @import "audio.djinni" */
 class Color {
 public:
     virtual ~Color() {}

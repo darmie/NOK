@@ -1,93 +1,124 @@
-sound = record {
-    filename: string;
-    format:buffer_format;
-    volume: f32;
-    size: i32;
-    sampleRatePos: f32;
-    length: f32;
+sound = interface +c {
+    get_compressedData():binary;
+    get_uncompressedData():list<f32>;
+    get_length(): f32;
+    get_channels(): i32;
+    get_sampleRate(): i32;
+
+    set_compressedData(b:binary);
+    set_uncompressedData(d:list<f32>);
+    set_length(length: f32);
+    set_channels(channels: i32);
+    set_sampleRate(rate: i32);
+
+    unload();
+
+    static create(): sound;
 }
 
 
-sound_stream = record {
-    filename: string;
-    nextSample: f32;
-    channels: i32;
-    sampleRate: i32;
-    looping: bool;
-    ended: bool;
-    length: f32;
-    position:f32;
-    volume: f32;
+audio_channel = interface +c {
+    get_data():list<f32>;
+
+    static create(looping: bool): audio_channel;
+    nextSamples(requestedSamples: list<f32>, requestedLength: i32, sampleRate: i32);
+    play();
+    pause();
+    stop();
+    get_length(): f32;
+    get_position(): f32;
+    set_position(pos: f32);
+    get_volume(): f32;
+    set_volume(vol: f32);
+
+    get_finished(): bool;
+
+    max(a: i32, b: i32);
+    min(a: i32, b: i32);
+}
+
+resampling_audio_channel = interface +c {
+    get_data():list<f32>;
+    get_samplesRate(): i32;
+
+    static create(looping: bool, sampleRate: i32): audio_channel;
+
+    sample(position: i32, sampleRate: i32):f32;
+
+    lerp(v0: f32, v1: f32, t: f32);
+
+    sampleLength(sampleRate: i32): i32;
+
+    nextSamples(requestedSamples: list<f32>, requestedLength: i32, sampleRate: i32);
+    play();
+    pause();
+    stop();
+    get_length(): f32;
+    get_position(): f32;
+    set_position(pos: f32);
+    get_volume(): f32;
+    set_volume(vol: f32);
+
+    get_finished(): bool;
+
+    max(a: i32, b: i32);
+    min(a: i32, b: i32);
+}
+
+stream_channel = interface +c {
+    get_data():list<f32>;
+
+    static create(data:binary, looping: bool): audio_channel;
+    nextSamples(requestedSamples: list<f32>, requestedLength: i32, sampleRate: i32);
+    play();
+    pause();
+    stop();
+    get_length(): f32;
+    get_position(): f32;
+    set_position(pos: f32);
+    get_volume(): f32;
+    set_volume(vol: f32);
+
+    get_finished(): bool;
+
+    max(a: i32, b: i32);
+    min(a: i32, b: i32);
 }
 
 
 
-buffer_format = record {
-    channels: i32;
-    samplesPerSecond: i32;
-    bitsPerSample: i32;
+audio_buffer = interface +c {
+    static create(size: i32, channels: i32, samplesPerSecond: i32);
+    get_channels(): i32;
+    get_samplesPerSecond(): i32;
+    get_data():list<f32>;
+    get_size(): i32;
+    get_readLocation():i32;
+    get_writeLocation():i32;
+
+    set_channels(channels: i32);
+    set_samplesPerSecond(samples: i32);
+    set_data(data:list<f32>);
+    set_size(s: i32);
+    set_readLocation(loc:i32);
+    set_writeLocation(loc:i32);
 }
 
-audio_buffer = record {
-    format: buffer_format;
-    data: binary;
-    dataSize: i32;
-    readLocation: i32;
-    writeLocation: i32;
-}
 
-channel = record {
-    sound: sound;
-    position: f32;
-    loop: bool;
-    volume: f32;
-    pitch: f32;
-}
+audio = interface +c {
+    get_samplesPerSecond(): i32;
 
-stream_channel = record {
-    stream: sound_stream;
-    position: i32;
-}
-
-# video_channel = record {
-#     stream: video_sound_stream;
-#     position: i32;
-# }
-
-audio3_channel = record {
-    origin: vec3;
-    buffer: audio_format;
-    active: bool;
+    stream(sound: sound, loop: bool): audio_channel;
 }
 
 audio1 = interface +c {
-
-    static init(): audio1;
-    static play(sound: sound, loop: bool, pitch: f32, unique: bool): channel;
-    static stop(sound: sound);
-    static playStream(stream: sound_stream);
-    static stopStream(stream: sound_stream);
-
-    # static playVideoStream(stream: video_stream);
-    # static stopVideoStream(stream: video_stream);
-
-    static mix(samples: i32);
-
-}
-
-audio2 = interface +c {
     static init();
-	static update();
-	static shutdown();
 
-    static get_samplesPerSecond(): i32;
-}
+    max(a: f32, b: f32): f32;
+    min(a: f32, b: f32): f32;
 
-audio3 = interface +c {
-    static init();
-	static update();
-	static shutdown();
-
-    static createChannel(origin:vec3): audio3_channel;
-    static destroyChannel(channel: audio3_channel);
+    mix(samplesBox: i32, buffer: audio_buffer): f32;
+    play(sound: sound, loop: bool): audio_channel;
+    playAgain(channel: audio_channel);
+    stream(sound: sound, loop: bool): audio_channel;
 }

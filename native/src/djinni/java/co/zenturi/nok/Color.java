@@ -5,7 +5,6 @@ package co.zenturi.nok;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-/** @import "audio.djinni" */
 public abstract class Color {
     public static final double BLACK = 4278190080;
 

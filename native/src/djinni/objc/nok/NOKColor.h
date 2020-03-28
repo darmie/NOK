@@ -16,7 +16,6 @@ extern float const NOKColorPurple;
 extern float const NOKColorPink;
 extern float const NOKColorOrange;
 
-/** @import "audio.djinni" */
 @interface NOKColor : NSObject
 
 - (float)getR;
