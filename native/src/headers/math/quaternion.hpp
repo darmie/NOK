@@ -63,8 +63,8 @@ public:
     std::shared_ptr<nok::Quaternion> addVec3(const std::shared_ptr<Vec3> &v)
     {
         QuaternionImpl result(x, y, z, w);
-        QuaternionImpl q1(0, v->get_x(), v->get_y(), v->get_z());
-        static_cast<Kore::Quaternion>(q1) = static_cast<Kore::Quaternion>(q1) * result;
+        Kore::Quaternion q1(0, v->get_x(), v->get_y(), v->get_z());
+        q1 = q1 * result;
         result.x += q1.x * 0.5f;
         result.y += q1.y * 0.5f;
         result.z += q1.z * 0.5f;
