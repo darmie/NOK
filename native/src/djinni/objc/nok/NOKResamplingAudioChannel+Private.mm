@@ -6,7 +6,6 @@
 #import "DJICppWrapperCache+Private.h"
 #import "DJIError.h"
 #import "DJIMarshal+Private.h"
-#import "NOKAudioChannel+Private.h"
 #include <exception>
 #include <stdexcept>
 #include <utility>
@@ -38,6 +37,12 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
+- (void)setData:(nonnull NSArray<NSNumber *> *)d {
+    try {
+        _cppRefHandle.get()->set_data(::djinni::List<::djinni::F32>::toCpp(d));
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 - (int32_t)getSamplesRate {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->get_samplesRate();
@@ -45,12 +50,12 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable NOKAudioChannel *)create:(BOOL)looping
-                          sampleRate:(int32_t)sampleRate {
++ (nullable NOKResamplingAudioChannel *)create:(BOOL)looping
+                                    sampleRate:(int32_t)sampleRate {
     try {
         auto objcpp_result_ = ::nok::ResamplingAudioChannel::create(::djinni::Bool::toCpp(looping),
                                                                     ::djinni::I32::toCpp(sampleRate));
-        return ::djinni_generated::AudioChannel::fromCpp(objcpp_result_);
+        return ::djinni_generated::ResamplingAudioChannel::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

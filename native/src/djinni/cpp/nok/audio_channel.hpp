@@ -15,6 +15,8 @@ public:
 
     virtual std::vector<float> get_data() = 0;
 
+    virtual void set_data(const std::vector<float> & d) = 0;
+
     static std::shared_ptr<AudioChannel> create(bool looping);
 
     virtual void nextSamples(const std::vector<float> & requestedSamples, int32_t requestedLength, int32_t sampleRate) = 0;

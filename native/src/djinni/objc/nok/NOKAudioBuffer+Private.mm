@@ -30,13 +30,14 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
-+ (void)create:(int32_t)size
-      channels:(int32_t)channels
-samplesPerSecond:(int32_t)samplesPerSecond {
++ (nullable NOKAudioBuffer *)create:(int32_t)size
+                           channels:(int32_t)channels
+                   samplesPerSecond:(int32_t)samplesPerSecond {
     try {
-        ::nok::AudioBuffer::create(::djinni::I32::toCpp(size),
-                                   ::djinni::I32::toCpp(channels),
-                                   ::djinni::I32::toCpp(samplesPerSecond));
+        auto objcpp_result_ = ::nok::AudioBuffer::create(::djinni::I32::toCpp(size),
+                                                         ::djinni::I32::toCpp(channels),
+                                                         ::djinni::I32::toCpp(samplesPerSecond));
+        return ::djinni_generated::AudioBuffer::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

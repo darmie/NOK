@@ -33,7 +33,7 @@ public abstract class StreamChannel {
 
     public abstract void min(int a, int b);
 
-    public static AudioChannel create(byte[] data, boolean looping)
+    public static StreamChannel create(byte[] data, boolean looping)
     {
         return CppProxy.create(data,
                                looping);
@@ -166,6 +166,6 @@ public abstract class StreamChannel {
         }
         private native void native_min(long _nativeRef, int a, int b);
 
-        public static native AudioChannel create(byte[] data, boolean looping);
+        public static native StreamChannel create(byte[] data, boolean looping);
     }
 }

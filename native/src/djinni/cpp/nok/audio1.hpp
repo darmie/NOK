@@ -27,8 +27,6 @@ public:
     virtual std::shared_ptr<AudioChannel> play(const std::shared_ptr<Sound> & sound, bool loop) = 0;
 
     virtual void playAgain(const std::shared_ptr<AudioChannel> & channel) = 0;
-
-    virtual std::shared_ptr<AudioChannel> stream(const std::shared_ptr<Sound> & sound, bool loop) = 0;
 };
 
 }  // namespace nok

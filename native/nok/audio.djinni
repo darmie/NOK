@@ -19,6 +19,7 @@ sound = interface +c {
 
 audio_channel = interface +c {
     get_data():list<f32>;
+    set_data(d:list<f32>);
 
     static create(looping: bool): audio_channel;
     nextSamples(requestedSamples: list<f32>, requestedLength: i32, sampleRate: i32);
@@ -39,9 +40,10 @@ audio_channel = interface +c {
 
 resampling_audio_channel = interface +c {
     get_data():list<f32>;
+    set_data(d:list<f32>);
     get_samplesRate(): i32;
 
-    static create(looping: bool, sampleRate: i32): audio_channel;
+    static create(looping: bool, sampleRate: i32): resampling_audio_channel;
 
     sample(position: i32, sampleRate: i32):f32;
 
@@ -68,7 +70,7 @@ resampling_audio_channel = interface +c {
 stream_channel = interface +c {
     get_data():list<f32>;
 
-    static create(data:binary, looping: bool): audio_channel;
+    static create(data:binary, looping: bool): stream_channel;
     nextSamples(requestedSamples: list<f32>, requestedLength: i32, sampleRate: i32);
     play();
     pause();
@@ -88,7 +90,7 @@ stream_channel = interface +c {
 
 
 audio_buffer = interface +c {
-    static create(size: i32, channels: i32, samplesPerSecond: i32);
+    static create(size: i32, channels: i32, samplesPerSecond: i32): audio_buffer;
     get_channels(): i32;
     get_samplesPerSecond(): i32;
     get_data():list<f32>;
@@ -108,7 +110,13 @@ audio_buffer = interface +c {
 audio = interface +c {
     get_samplesPerSecond(): i32;
 
-    stream(sound: sound, loop: bool): audio_channel;
+    static stream(sound: sound, loop: bool): audio_channel;
+    static init();
+    static getBuffer(): audio_buffer;
+    static setBuffer(buf: audio_buffer);
+    static update();
+    static shutdown();
+    static readSample(): f32;
 }
 
 audio1 = interface +c {
@@ -120,5 +128,4 @@ audio1 = interface +c {
     mix(samplesBox: i32, buffer: audio_buffer): f32;
     play(sound: sound, loop: bool): audio_channel;
     playAgain(channel: audio_channel);
-    stream(sound: sound, loop: bool): audio_channel;
 }

@@ -81,15 +81,6 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nullable NOKAudioChannel *)stream:(nullable NOKSound *)sound
-                                loop:(BOOL)loop {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->stream(::djinni_generated::Sound::toCpp(sound),
-                                                          ::djinni::Bool::toCpp(loop));
-        return ::djinni_generated::AudioChannel::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
 namespace djinni_generated {
 
 auto Audio1::toCpp(ObjcType objc) -> CppType

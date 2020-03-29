@@ -19,14 +19,15 @@ CJNIEXPORT void JNICALL Java_co_zenturi_nok_AudioBuffer_00024CppProxy_nativeDest
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT void JNICALL Java_co_zenturi_nok_AudioBuffer_00024CppProxy_create(JNIEnv* jniEnv, jobject /*this*/, jint j_size, jint j_channels, jint j_samplesPerSecond)
+CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_AudioBuffer_00024CppProxy_create(JNIEnv* jniEnv, jobject /*this*/, jint j_size, jint j_channels, jint j_samplesPerSecond)
 {
     try {
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
-        ::nok::AudioBuffer::create(::djinni::I32::toCpp(jniEnv, j_size),
-                                   ::djinni::I32::toCpp(jniEnv, j_channels),
-                                   ::djinni::I32::toCpp(jniEnv, j_samplesPerSecond));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+        auto r = ::nok::AudioBuffer::create(::djinni::I32::toCpp(jniEnv, j_size),
+                                            ::djinni::I32::toCpp(jniEnv, j_channels),
+                                            ::djinni::I32::toCpp(jniEnv, j_samplesPerSecond));
+        return ::djinni::release(::djinni_generated::NativeAudioBuffer::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
 CJNIEXPORT jint JNICALL Java_co_zenturi_nok_AudioBuffer_00024CppProxy_native_1getChannels(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)

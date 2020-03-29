@@ -16,8 +16,6 @@ public abstract class Audio1 {
 
     public abstract void playAgain(AudioChannel channel);
 
-    public abstract AudioChannel stream(Sound sound, boolean loop);
-
     public static void init()
     {
         CppProxy.init();
@@ -85,14 +83,6 @@ public abstract class Audio1 {
             native_playAgain(this.nativeRef, channel);
         }
         private native void native_playAgain(long _nativeRef, AudioChannel channel);
-
-        @Override
-        public AudioChannel stream(Sound sound, boolean loop)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_stream(this.nativeRef, sound, loop);
-        }
-        private native AudioChannel native_stream(long _nativeRef, Sound sound, boolean loop);
 
         public static native void init();
     }

@@ -9,6 +9,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class AudioChannel {
     public abstract ArrayList<Float> getData();
 
+    public abstract void setData(ArrayList<Float> d);
+
     public abstract void nextSamples(ArrayList<Float> requestedSamples, int requestedLength, int sampleRate);
 
     public abstract void play();
@@ -68,6 +70,14 @@ public abstract class AudioChannel {
             return native_getData(this.nativeRef);
         }
         private native ArrayList<Float> native_getData(long _nativeRef);
+
+        @Override
+        public void setData(ArrayList<Float> d)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_setData(this.nativeRef, d);
+        }
+        private native void native_setData(long _nativeRef, ArrayList<Float> d);
 
         @Override
         public void nextSamples(ArrayList<Float> requestedSamples, int requestedLength, int sampleRate)

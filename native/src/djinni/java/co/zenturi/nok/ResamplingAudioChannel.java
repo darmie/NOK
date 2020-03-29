@@ -9,6 +9,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class ResamplingAudioChannel {
     public abstract ArrayList<Float> getData();
 
+    public abstract void setData(ArrayList<Float> d);
+
     public abstract int getSamplesRate();
 
     public abstract float sample(int position, int sampleRate);
@@ -41,7 +43,7 @@ public abstract class ResamplingAudioChannel {
 
     public abstract void min(int a, int b);
 
-    public static AudioChannel create(boolean looping, int sampleRate)
+    public static ResamplingAudioChannel create(boolean looping, int sampleRate)
     {
         return CppProxy.create(looping,
                                sampleRate);
@@ -77,6 +79,14 @@ public abstract class ResamplingAudioChannel {
             return native_getData(this.nativeRef);
         }
         private native ArrayList<Float> native_getData(long _nativeRef);
+
+        @Override
+        public void setData(ArrayList<Float> d)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_setData(this.nativeRef, d);
+        }
+        private native void native_setData(long _nativeRef, ArrayList<Float> d);
 
         @Override
         public int getSamplesRate()
@@ -206,6 +216,6 @@ public abstract class ResamplingAudioChannel {
         }
         private native void native_min(long _nativeRef, int a, int b);
 
-        public static native AudioChannel create(boolean looping, int sampleRate);
+        public static native ResamplingAudioChannel create(boolean looping, int sampleRate);
     }
 }

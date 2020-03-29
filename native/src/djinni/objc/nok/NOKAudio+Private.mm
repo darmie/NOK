@@ -6,6 +6,7 @@
 #import "DJICppWrapperCache+Private.h"
 #import "DJIError.h"
 #import "DJIMarshal+Private.h"
+#import "NOKAudioBuffer+Private.h"
 #import "NOKAudioChannel+Private.h"
 #import "NOKSound+Private.h"
 #include <exception>
@@ -39,12 +40,50 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nullable NOKAudioChannel *)stream:(nullable NOKSound *)sound
++ (nullable NOKAudioChannel *)stream:(nullable NOKSound *)sound
                                 loop:(BOOL)loop {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->stream(::djinni_generated::Sound::toCpp(sound),
-                                                          ::djinni::Bool::toCpp(loop));
+        auto objcpp_result_ = ::nok::Audio::stream(::djinni_generated::Sound::toCpp(sound),
+                                                   ::djinni::Bool::toCpp(loop));
         return ::djinni_generated::AudioChannel::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (void)init {
+    try {
+        ::nok::Audio::init();
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (nullable NOKAudioBuffer *)getBuffer {
+    try {
+        auto objcpp_result_ = ::nok::Audio::getBuffer();
+        return ::djinni_generated::AudioBuffer::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (void)setBuffer:(nullable NOKAudioBuffer *)buf {
+    try {
+        ::nok::Audio::setBuffer(::djinni_generated::AudioBuffer::toCpp(buf));
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (void)update {
+    try {
+        ::nok::Audio::update();
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (void)shutdown {
+    try {
+        ::nok::Audio::shutdown();
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (float)readSample {
+    try {
+        auto objcpp_result_ = ::nok::Audio::readSample();
+        return ::djinni::F32::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

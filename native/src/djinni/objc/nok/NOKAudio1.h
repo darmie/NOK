@@ -25,7 +25,4 @@
 
 - (void)playAgain:(nullable NOKAudioChannel *)channel;
 
-- (nullable NOKAudioChannel *)stream:(nullable NOKSound *)sound
-                                loop:(BOOL)loop;
-
 @end

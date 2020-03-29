@@ -3,7 +3,6 @@
 
 #include "NativeStreamChannel.hpp"  // my header
 #include "Marshal.hpp"
-#include "NativeAudioChannel.hpp"
 
 namespace djinni_generated {
 
@@ -36,7 +35,7 @@ CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_StreamChannel_00024CppProxy_creat
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
         auto r = ::nok::StreamChannel::create(::djinni::Binary::toCpp(jniEnv, j_data),
                                               ::djinni::Bool::toCpp(jniEnv, j_looping));
-        return ::djinni::release(::djinni_generated::NativeAudioChannel::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni_generated::NativeStreamChannel::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 

@@ -8,6 +8,7 @@
 
 namespace nok {
 
+class AudioBuffer;
 class AudioChannel;
 class Sound;
 
@@ -17,7 +18,19 @@ public:
 
     virtual int32_t get_samplesPerSecond() = 0;
 
-    virtual std::shared_ptr<AudioChannel> stream(const std::shared_ptr<Sound> & sound, bool loop) = 0;
+    static std::shared_ptr<AudioChannel> stream(const std::shared_ptr<Sound> & sound, bool loop);
+
+    static void init();
+
+    static std::shared_ptr<AudioBuffer> getBuffer();
+
+    static void setBuffer(const std::shared_ptr<AudioBuffer> & buf);
+
+    static void update();
+
+    static void shutdown();
+
+    static float readSample();
 };
 
 }  // namespace nok

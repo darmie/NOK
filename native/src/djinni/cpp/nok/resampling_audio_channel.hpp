@@ -9,17 +9,17 @@
 
 namespace nok {
 
-class AudioChannel;
-
 class ResamplingAudioChannel {
 public:
     virtual ~ResamplingAudioChannel() {}
 
     virtual std::vector<float> get_data() = 0;
 
+    virtual void set_data(const std::vector<float> & d) = 0;
+
     virtual int32_t get_samplesRate() = 0;
 
-    static std::shared_ptr<AudioChannel> create(bool looping, int32_t sampleRate);
+    static std::shared_ptr<ResamplingAudioChannel> create(bool looping, int32_t sampleRate);
 
     virtual float sample(int32_t position, int32_t sampleRate) = 0;
 

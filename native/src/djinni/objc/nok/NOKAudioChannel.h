@@ -9,6 +9,8 @@
 
 - (nonnull NSArray<NSNumber *> *)getData;
 
+- (void)setData:(nonnull NSArray<NSNumber *> *)d;
+
 + (nullable NOKAudioChannel *)create:(BOOL)looping;
 
 - (void)nextSamples:(nonnull NSArray<NSNumber *> *)requestedSamples

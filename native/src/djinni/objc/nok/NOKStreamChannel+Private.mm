@@ -6,7 +6,6 @@
 #import "DJICppWrapperCache+Private.h"
 #import "DJIError.h"
 #import "DJIMarshal+Private.h"
-#import "NOKAudioChannel+Private.h"
 #include <exception>
 #include <stdexcept>
 #include <utility>
@@ -38,12 +37,12 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable NOKAudioChannel *)create:(nonnull NSData *)data
-                             looping:(BOOL)looping {
++ (nullable NOKStreamChannel *)create:(nonnull NSData *)data
+                              looping:(BOOL)looping {
     try {
         auto objcpp_result_ = ::nok::StreamChannel::create(::djinni::Binary::toCpp(data),
                                                            ::djinni::Bool::toCpp(looping));
-        return ::djinni_generated::AudioChannel::fromCpp(objcpp_result_);
+        return ::djinni_generated::StreamChannel::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

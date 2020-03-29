@@ -9,15 +9,13 @@
 
 namespace nok {
 
-class AudioChannel;
-
 class StreamChannel {
 public:
     virtual ~StreamChannel() {}
 
     virtual std::vector<float> get_data() = 0;
 
-    static std::shared_ptr<AudioChannel> create(const std::vector<uint8_t> & data, bool looping);
+    static std::shared_ptr<StreamChannel> create(const std::vector<uint8_t> & data, bool looping);
 
     virtual void nextSamples(const std::vector<float> & requestedSamples, int32_t requestedLength, int32_t sampleRate) = 0;
 

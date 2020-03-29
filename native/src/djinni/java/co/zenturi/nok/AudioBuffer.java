@@ -31,11 +31,11 @@ public abstract class AudioBuffer {
 
     public abstract void setWriteLocation(int loc);
 
-    public static void create(int size, int channels, int samplesPerSecond)
+    public static AudioBuffer create(int size, int channels, int samplesPerSecond)
     {
-        CppProxy.create(size,
-                        channels,
-                        samplesPerSecond);
+        return CppProxy.create(size,
+                               channels,
+                               samplesPerSecond);
     }
 
     private static final class CppProxy extends AudioBuffer
@@ -157,6 +157,6 @@ public abstract class AudioBuffer {
         }
         private native void native_setWriteLocation(long _nativeRef, int loc);
 
-        public static native void create(int size, int channels, int samplesPerSecond);
+        public static native AudioBuffer create(int size, int channels, int samplesPerSecond);
     }
 }

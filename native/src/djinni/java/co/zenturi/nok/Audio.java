@@ -8,7 +8,41 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class Audio {
     public abstract int getSamplesPerSecond();
 
-    public abstract AudioChannel stream(Sound sound, boolean loop);
+    public static AudioChannel stream(Sound sound, boolean loop)
+    {
+        return CppProxy.stream(sound,
+                               loop);
+    }
+
+    public static void init()
+    {
+        CppProxy.init();
+    }
+
+    public static AudioBuffer getBuffer()
+    {
+        return CppProxy.getBuffer();
+    }
+
+    public static void setBuffer(AudioBuffer buf)
+    {
+        CppProxy.setBuffer(buf);
+    }
+
+    public static void update()
+    {
+        CppProxy.update();
+    }
+
+    public static void shutdown()
+    {
+        CppProxy.shutdown();
+    }
+
+    public static float readSample()
+    {
+        return CppProxy.readSample();
+    }
 
     private static final class CppProxy extends Audio
     {
@@ -41,12 +75,18 @@ public abstract class Audio {
         }
         private native int native_getSamplesPerSecond(long _nativeRef);
 
-        @Override
-        public AudioChannel stream(Sound sound, boolean loop)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_stream(this.nativeRef, sound, loop);
-        }
-        private native AudioChannel native_stream(long _nativeRef, Sound sound, boolean loop);
+        public static native AudioChannel stream(Sound sound, boolean loop);
+
+        public static native void init();
+
+        public static native AudioBuffer getBuffer();
+
+        public static native void setBuffer(AudioBuffer buf);
+
+        public static native void update();
+
+        public static native void shutdown();
+
+        public static native float readSample();
     }
 }

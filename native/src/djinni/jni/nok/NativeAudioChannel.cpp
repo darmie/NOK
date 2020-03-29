@@ -29,6 +29,15 @@ CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_AudioChannel_00024CppProxy_native
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
+CJNIEXPORT void JNICALL Java_co_zenturi_nok_AudioChannel_00024CppProxy_native_1setData(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_d)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::nok::AudioChannel>(nativeRef);
+        ref->set_data(::djinni::List<::djinni::F32>::toCpp(jniEnv, j_d));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
 CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_AudioChannel_00024CppProxy_create(JNIEnv* jniEnv, jobject /*this*/, jboolean j_looping)
 {
     try {

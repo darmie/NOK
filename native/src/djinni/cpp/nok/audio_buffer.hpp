@@ -4,6 +4,7 @@
 #pragma once
 
 #include <cstdint>
+#include <memory>
 #include <vector>
 
 namespace nok {
@@ -12,7 +13,7 @@ class AudioBuffer {
 public:
     virtual ~AudioBuffer() {}
 
-    static void create(int32_t size, int32_t channels, int32_t samplesPerSecond);
+    static std::shared_ptr<AudioBuffer> create(int32_t size, int32_t channels, int32_t samplesPerSecond);
 
     virtual int32_t get_channels() = 0;
 

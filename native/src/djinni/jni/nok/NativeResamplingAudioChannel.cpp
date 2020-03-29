@@ -3,7 +3,6 @@
 
 #include "NativeResamplingAudioChannel.hpp"  // my header
 #include "Marshal.hpp"
-#include "NativeAudioChannel.hpp"
 
 namespace djinni_generated {
 
@@ -30,6 +29,15 @@ CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_ResamplingAudioChannel_00024CppPr
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
+CJNIEXPORT void JNICALL Java_co_zenturi_nok_ResamplingAudioChannel_00024CppProxy_native_1setData(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_d)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE1(jniEnv, nativeRef);
+        const auto& ref = ::djinni::objectFromHandleAddress<::nok::ResamplingAudioChannel>(nativeRef);
+        ref->set_data(::djinni::List<::djinni::F32>::toCpp(jniEnv, j_d));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
 CJNIEXPORT jint JNICALL Java_co_zenturi_nok_ResamplingAudioChannel_00024CppProxy_native_1getSamplesRate(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
@@ -46,7 +54,7 @@ CJNIEXPORT jobject JNICALL Java_co_zenturi_nok_ResamplingAudioChannel_00024CppPr
         DJINNI_FUNCTION_PROLOGUE0(jniEnv);
         auto r = ::nok::ResamplingAudioChannel::create(::djinni::Bool::toCpp(jniEnv, j_looping),
                                                        ::djinni::I32::toCpp(jniEnv, j_sampleRate));
-        return ::djinni::release(::djinni_generated::NativeAudioChannel::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni_generated::NativeResamplingAudioChannel::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
