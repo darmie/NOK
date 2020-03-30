@@ -1,3 +1,6 @@
 [submodule "native/Kinc"]
 	path = native/Kinc
 	url = https://github.com/Kode/Kinc.git
+[submodule "native/djinni-react"]
+	path = native/djinni-react
+	url = https://github.com/sulewicz/djinni-react-native.git
