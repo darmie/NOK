@@ -11,27 +11,27 @@ class Color {
 public:
     virtual ~Color() {}
 
-    static constexpr double BLACK = 4278190080;
+    static double const BLACK;
 
-    static constexpr float WHITE = 4294967295;
+    static float const WHITE;
 
-    static constexpr float RED = 4294901760;
+    static float const RED;
 
-    static constexpr float BLUE = 4278190335;
+    static float const BLUE;
 
-    static constexpr float GREEN = 4278255360;
+    static float const GREEN;
 
-    static constexpr float MAGENTA = 4294902015;
+    static float const MAGENTA;
 
-    static constexpr float YELLOW = 4294967040;
+    static float const YELLOW;
 
-    static constexpr float CYAN = 4278255615;
+    static float const CYAN;
 
-    static constexpr float PURPLE = 4286578816;
+    static float const PURPLE;
 
-    static constexpr float PINK = 4294951115;
+    static float const PINK;
 
-    static constexpr float ORANGE = 4294944000;
+    static float const ORANGE;
 
     virtual float get_R() = 0;
 

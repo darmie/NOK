@@ -1,3 +1,5 @@
+@extern "../djinni-react/support-lib/react.yaml"
+
 vec2 = interface +c {
     get_x(): f64;
     get_y(): f64;
@@ -25,6 +27,34 @@ vec2 = interface +c {
     invert();
     static create(x: f64, y: f64): vec2;
 }
+
+vec2_module = interface +r {
+    get_x(promise:javascript_promise);
+    get_y(promise:javascript_promise);
+
+    add(v: javascript_map);
+    addScaledVector(v: javascript_map);
+    sub(v: javascript_map);
+    multiply(i: f64);
+    divide(i: f64);
+
+    squareLength(promise:javascript_promise);
+    getLength(promise:javascript_promise);
+    setLength(length: f64);
+
+    normalize(promise:javascript_promise);
+    isZero(promise:javascript_promise);
+    get_xy(promise:javascript_promise);
+    set(i: f64, v:f64);
+
+    dot(v: javascript_map, promise:javascript_promise);
+    cross(v: javascript_map, promise:javascript_promise);
+
+    distance(v: javascript_map, promise:javascript_promise);
+
+    invert();
+}
+
 
 vec3 = interface +c {
     get_x(): f64;
@@ -55,10 +85,39 @@ vec3 = interface +c {
     static create(x: f64, y: f64, z: f64): vec3;
 }
 
+vec3_module = interface +r {
+    get_x(promise:javascript_promise);
+    get_y(promise:javascript_promise);
+    get_z(promise:javascript_promise);
+
+    add(v: javascript_map);
+    addScaledVector(v: javascript_map);
+    sub(v: javascript_map);
+    multiply(i: f64);
+    divide(i: f64);
+
+    squareLength(promise:javascript_promise);
+    getLength(promise:javascript_promise);
+    setLength(length: f64);
+
+    normalize(promise:javascript_promise);
+    isZero(promise:javascript_promise);
+    get_xyz(promise:javascript_promise);
+    set(x: f64, y:f64, z:f64);
+
+    dot(v: javascript_map, promise:javascript_promise);
+    cross(v: javascript_map, promise:javascript_promise);
+
+    distance(v: javascript_map, promise:javascript_promise);
+
+    invert();
+}
+
 vec4 = interface +c {
     get_x(): f64;
     get_y(): f64;
     get_z(): f64;
+    get_w(): f64;
 
     add(v: vec4);
     addScaledVector(v: vec4);
@@ -82,6 +141,36 @@ vec4 = interface +c {
 
     invert();
     static create(x: f64, y: f64, z: f64): vec4;
+}
+
+
+vec4_module = interface +r {
+    get_x(promise:javascript_promise);
+    get_y(promise:javascript_promise);
+    get_z(promise:javascript_promise);
+    get_w(promise:javascript_promise);
+
+    add(v: javascript_map);
+    addScaledVector(v: javascript_map);
+    sub(v: javascript_map);
+    multiply(i: f64);
+    divide(i: f64);
+
+    squareLength(promise:javascript_promise);
+    getLength(promise:javascript_promise);
+    setLength(length: f64);
+
+    normalize(promise:javascript_promise);
+    isZero(promise:javascript_promise);
+    get_xyz(promise:javascript_promise);
+    set(x: f64, y:f64, z:f64, w:f64);
+
+    dot(v: javascript_map, promise:javascript_promise);
+    cross(v: javascript_map, promise:javascript_promise);
+
+    distance(v: javascript_map, promise:javascript_promise);
+
+    invert();
 }
 
 

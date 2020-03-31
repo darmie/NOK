@@ -5,26 +5,26 @@
 
 namespace nok {
 
-double constexpr Color::BLACK;
+double const Color::BLACK = 4278190080;
 
-float constexpr Color::WHITE;
+float const Color::WHITE = 4294967295;
 
-float constexpr Color::RED;
+float const Color::RED = 4294901760;
 
-float constexpr Color::BLUE;
+float const Color::BLUE = 4278190335;
 
-float constexpr Color::GREEN;
+float const Color::GREEN = 4278255360;
 
-float constexpr Color::MAGENTA;
+float const Color::MAGENTA = 4294902015;
 
-float constexpr Color::YELLOW;
+float const Color::YELLOW = 4294967040;
 
-float constexpr Color::CYAN;
+float const Color::CYAN = 4278255615;
 
-float constexpr Color::PURPLE;
+float const Color::PURPLE = 4286578816;
 
-float constexpr Color::PINK;
+float const Color::PINK = 4294951115;
 
-float constexpr Color::ORANGE;
+float const Color::ORANGE = 4294944000;
 
 }  // namespace nok

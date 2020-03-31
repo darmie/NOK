@@ -3,4 +3,8 @@
 	url = https://github.com/Kode/Kinc.git
 [submodule "native/djinni-react"]
 	path = native/djinni-react
-	url = https://github.com/sulewicz/djinni-react-native.git
+	url = https://github.com/darmie/djinni-react-native.git
+[submodule "native/src/headers/Serializer"]
+	path = native/src/headers/Serializer
+	url = https://github.com/Loki-Astari/ThorsSerializer.git
+	branch = header-only

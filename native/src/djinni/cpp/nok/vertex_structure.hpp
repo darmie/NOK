@@ -18,7 +18,7 @@ class VertexStructure {
 public:
     virtual ~VertexStructure() {}
 
-    static constexpr int32_t MAXELEMENTSCOUNT = 16;
+    static int32_t const MAXELEMENTSCOUNT;
 
     virtual std::vector<std::shared_ptr<VertexElement>> getElements() = 0;
 

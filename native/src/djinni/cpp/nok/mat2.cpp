@@ -5,8 +5,8 @@
 
 namespace nok {
 
-float constexpr Mat2::WIDTH;
+float const Mat2::WIDTH = 2;
 
-float constexpr Mat2::HEIGHT;
+float const Mat2::HEIGHT = 2;
 
 }  // namespace nok

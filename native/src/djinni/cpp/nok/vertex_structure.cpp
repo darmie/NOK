@@ -7,6 +7,6 @@
 
 namespace nok {
 
-int32_t constexpr VertexStructure::MAXELEMENTSCOUNT;
+int32_t const VertexStructure::MAXELEMENTSCOUNT = 16;
 
 }  // namespace nok

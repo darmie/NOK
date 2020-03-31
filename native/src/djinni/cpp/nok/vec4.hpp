@@ -17,6 +17,8 @@ public:
 
     virtual double get_z() = 0;
 
+    virtual double get_w() = 0;
+
     virtual void add(const std::shared_ptr<Vec4> & v) = 0;
 
     virtual void addScaledVector(const std::shared_ptr<Vec4> & v) = 0;

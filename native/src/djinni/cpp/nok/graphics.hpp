@@ -30,11 +30,11 @@ class Graphics {
 public:
     virtual ~Graphics() {}
 
-    static constexpr int32_t CLEARCOLORFLAG = 1;
+    static int32_t const CLEARCOLORFLAG;
 
-    static constexpr int32_t CLEARDEPTHFLAG = 2;
+    static int32_t const CLEARDEPTHFLAG;
 
-    static constexpr int32_t CLEARSTENCILFLAG = 4;
+    static int32_t const CLEARSTENCILFLAG;
 
     static void setBool(const std::shared_ptr<ConstantLocation> & location, bool value);
 

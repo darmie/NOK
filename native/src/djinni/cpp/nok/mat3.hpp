@@ -13,9 +13,9 @@ class Mat3 {
 public:
     virtual ~Mat3() {}
 
-    static constexpr float WIDTH = 3;
+    static float const WIDTH;
 
-    static constexpr float HEIGHT = 3;
+    static float const HEIGHT;
 
     virtual float get(float row, float col) = 0;
 

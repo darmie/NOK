@@ -11,10 +11,10 @@
 
 namespace nok {
 
-int32_t constexpr Graphics::CLEARCOLORFLAG;
+int32_t const Graphics::CLEARCOLORFLAG = 1;
 
-int32_t constexpr Graphics::CLEARDEPTHFLAG;
+int32_t const Graphics::CLEARDEPTHFLAG = 2;
 
-int32_t constexpr Graphics::CLEARSTENCILFLAG;
+int32_t const Graphics::CLEARSTENCILFLAG = 4;
 
 }  // namespace nok
