@@ -217,6 +217,46 @@ mat2 = interface +c {
     static linearInterpolate(a: mat2, b: mat2, prop: f32): mat2;
 }
 
+mat2_module = interface +r {
+    const width: f64 = 2;
+    const height: f64 = 2;
+
+    get(row: f64, col: f64, promise:javascript_promise);
+    set(row: f64, col: f64, v: f64);
+
+    orthogonalProjection(left: f64, right: f64, bottom: f64, top: f64, zn: f64, zf: f64, promise:javascript_promise);
+    perspective(left: f64, right: f64, top: f64, bottom: f64, near: f64, far: f64, promise:javascript_promise);
+    perspectiveFOV(fov: f64, aspect: f64, near: f64, far: f64, promise:javascript_promise);
+
+    lookAt(eye: javascript_map, at: javascript_map, up: javascript_map, promise:javascript_promise);
+    lookAlong(axis: javascript_map, eye: javascript_map, up: javascript_map, promise:javascript_promise);
+
+    translation(x: f64, y: f64, promise:javascript_promise);
+    movement(x: f64, y: f64, z: f64, promise:javascript_promise);
+    identity(promise:javascript_promise);
+    scale(scale: f64, promise:javascript_promise);
+    
+    rotationX(alpha: f64, promise:javascript_promise);
+    rotationY(alpha: f64, promise:javascript_promise);
+    rotationZ(alpha: f64, promise:javascript_promise);
+
+    rotation(yaw: f64, pitch: f64, roll: f64, promise:javascript_promise);
+
+    from(mat: javascript_array, promise:javascript_promise);
+
+    add(mat: javascript_array, promise:javascript_promise);
+    sub(mat: javascript_array, promise:javascript_promise);
+
+    multiply(i: f64, promise:javascript_promise);
+    clone(promise:javascript_promise);
+    transpose(promise:javascript_promise);
+    transpose3x3(promise:javascript_promise);
+    trace(promise:javascript_promise);
+    determinant(promise:javascript_promise);
+
+    linearInterpolate(a: javascript_array, b: javascript_array, prop: f64, promise:javascript_promise);
+}
+
 
 mat3 = interface +c {
     const width: f32 = 3;
