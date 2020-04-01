@@ -6,9 +6,9 @@ package co.zenturi.nok;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class Mat4 {
-    public static final float WIDTH = 3;
+    public static final float WIDTH = 4;
 
-    public static final float HEIGHT = 3;
+    public static final float HEIGHT = 4;
 
     public abstract float get(float row, float col);
 

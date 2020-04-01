@@ -4,6 +4,6 @@
 #import "NOKMat4.h"
 
 
-float const NOKMat4Width = 3;
+float const NOKMat4Width = 4;
 
-float const NOKMat4Height = 3;
+float const NOKMat4Height = 4;

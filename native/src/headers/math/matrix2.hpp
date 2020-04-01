@@ -10,60 +10,13 @@ class JavascriptMap;
 
 namespace nok
 {
-template <class T>
+template <class T = double>
 class Matrix2 : public nok::Mat2, nok::Mat2Module, public Kore::Matrix<2U, 2U, T>
 {
 private:
     std::shared_ptr<ReactBridge> mBridge;
     std::shared_ptr<JobQueueImpl> mQueue;
     std::shared_ptr<JobDispatcher> mDispatcher;
-
-    static void toJavascriptArray(const std::shared_ptr<Matrix2> &nMat, const std::shared_ptr<::JavascriptPromise> &promise)
-    {
-        auto mat = mBridge->createArray();
-        auto arr = mBridge->createArray();
-        for (unsigned x = 0; x < WIDTH; ++x)
-        {
-            mat->pushArray(arr);
-            for (unsigned y = 0; y < HEIGHT; ++y)
-            {
-                arr->pushDouble(static_cast<Matrix2 *>(nMat.get())->get(x, y));
-            }
-        }
-
-        promise->resolveArray(mat);
-    }
-
-    static std::shared_ptr<JavascriptArray> toJavascriptArray(const std::shared_ptr<Matrix2> &nMat)
-    {
-        auto mat = mBridge->createArray();
-        auto arr = mBridge->createArray();
-        for (unsigned x = 0; x < WIDTH; ++x)
-        {
-            mat->pushArray(arr);
-            for (unsigned y = 0; y < HEIGHT; ++y)
-            {
-                arr->pushDouble(static_cast<Matrix2 *>(nMat.get())->get(x, y));
-            }
-        }
-
-        return mat;
-    }
-
-    static std::shared_ptr<Matrix2> toNative(const std::shared_ptr<::JavascriptArray> &arr) {
-        Kore::Matrix<2U, 2U, T>* nMat = new Kore::Matrix<2U, 2U, T>(); 
-       
-        for (unsigned x = 0; x < WIDTH; ++x)
-        {
-            auto nArr = arr->getArray(x);
-            for (unsigned y = 0; y < HEIGHT; ++y)
-            {
-                nMat[x][y] = nArr->getDouble(y);
-            }
-        }
-
-        return std::make_shared<Matrix2>(static_cast<Matrix2*>nMat);
-    }
 
 public:
     Matrix2() : nok::Mat2(), nok::Mat2Module(), Kore::Matrix<2U, 2U, T>(){};
@@ -106,9 +59,9 @@ public:
 
     void orthogonalProjection(double left, double right, double bottom, double top, double zn, double zf, const std::shared_ptr<::JavascriptPromise> &promise)
     {
-        auto nMat = Matrix2::orthogonalProjection(left, right, bottom, top, zn, zf);
+        auto nMat = std::make_shared<Matrix2<double>>(Matrix2::orthogonalProjection(left, right, bottom, top, zn, zf));
 
-        Matrix2::toJavascriptArray(nMat, promise);
+        nMat->toJavascriptArray(promise);
     }
 
     static std::shared_ptr<Mat2> perspective(float left, float right, float top, float bottom, float near, float far)
@@ -118,9 +71,9 @@ public:
 
     void perspective(double left, double right, double top, double bottom, double near, double far, const std::shared_ptr<::JavascriptPromise> &promise)
     {
-        auto nMat = Matrix2::perspective(left, right, top, bottom, near, far);
+        auto nMat = std::make_shared<Matrix2<double>>(Matrix2::perspective(left, right, top, bottom, near, far));
 
-        Matrix2::toJavascriptArray(nMat, promise);
+        nMat->toJavascriptArray(promise);
     }
 
     static std::shared_ptr<Mat2> perspectiveFOV(float fov, float aspect, float near, float far)
@@ -130,47 +83,49 @@ public:
 
     void perspectiveFOV(double fov, double aspect, double near, double far, const std::shared_ptr<::JavascriptPromise> &promise)
     {
-        auto nMat = Matrix2::perspectiveFov(fov, top, bottom, near, far);
+        auto nMat = std::make_shared<Matrix2<double>>(Matrix2::perspectiveFOV(fov, aspect, near, far));
 
-        Matrix2::toJavascriptArray(nMat, promise);
+        nMat->toJavascriptArray(promise);
     }
 
     static std::shared_ptr<Mat2> lookAt(const std::shared_ptr<Vec3> &eye, const std::shared_ptr<Vec3> &at, const std::shared_ptr<Vec3> &up)
     {
-        Vector3<double>* nEye = static_cast<Vector3<double>*>(eye.get());
-        Vector3<double>* nAt = static_cast<Vector3<double>*>(at.get());
-        Vector3<double>* nUp = static_cast<Vector3<double>*>(up.get());
+        Vector3<double> *nEye = static_cast<Vector3<double> *>(eye.get());
+        Vector3<double> *nAt = static_cast<Vector3<double> *>(at.get());
+        Vector3<double> *nUp = static_cast<Vector3<double> *>(up.get());
 
-        return std::make_shared(static_cast<Matrix2*>Kore::Matrix<2U, 2U, T>::lookAt(nEye, nAt, nUp));
+        return std::make_shared(static_cast<Matrix2 *> Kore::Matrix<2U, 2U, T>::lookAt(nEye, nAt, nUp));
     }
 
-    void lookAt(const std::shared_ptr<::JavascriptMap> & eye, const std::shared_ptr<::JavascriptMap> & at, const std::shared_ptr<::JavascriptMap> & up, const std::shared_ptr<::JavascriptPromise> & promise){
+    void lookAt(const std::shared_ptr<::JavascriptMap> &eye, const std::shared_ptr<::JavascriptMap> &at, const std::shared_ptr<::JavascriptMap> &up, const std::shared_ptr<::JavascriptPromise> &promise)
+    {
         auto nEye = std::make_shared<nok::Vector3<double>>(eye->getDouble("x"), eye->getDouble("y"), eye->getDouble("z"));
         auto nAt = std::make_shared<nok::Vector3<double>>(at->getDouble("x"), at->getDouble("y"), at->getDouble("z"));
         auto nUp = std::make_shared<nok::Vector3<double>>(up->getDouble("x"), up->getDouble("y"), up->getDouble("z"));
-        
-        auto nMat = Matrix2::lookAt(nEye, nAt, nUp);
 
-        Matrix2::toJavascriptArray(nMat, promise);
+        auto nMat = std::make_shared<Matrix2<double>>(Matrix2<double>::lookAt(nEye, nAt, nUp));
+
+        nMat->toJavascriptArray(promise);
     }
 
     static std::shared_ptr<Mat2> lookAlong(const std::shared_ptr<Vec3> &axis, const std::shared_ptr<Vec3> &eye, const std::shared_ptr<Vec3> &up)
     {
-        Vector3<double>* nAxis = static_cast<Vector3<double>*>(axis.get());
-        Vector3<double>* nEye = static_cast<Vector3<double>*>(eye.get());
-        Vector3<double>* nUp = static_cast<Vector3<double>*>(up.get());
+        Vector3<double> *nAxis = static_cast<Vector3<double> *>(axis.get());
+        Vector3<double> *nEye = static_cast<Vector3<double> *>(eye.get());
+        Vector3<double> *nUp = static_cast<Vector3<double> *>(up.get());
 
-        return std::make_shared(static_cast<Matrix2*>Kore::Matrix<2U, 2U, T>::lookAlong(nAxis, nEye, nUp));
+        return std::make_shared(static_cast<Matrix2 *> Kore::Matrix<2U, 2U, T>::lookAlong(nAxis, nEye, nUp));
     }
 
-    void lookAlong(const std::shared_ptr<::JavascriptMap> & axis, const std::shared_ptr<::JavascriptMap> & eye, const std::shared_ptr<::JavascriptMap> & up, const std::shared_ptr<::JavascriptPromise> & promise){
+    void lookAlong(const std::shared_ptr<::JavascriptMap> &axis, const std::shared_ptr<::JavascriptMap> &eye, const std::shared_ptr<::JavascriptMap> &up, const std::shared_ptr<::JavascriptPromise> &promise)
+    {
         auto nEye = std::make_shared<nok::Vector3<double>>(eye->getDouble("x"), eye->getDouble("y"), eye->getDouble("z"));
         auto nAxis = std::make_shared<nok::Vector3<double>>(axis->getDouble("x"), axis->getDouble("y"), axis->getDouble("z"));
         auto nUp = std::make_shared<nok::Vector3<double>>(up->getDouble("x"), up->getDouble("y"), up->getDouble("z"));
 
-        auto nMat = Matrix2::lookAt(nAix, nEye, nUp);
+        auto nMat = std::make_shared<Matrix2<double>>(Matrix2::lookAlong(nAxis, nEye, nUp));
 
-        Matrix2::toJavascriptArray(nMat, promise);
+        nMat->toJavascriptArray(promise);
     }
 
     static std::shared_ptr<Mat2> translation(float x, float y)
@@ -178,10 +133,11 @@ public:
         return std::make_shared<Matrix2<T>>(Kore::Matrix<2U, 2U, T>::Translation(x, y));
     }
 
-    void translation(double x, double y, const std::shared_ptr<::JavascriptPromise> & promise){
-        auto mat = Matrix2<double>::translation(x, y);
+    void translation(double x, double y, const std::shared_ptr<::JavascriptPromise> &promise)
+    {
+        auto mat = std::make_shared<Matrix2<double>>(Matrix2<double>::translation(x, y));
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     static std::shared_ptr<Mat2> movement(float x, float y, float z)
@@ -189,10 +145,11 @@ public:
         return std::make_shared<Matrix2<T>>(Kore::Matrix<2U, 2U, T>::Movement(x, y, z));
     }
 
-    void movement(double x, double y, double z, const std::shared_ptr<::JavascriptPromise> & promise){
-        auto mat = Matrix2<double>::movement(x, y, z);
+    void movement(double x, double y, double z, const std::shared_ptr<::JavascriptPromise> &promise)
+    {
+        auto mat = std::make_shared<Matrix2<double>>(Matrix2<double>::movement(x, y, z));
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     static std::shared_ptr<Mat2> identity()
@@ -200,10 +157,11 @@ public:
         return std::make_shared<Matrix2<T>>(Kore::Matrix<2U, 2U, T>::Identity());
     }
 
-    void identity(const std::shared_ptr<::JavascriptPromise> & promise){
-        auto mat = Matrix2<double>::identity();
+    void identity(const std::shared_ptr<::JavascriptPromise> &promise)
+    {
+        auto mat = std::make_shared<Matrix2<double>>(Matrix2<double>::identity());
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     static std::shared_ptr<Mat2> scale(float scale)
@@ -211,10 +169,11 @@ public:
         return std::make_shared<Matrix2<T>>(Kore::Matrix<2U, 2U, T>::Scale(scale));
     }
 
-    void scale(double scale, const std::shared_ptr<::JavascriptPromise> & promise) {
-        auto mat = Matrix2<double>::scale(scale);
+    void scale(double scale, const std::shared_ptr<::JavascriptPromise> &promise)
+    {
+        auto mat = std::make_shared<Matrix2<double>>(Matrix2<double>::scale(scale));
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     static std::shared_ptr<Mat2> rotationX(float alpha)
@@ -222,10 +181,11 @@ public:
         return std::make_shared<Matrix2<T>>(Kore::Matrix<2U, 2U, T>::RotationX(alpha));
     }
 
-    void rotationX(double alpha, const std::shared_ptr<::JavascriptPromise> & promise){
-        auto mat = Matrix2<double>::rotationX(alpha);
+    void rotationX(double alpha, const std::shared_ptr<::JavascriptPromise> &promise)
+    {
+        auto mat = std::make_shared<Matrix2<double>>(Matrix2<double>::rotationX(alpha));
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     static std::shared_ptr<Mat2> rotationY(float alpha)
@@ -233,10 +193,11 @@ public:
         return std::make_shared<Matrix2<T>>(Kore::Matrix<2U, 2U, T>::RotationY(alpha));
     }
 
-    void rotationY(double alpha, const std::shared_ptr<::JavascriptPromise> & promise){
-        auto mat = Matrix2<double>::rotationY(alpha);
+    void rotationY(double alpha, const std::shared_ptr<::JavascriptPromise> &promise)
+    {
+        auto mat = std::make_shared<Matrix2<double>>(Matrix2<double>::rotationY(alpha));
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     static std::shared_ptr<Mat2> rotationZ(float alpha)
@@ -244,10 +205,11 @@ public:
         return std::make_shared<Matrix2<T>>(Kore::Matrix<2U, 2U, T>::RotationZ(alpha));
     }
 
-    void rotationZ(double alpha, const std::shared_ptr<::JavascriptPromise> & promise){
-        auto mat = Matrix2<double>::rotationZ(alpha);
+    void rotationZ(double alpha, const std::shared_ptr<::JavascriptPromise> &promise)
+    {
+        auto mat = std::make_shared<Matrix2<double>>(Matrix2<double>::rotationZ(alpha));
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     static std::shared_ptr<Mat2> rotation(float yaw, float pitch, float roll)
@@ -255,10 +217,11 @@ public:
         return std::make_shared<Matrix2<T>>(Kore::Matrix<2U, 2U, T>::Rotation(yaw, pitch, roll));
     }
 
-    void rotation(float yaw, float pitch, float roll, const std::shared_ptr<::JavascriptPromise> & promise){
-        auto mat = Matrix2<double>::rotation(yaw, pitch, roll);
+    void rotation(double yaw, double pitch, double roll, const std::shared_ptr<::JavascriptPromise> &promise)
+    {
+        auto mat = std::make_shared<Matrix2<double>>(Matrix2<double>::rotation(yaw, pitch, roll));
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     static std::shared_ptr<Mat2> create()
@@ -271,11 +234,12 @@ public:
         return std::make_shared<Matrix2<T>>(new Kore::Matrix<2U, 2U, T>(*static_cast<Matrix2 *>(mat.get())));
     }
 
-    void from(const std::shared_ptr<::JavascriptArray> & mat, const std::shared_ptr<::JavascriptPromise> & promise){
+    void from(const std::shared_ptr<::JavascriptArray> &mat, const std::shared_ptr<::JavascriptPromise> &promise)
+    {
         auto xmat = Matrix2<double>::toNativeArray(mat);
-        auto mat = Matrix2<double>::from(xmat);
+        auto mat =std::make_shared<Matrix2<double>>( Matrix2<double>::from(xmat));
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     std::shared_ptr<Mat2> add(const std::shared_ptr<Mat2> &mat)
@@ -284,11 +248,12 @@ public:
         return std::make_shared<Matrix2<T>>(sum);
     }
 
-    void add(const std::shared_ptr<::JavascriptArray> & mat, const std::shared_ptr<::JavascriptPromise> & promise){
+    void add(const std::shared_ptr<::JavascriptArray> &mat, const std::shared_ptr<::JavascriptPromise> &promise)
+    {
         auto xmat = Matrix2<double>::toNativeArray(mat);
-        auto mat = this->add(xmat);
+        auto mat = std::make_shared<Matrix2<double>>(this->add(xmat));
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     std::shared_ptr<Mat2> sub(const std::shared_ptr<Mat2> &mat)
@@ -297,11 +262,12 @@ public:
         return std::make_shared<Matrix2<T>>(sub);
     }
 
-    void sub(const std::shared_ptr<::JavascriptArray> & mat, const std::shared_ptr<::JavascriptPromise> & promise){
+    void sub(const std::shared_ptr<::JavascriptArray> &mat, const std::shared_ptr<::JavascriptPromise> &promise)
+    {
         auto xmat = Matrix2<double>::toNativeArray(mat);
-        auto mat = this->sub(xmat);
+        auto mat = std::make_shared<Matrix2<double>>(this->sub(xmat));
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     std::shared_ptr<Mat2> multiply(float i)
@@ -310,10 +276,11 @@ public:
         return std::make_shared<Matrix2<T>>(mu);
     }
 
-    void multiply(double i, const std::shared_ptr<::JavascriptPromise> & promise){
-        auto mat = this->multiply(i);
+    void multiply(double i, const std::shared_ptr<::JavascriptPromise> &promise)
+    {
+        auto mat = std::make_shared<Matrix2<double>>(this->multiply(i));
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     std::shared_ptr<Mat2> clone()
@@ -321,10 +288,11 @@ public:
         return std::make_shared<Matrix2<T>>(static_cast<Kore::Matrix<2U, 2U, T> *>(this)->Clone());
     }
 
-    void clone(const std::shared_ptr<::JavascriptPromise> & promise){
-        auto mat = this->clone();
+    void clone(const std::shared_ptr<::JavascriptPromise> &promise)
+    {
+        auto mat = std::make_shared<Matrix2<double>>(this->clone());
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     std::shared_ptr<Mat2> transpose()
@@ -332,10 +300,11 @@ public:
         return std::make_shared<Matrix2<T>>(static_cast<Kore::Matrix<2U, 2U, T> *>(this)->Transpose());
     }
 
-    void transpose(const std::shared_ptr<::JavascriptPromise> & promise){
-        auto mat = this->transpose();
+    void transpose(const std::shared_ptr<::JavascriptPromise> &promise)
+    {
+        auto mat = std::make_shared<Matrix2<double>>(this->transpose());
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     std::shared_ptr<Mat2> transpose3x3()
@@ -343,10 +312,11 @@ public:
         return std::make_shared<Matrix2<T>>(static_cast<Kore::Matrix<2U, 2U, T> *>(this)->Transpose3x3());
     }
 
-    void transpose3x3(const std::shared_ptr<::JavascriptPromise> & promise){
-        auto mat = this->transpose3x3();
+    void transpose3x3(const std::shared_ptr<::JavascriptPromise> &promise)
+    {
+        auto mat = std::make_shared<Matrix2<double>>(this->transpose3x3());
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
     }
 
     float trace()
@@ -354,7 +324,8 @@ public:
         return static_cast<Kore::Matrix<2U, 2U, T> *>(this)->Trace();
     }
 
-    void transpose(const std::shared_ptr<::JavascriptPromise> & promise){
+    void trace(const std::shared_ptr<::JavascriptPromise> &promise)
+    {
         auto trace = this->trace();
 
         promise->resolveDouble(trace);
@@ -365,7 +336,8 @@ public:
         return static_cast<Kore::Matrix<2U, 2U, T> *>(this)->Determinant();
     }
 
-    void determinant(const std::shared_ptr<::JavascriptPromise> & promise){
+    void determinant(const std::shared_ptr<::JavascriptPromise> &promise)
+    {
         auto trace = this->determinant();
 
         promise->resolveDouble(trace);
@@ -376,13 +348,62 @@ public:
         return std::make_shared<Matrix2<T>>(Kore::Matrix<2U, 2U, T>::linearInterpolate(*static_cast<Matrix2 *>(a.get()), *static_cast<Matrix2 *>(b.get()), prop));
     }
 
-    void linearInterpolate(const std::shared_ptr<::JavascriptArray> & a, const std::shared_ptr<::JavascriptArray> & b, double prop, const std::shared_ptr<::JavascriptPromise> & promise){
+    void linearInterpolate(const std::shared_ptr<::JavascriptArray> &a, const std::shared_ptr<::JavascriptArray> &b, double prop, const std::shared_ptr<::JavascriptPromise> &promise)
+    {
         auto _a = Matrix2<double>::toNative(a);
         auto _b = Matrix2<double>::toNative(b);
 
-        auto mat = Matrix2<double>::linearInterpolate(_a, _b, prop);
+        auto mat = std::make_shared<Matrix2<double>>(Matrix2<double>::linearInterpolate(_a, _b, prop));
 
-        Matrix2::toJavascriptArray(mat, promise);
+        mat->toJavascriptArray(promise);
+    }
+
+    void toJavascriptArray(const std::shared_ptr<::JavascriptPromise> &promise)
+    {
+        auto mat = mBridge->createArray();
+        auto arr = mBridge->createArray();
+        for (unsigned x = 0; x < WIDTH; ++x)
+        {
+            mat->pushArray(arr);
+            for (unsigned y = 0; y < HEIGHT; ++y)
+            {
+                arr->pushDouble(this->get(x, y));
+            }
+        }
+
+        promise->resolveArray(mat);
+    }
+
+    std::shared_ptr<JavascriptArray> toJavascriptArray()
+    {
+        auto mat = mBridge->createArray();
+        auto arr = mBridge->createArray();
+        for (unsigned x = 0; x < WIDTH; ++x)
+        {
+            mat->pushArray(arr);
+            for (unsigned y = 0; y < HEIGHT; ++y)
+            {
+                arr->pushDouble(this->get(x, y));
+            }
+        }
+
+        return mat;
+    }
+
+    std::shared_ptr<Matrix2> toNative(const std::shared_ptr<::JavascriptArray> &arr)
+    {
+        Kore::Matrix<2U, 2U, T> *nMat = this;
+
+        for (unsigned x = 0; x < WIDTH; ++x)
+        {
+            auto nArr = arr->getArray(x);
+            for (unsigned y = 0; y < HEIGHT; ++y)
+            {
+                nMat[x][y] = nArr->getDouble(y);
+            }
+        }
+
+        return std::make_shared<Matrix2>(static_cast<Matrix2 *> (nMat));
     }
 };
 
